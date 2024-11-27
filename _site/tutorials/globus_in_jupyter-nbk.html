@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/tutorials/globus_in_jupyter-nbk.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Access Globus from a Jupyter Notebook | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Access Globus from a Jupyter Notebook" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Globus SDK" />
+<meta property="og:description" content="Introduction Globus SDK" />
+<link rel="canonical" href="http://localhost:4000/tutorials/globus_in_jupyter-nbk.html" />
+<meta property="og:url" content="http://localhost:4000/tutorials/globus_in_jupyter-nbk.html" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Access Globus from a Jupyter Notebook" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"Introduction Globus SDK","headline":"Access Globus from a Jupyter Notebook","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tutorials/globus_in_jupyter-nbk.html"},"url":"http://localhost:4000/tutorials/globus_in_jupyter-nbk.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="Access+Globus+from+a+Jupyter+Notebook" class="title">Access Globus from a Jupyter Notebook</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <h2 id="introduction">Introduction</h2>
+<h3 id="globus-sdk">Globus SDK</h3>
+
+<p>The <a href="https://globus-sdk-python.readthedocs.io/en/stable/">Globus Python SDK</a>
+allows you to access and control <a href="https://www.globus.org/blog/using-globus-jupyter-notebooks">Globus services using Python code</a> in a Jupyter Notebook</p>
+
+<p><img src="/assets/img/tutorialsimages/nbk/1.png" />
+<!--![image](https://user-images.githubusercontent.com/79628214/118164353-05291200-b3f1-11eb-985c-ccc4fac32b9a.png)--></p>
+
+<h3 id="summary-of-the-steps">Summary of the steps</h3>
+
+<p><a href="https://globus-sdk-python.readthedocs.io/en/stable/tutorial.html#tutorial-step1">Get a Client</a> <br />
+<a href="https://globus-sdk-python.readthedocs.io/en/stable/tutorial.html#tutorial-step2">Get and Save Client ID</a> <br />
+<a href="https://globus-sdk-python.readthedocs.io/en/stable/tutorial.html#tutorial-step3">Get Some Access Tokens!</a> <br />
+<a href="https://globus-sdk-python.readthedocs.io/en/stable/tutorial.html#tutorial-step4">Use Your Tokens, Perform operations.</a> <br /></p>
+
+<!--#Image 2 -->
+<!-- ![image](https://user-images.githubusercontent.com/79628214/118171830-aa47e880-b3f9-11eb-9f70-b81f8710265d.png)-->
+<p><img src="/assets/img/tutorialsimages/nbk/2.png" /></p>
+
+<ul>
+  <li>Use the <a href="https://developers.globus.org/">Globus Developers page</a> to register an application. <br /></li>
+  <li>Use the drop down menu to select your institution.</li>
+</ul>
+
+<h3 id="create-the-project">Create the Project</h3>
+<!-- #Image 3 -->
+<!-- ![image](https://user-images.githubusercontent.com/79628214/118172605-90f36c00-b3fa-11eb-8119-690e9313046a.png)-->
+<p><img src="/assets/img/tutorialsimages/nbk/3.png" /></p>
+
+<p>Follow screen directions, to create a project. <br />
+Fill in the details that are required for the project. <br />
+After successfully creating a project, click on ‘add app’.
+Use this example <a href="https://globus-sdk-python.readthedocs.io/en/stable/clients/transfer.html">tutorial</a> .</p>
+
+<h3 id="application-registration">Application registration</h3>
+<!-- #Image 4 -->
+<!-- ![image](https://user-images.githubusercontent.com/79628214/118172672-a2d50f00-b3fa-11eb-9814-c97d50c8f631.png)-->
+<p><img src="/assets/img/tutorialsimages/nbk/4.png" /></p>
+
+<ul>
+  <li>By clicking on add new app, App registration page opens. <br /></li>
+  <li>Enter all the required information for the app registration. <br /></li>
+  <li>Make sure, you click on “Native app” if you  would like to run the app on local host otherwise, you may use the URI and other required information related to your application. <br /></li>
+  <li>By clicking on “Create App,”  the app is successfully created under the project. <br /></li>
+  <li>For this tutorial, a ‘Native app’ is created and used same redirect URLs and scopes as specified  in the <a href="https://globus-sdk-python.readthedocs.io/en/stable/tutorial.html#tutorial-step1">tutorial.</a> <br /></li>
+</ul>
+
+<h3 id="generating-client-id">Generating client ID</h3>
+
+<!-- #Image 5 -->
+<!--![image](https://user-images.githubusercontent.com/79628214/118172708-acf70d80-b3fa-11eb-9bc2-699fe98203d9.png)-->
+<p><img src="/assets/img/tutorialsimages/nbk/5.png" /></p>
+
+<p>By creating an application, a Client ID is generated. <br />
+This Client ID is very important for the further steps in the process. <br /></p>
+
+<h3 id="accessing-jupyter-notebook">Accessing Jupyter notebook</h3>
+
+<!--#Image 6 -->
+<!-- <img width="565" alt="image" src="https://user-images.githubusercontent.com/79628214/118180232-4e369180-b404-11eb-91c0-3723a61e417c.png"> -->
+<!--<img width="565" alt="image" src="https://i.imgur.com/gDC89xy.png">-->
+<p><img src="/assets/img/tutorialsimages/nbk/6.png" /></p>
+
+<p>Open the Jupyter Notebook and start importing libraries. <br />
+Gather the UUIDs of the endpoints you wish to exchange the information with. <br />
+The Globus Python SDK makes transfer functionality available via a TransferClient class. <br />
+We want to configure a TransferClient with an OAuth2 access token, to authenticate its connections with Globus. <br />
+The client ID generated is used.</p>
+
+<h3 id="authenticating-the-application-in-jupyter-notebook">Authenticating the application in jupyter notebook</h3>
+
+<!-- #Image 7 -->
+<!--![image](https://user-images.githubusercontent.com/79628214/118180294-5bec1700-b404-11eb-97bb-9933c1a07438.png)-->
+<p><img src="/assets/img/tutorialsimages/nbk/7.png" />
+Since the app is native app, when we run the Oauth, and this generates a link in the output. <br />
+By clicking on the link, you will be redirected to a page with the authentication code. <br />
+Copy the authentication code. This code is valid for only 10 minutes. <br />
+Every time we rerun the cell; it generates new link with new code. <br /></p>
+
+<!--#Image 8 -->
+<!--![image](https://user-images.githubusercontent.com/79628214/118180329-673f4280-b404-11eb-9f48-653fab680f34.png)-->
+<p><img src="/assets/img/tutorialsimages/nbk/8.png" /></p>
+
+<p>The authorization code looks like this</p>
+
+<!--#Image 9 -->
+<!--![image](https://user-images.githubusercontent.com/79628214/118180386-76be8b80-b404-11eb-8214-2dd3ff6ec5a6.png)-->
+<p><img src="/assets/img/tutorialsimages/nbk/9.png" /></p>
+
+<p>This is very important step in accessing Globus from Jupyter notebook. The authorization code generated is copied and pasted here. By running this cell, it authenticates and lets the user perform further operations.</p>
+
+<h3 id="transferring-files-in-globus">Transferring files in Globus</h3>
+
+<!--#Image 10 -->
+<!-- ![image](https://user-images.githubusercontent.com/79628214/118180408-7e7e3000-b404-11eb-90ad-7951e9239fbc.png)-->
+<p><img src="/assets/img/tutorialsimages/nbk/10.png" /></p>
+
+<p>To perform the transfer operation, get the source and destination path and perform the transfer operation. 
+This block of code generates the task ID. 
+Task ID is used to get the status of the task and other information related to the task.</p>
+
+<!--#Image 11-->
+<!--![image](https://user-images.githubusercontent.com/79628214/118180439-863dd480-b404-11eb-89c9-2768798033b7.png)-->
+<p><img src="/assets/img/tutorialsimages/nbk/11.png" /></p>
+
+<p>By using the generated task ID, the status of the task can also be determined.</p>
+
+<!--#Image 12-->
+<!--![image](https://user-images.githubusercontent.com/79628214/118180483-935ac380-b404-11eb-9cc9-f69c179adaf3.png)-->
+<p><img src="/assets/img/tutorialsimages/nbk/12.png" /></p>
+
+<ul>
+  <li>Different operations can be performed. This includes:
+    <ul>
+      <li>Getting the previously generated task listed with their status,</li>
+      <li>searching for the active,</li>
+      <li>successful or failed status, and</li>
+      <li>terminating active task.</li>
+    </ul>
+  </li>
+  <li>If the task has been successful, then you cannot terminate the task.</li>
+</ul>
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="Globus CLI" href="/tutorials/globus_cli.html">
+            <p>Previous post</p>
+            Globus CLI
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="How to access Google Drive end point in Globus" href="/tutorials/googledrive.html">
+            <p>Next post</p>
+            How to access Google Drive end point in Globus
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/workshop/datatransfer.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Persistent Data Transfer over the Science DMZ | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Persistent Data Transfer over the Science DMZ" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction The Science DMZ as defined by ESnet is a portion of the network, built at or near the campus or laboratory’s local network perimeter that is designed such that the equipment, configuration, and security policies are optimized for high-performance scientific applications rather than for general-purpose business systems or “enterprise” computing. Data is the object that connect scientists and instruments within the Science DMZ. The design and set up of the Science DMZ, limits the number of applications that exposes the network to the rest of the world. to this effect, Globus is the application most in use. Why Use Globus? Why Use the Globus Platform? Globus provides scalable, secure solutions to the research community: It enables login using linked external identities; Globus federates identities from over 150 identity providers including InCommon, Google, XSEDE and Internet2. It allows for the transfer of large datasets fast, securely, and reliably. Improves collaboration among users using Globus-based access control to simplify data sharing within and beyond institutional boundaries. New Globus application services can be set up and running in minutes. Enable secure, scalable search using custom metadata. It eliminates time wasted managing user identities and ACLs for sharing data with external users. Use open RESTful APIs, with fine grained authorization. Leverage the growing number of Globus endpoints at hundreds of institutions worldwide. The Globus platform is built on widely adopted industry standards such as OAuth and OpenID Connect for authentication/authorization, and uses trusted protocols such as GridFTP and HTTPS. We are going to explore the use of Globus for data transfer as follow: Globus Setup Retrieve a Distinguished Name (DN) Install Globus Connect Personal Set up Globus Connect Personal Data Transfer with Globus App Using Globus Connect Personal File transfer using Globus Advanced, Data Transfer with Globus Using Globus at the Command Line Access Globus from a Jupyter Notebook Extra Material Automating Data Transfer with Globus Subscribe to the Globus Mailing List Globus Office Hours Globus Platform Services" />
+<meta property="og:description" content="Introduction The Science DMZ as defined by ESnet is a portion of the network, built at or near the campus or laboratory’s local network perimeter that is designed such that the equipment, configuration, and security policies are optimized for high-performance scientific applications rather than for general-purpose business systems or “enterprise” computing. Data is the object that connect scientists and instruments within the Science DMZ. The design and set up of the Science DMZ, limits the number of applications that exposes the network to the rest of the world. to this effect, Globus is the application most in use. Why Use Globus? Why Use the Globus Platform? Globus provides scalable, secure solutions to the research community: It enables login using linked external identities; Globus federates identities from over 150 identity providers including InCommon, Google, XSEDE and Internet2. It allows for the transfer of large datasets fast, securely, and reliably. Improves collaboration among users using Globus-based access control to simplify data sharing within and beyond institutional boundaries. New Globus application services can be set up and running in minutes. Enable secure, scalable search using custom metadata. It eliminates time wasted managing user identities and ACLs for sharing data with external users. Use open RESTful APIs, with fine grained authorization. Leverage the growing number of Globus endpoints at hundreds of institutions worldwide. The Globus platform is built on widely adopted industry standards such as OAuth and OpenID Connect for authentication/authorization, and uses trusted protocols such as GridFTP and HTTPS. We are going to explore the use of Globus for data transfer as follow: Globus Setup Retrieve a Distinguished Name (DN) Install Globus Connect Personal Set up Globus Connect Personal Data Transfer with Globus App Using Globus Connect Personal File transfer using Globus Advanced, Data Transfer with Globus Using Globus at the Command Line Access Globus from a Jupyter Notebook Extra Material Automating Data Transfer with Globus Subscribe to the Globus Mailing List Globus Office Hours Globus Platform Services" />
+<link rel="canonical" href="http://localhost:4000/workshop/datatransfer.html" />
+<meta property="og:url" content="http://localhost:4000/workshop/datatransfer.html" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Persistent Data Transfer over the Science DMZ" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"Introduction The Science DMZ as defined by ESnet is a portion of the network, built at or near the campus or laboratory’s local network perimeter that is designed such that the equipment, configuration, and security policies are optimized for high-performance scientific applications rather than for general-purpose business systems or “enterprise” computing. Data is the object that connect scientists and instruments within the Science DMZ. The design and set up of the Science DMZ, limits the number of applications that exposes the network to the rest of the world. to this effect, Globus is the application most in use. Why Use Globus? Why Use the Globus Platform? Globus provides scalable, secure solutions to the research community: It enables login using linked external identities; Globus federates identities from over 150 identity providers including InCommon, Google, XSEDE and Internet2. It allows for the transfer of large datasets fast, securely, and reliably. Improves collaboration among users using Globus-based access control to simplify data sharing within and beyond institutional boundaries. New Globus application services can be set up and running in minutes. Enable secure, scalable search using custom metadata. It eliminates time wasted managing user identities and ACLs for sharing data with external users. Use open RESTful APIs, with fine grained authorization. Leverage the growing number of Globus endpoints at hundreds of institutions worldwide. The Globus platform is built on widely adopted industry standards such as OAuth and OpenID Connect for authentication/authorization, and uses trusted protocols such as GridFTP and HTTPS. We are going to explore the use of Globus for data transfer as follow: Globus Setup Retrieve a Distinguished Name (DN) Install Globus Connect Personal Set up Globus Connect Personal Data Transfer with Globus App Using Globus Connect Personal File transfer using Globus Advanced, Data Transfer with Globus Using Globus at the Command Line Access Globus from a Jupyter Notebook Extra Material Automating Data Transfer with Globus Subscribe to the Globus Mailing List Globus Office Hours Globus Platform Services","headline":"Persistent Data Transfer over the Science DMZ","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/workshop/datatransfer.html"},"url":"http://localhost:4000/workshop/datatransfer.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="Persistent+Data+Transfer+over+the+Science+DMZ" class="title">Persistent Data Transfer over the Science DMZ</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <h2 id="introduction">Introduction</h2>
+<p>The Science DMZ as defined by <a href="https://fasterdata.es.net/science-dmz/">ESnet</a>
+is a portion of the network, built at or
+near the campus or laboratory’s local network perimeter
+that is designed such that the equipment, configuration,
+and security policies are optimized for high-performance
+scientific applications rather than for general-purpose
+business systems or “enterprise” computing.</p>
+
+<p>Data is the object that connect scientists and instruments
+within the Science DMZ. The design and set up of the Science
+DMZ, limits the number of applications that exposes the  network
+to the rest of the world. to this effect, Globus is the application
+most in use.</p>
+
+<h3 id="why-use-globus">Why Use Globus?</h3>
+<p>Why Use the Globus Platform?</p>
+
+<p>Globus provides scalable, secure solutions to the research community:</p>
+
+<ul>
+  <li>It enables login using linked external identities; Globus federates
+identities from over 150 identity providers including InCommon, Google,
+XSEDE and Internet2.</li>
+  <li>It allows for the transfer of large datasets fast, securely, and reliably.</li>
+  <li>Improves collaboration among users using Globus-based access control to
+simplify data sharing within and beyond institutional boundaries.</li>
+  <li>New Globus application services can be set up and running in minutes.</li>
+  <li>Enable secure, scalable search using custom metadata.</li>
+  <li>It eliminates time wasted managing user identities and ACLs for sharing
+data with external users.</li>
+  <li>Use open RESTful APIs, with fine grained authorization.</li>
+  <li>Leverage the growing number of Globus endpoints at hundreds of
+institutions worldwide.</li>
+</ul>
+
+<p>The Globus platform is built on widely adopted industry standards such as
+OAuth and OpenID Connect for authentication/authorization, and uses trusted
+protocols such as GridFTP and HTTPS. We are going to explore the use of Globus
+for data transfer as follow:</p>
+
+<h3 id="globus-setup">Globus Setup</h3>
+<ul>
+  <li><a href="https://gcrnet.github.io/howto/dn">Retrieve a Distinguished Name (DN)</a></li>
+  <li><a href="https://gcrnet.github.io/howto/globusconnectpersonal">Install Globus Connect Personal</a></li>
+  <li><a href="https://gcrnet.github.io/howto/setupglobusconnect">Set up Globus Connect Personal</a></li>
+</ul>
+
+<h3 id="data-transfer-with-globus-app">Data Transfer with Globus App</h3>
+<ul>
+  <li><a href="https://gcrnet.github.io/howto/usingglobusconnectpersonal">Using Globus Connect Personal</a></li>
+  <li><a href="https://gcrnet.github.io/tutorials/filetransfer.html">File transfer using Globus</a></li>
+</ul>
+
+<h3 id="advanced-data-transfer-with-globus">Advanced, Data Transfer with Globus</h3>
+<ul>
+  <li><a href="https://gcrnet.github.io/tutorials/globus_cli.html">Using Globus at the Command Line</a></li>
+  <li><a href="https://gcrnet.github.io/tutorials/globus_in_jupyter-nbk.html">Access Globus from a Jupyter Notebook</a></li>
+</ul>
+
+<h3 id="extra-material">Extra Material</h3>
+<ul>
+  <li><a href="https://github.com/globus/automation-examples">Automating Data Transfer with Globus</a></li>
+  <li><a href="https://www.globus.org/mailing-lists">Subscribe to the Globus Mailing List</a></li>
+  <li><a href="https://www.globus.org/events/globus-office-hours-4">Globus Office Hours</a></li>
+  <li><a href="https://www.globus.org/platform/services">Globus Platform Services</a></li>
+</ul>
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="Basic Linux Commands" href="/workshop/basiclinuxshell.html">
+            <p>Previous post</p>
+            Basic Linux Commands
+        </a>
+    </div>
+    
+
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

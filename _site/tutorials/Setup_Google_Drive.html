@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/tutorials/Setup_Google_Drive.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>How to Setup a Google Drive Guest Collection on Globus | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="How to Setup a Google Drive Guest Collection on Globus" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A Step-by-step Process to Setup the Google Drive Guest Collection on Globus By the end of this tutorial you will know: How to setup Google Drive Guest Collection on Globus How to troubleshoot the problems occurred while setting up the Guest Collection. Types of authentications for setting up a Guest Collection. To setup a Google Drive Guest collection, we need to follow these steps. Login to your globus account in order to setup the google drive end point. Navigate to endpoints and search for “gcrNet DTN-Google-Drive” and click on search icon. Verify the “gcrNet DTN-Google-Drive” endpoint and click on the left arrow Since this is the first time you are trying to access the “gcrNet DTN-Google-Drive” endpoint, globus requires an authentication/Consent. In order to continue with the authentication, click on “continue.” Choose the identity to authenticate with and access the end point. After reading the terms and services, click on Allow to continue. Since you don’t have any collection with “gcrNet DTN-Google-Drive” endpoint, You need to add guest collection by clicking on Add a Guest Collection. You need to connect Google Drive account with Globus, by clicking on Register one now. Verify your credential and click on Continue You will redirected to the the google account, verify your UNCG email id by clicking on it. Read all the conditions and click on allow Your Google Drive account is connected to globus, Now click on Collections For adding your Google Drive to collections, Click on Add a Guest Collection. Now Click on Browse Since this is the first time you are trying to access the end point, globus requires an authentication/Consent. In order to continue with the authentication, click on “continue.” Choose the identity to authenticate and access the Globus end point, Click on your “UNCG Email id” Read all the conditions and Click on Allow. Now Click on Browse and select desired directory (default is /My Drive). You will be redirected back to Guest collection page, Now click on view more fields. Fill all the required columns shown below and Click on “Create Collection” That’s it your Google Drive endpoint is created, Now you can transfer your Google Drive files to another endpoint. Check the link below tolearn about how to transfer files using globus" />
+<meta property="og:description" content="A Step-by-step Process to Setup the Google Drive Guest Collection on Globus By the end of this tutorial you will know: How to setup Google Drive Guest Collection on Globus How to troubleshoot the problems occurred while setting up the Guest Collection. Types of authentications for setting up a Guest Collection. To setup a Google Drive Guest collection, we need to follow these steps. Login to your globus account in order to setup the google drive end point. Navigate to endpoints and search for “gcrNet DTN-Google-Drive” and click on search icon. Verify the “gcrNet DTN-Google-Drive” endpoint and click on the left arrow Since this is the first time you are trying to access the “gcrNet DTN-Google-Drive” endpoint, globus requires an authentication/Consent. In order to continue with the authentication, click on “continue.” Choose the identity to authenticate with and access the end point. After reading the terms and services, click on Allow to continue. Since you don’t have any collection with “gcrNet DTN-Google-Drive” endpoint, You need to add guest collection by clicking on Add a Guest Collection. You need to connect Google Drive account with Globus, by clicking on Register one now. Verify your credential and click on Continue You will redirected to the the google account, verify your UNCG email id by clicking on it. Read all the conditions and click on allow Your Google Drive account is connected to globus, Now click on Collections For adding your Google Drive to collections, Click on Add a Guest Collection. Now Click on Browse Since this is the first time you are trying to access the end point, globus requires an authentication/Consent. In order to continue with the authentication, click on “continue.” Choose the identity to authenticate and access the Globus end point, Click on your “UNCG Email id” Read all the conditions and Click on Allow. Now Click on Browse and select desired directory (default is /My Drive). You will be redirected back to Guest collection page, Now click on view more fields. Fill all the required columns shown below and Click on “Create Collection” That’s it your Google Drive endpoint is created, Now you can transfer your Google Drive files to another endpoint. Check the link below tolearn about how to transfer files using globus" />
+<link rel="canonical" href="http://localhost:4000/tutorials/Setup_Google_Drive.html" />
+<meta property="og:url" content="http://localhost:4000/tutorials/Setup_Google_Drive.html" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to Setup a Google Drive Guest Collection on Globus" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"A Step-by-step Process to Setup the Google Drive Guest Collection on Globus By the end of this tutorial you will know: How to setup Google Drive Guest Collection on Globus How to troubleshoot the problems occurred while setting up the Guest Collection. Types of authentications for setting up a Guest Collection. To setup a Google Drive Guest collection, we need to follow these steps. Login to your globus account in order to setup the google drive end point. Navigate to endpoints and search for “gcrNet DTN-Google-Drive” and click on search icon. Verify the “gcrNet DTN-Google-Drive” endpoint and click on the left arrow Since this is the first time you are trying to access the “gcrNet DTN-Google-Drive” endpoint, globus requires an authentication/Consent. In order to continue with the authentication, click on “continue.” Choose the identity to authenticate with and access the end point. After reading the terms and services, click on Allow to continue. Since you don’t have any collection with “gcrNet DTN-Google-Drive” endpoint, You need to add guest collection by clicking on Add a Guest Collection. You need to connect Google Drive account with Globus, by clicking on Register one now. Verify your credential and click on Continue You will redirected to the the google account, verify your UNCG email id by clicking on it. Read all the conditions and click on allow Your Google Drive account is connected to globus, Now click on Collections For adding your Google Drive to collections, Click on Add a Guest Collection. Now Click on Browse Since this is the first time you are trying to access the end point, globus requires an authentication/Consent. In order to continue with the authentication, click on “continue.” Choose the identity to authenticate and access the Globus end point, Click on your “UNCG Email id” Read all the conditions and Click on Allow. Now Click on Browse and select desired directory (default is /My Drive). You will be redirected back to Guest collection page, Now click on view more fields. Fill all the required columns shown below and Click on “Create Collection” That’s it your Google Drive endpoint is created, Now you can transfer your Google Drive files to another endpoint. Check the link below tolearn about how to transfer files using globus","headline":"How to Setup a Google Drive Guest Collection on Globus","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tutorials/Setup_Google_Drive.html"},"url":"http://localhost:4000/tutorials/Setup_Google_Drive.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="How+to+Setup+a+Google+Drive+Guest+Collection+on+Globus" class="title">How to Setup a Google Drive Guest Collection on Globus</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <h1 id="a-step-by-step-process-to-setup-the-google-drive-guest-collection-on-globus">A Step-by-step Process to Setup the Google Drive Guest Collection on Globus</h1>
+
+<p><strong>By the end of this tutorial you will know:</strong></p>
+
+<ul>
+  <li>How to setup Google Drive Guest Collection on Globus</li>
+  <li>How to troubleshoot the problems occurred while setting up the Guest Collection.</li>
+  <li>Types of authentications for setting up a Guest Collection.</li>
+</ul>
+
+<p>To setup a Google Drive Guest collection, we need to follow these steps.
+Login to your <a href="https://auth.globus.org/">globus account</a> in order to
+setup the google drive end point. <br />
+Navigate to <em>endpoints</em> and search for <em><strong>“gcrNet DTN-Google-Drive”</strong></em>
+and click on search icon.   <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_1.png" /><br />
+Verify the <em><strong>“gcrNet DTN-Google-Drive”</strong></em> endpoint and click on the left arrow <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_2.png" /> <br />
+Since this is the first time you are trying to access the <em><strong>“gcrNet DTN-Google-Drive”</strong></em>
+endpoint, globus requires an authentication/Consent. In order to continue with
+the authentication, click on <em><strong>“continue.”</strong></em>   <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_3.png" />  <br />
+Choose the identity to authenticate with and access the end point.    <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_4.png" /> <br />
+After reading the terms and services, click on <em><strong>Allow</strong></em> to continue.   <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_5.png" />  <br />
+Since you don’t have any collection with <em><strong>“gcrNet DTN-Google-Drive”</strong></em> endpoint,
+You need to add guest collection by clicking on <em><strong>Add a Guest Collection</strong></em>. <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_6.png" />    <br />
+You need to connect Google Drive account with Globus, by clicking on <em><strong>Register one now</strong></em>. <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_7.png" /> <br />
+Verify your credential and click on <em><strong>Continue</strong></em>    <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_8.png" />   <br />
+You will redirected to the the google account, verify your UNCG email id by clicking on it. <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_9.png" />  <br />
+Read all the conditions and click on allow    <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_10.png" />  <br />
+Your Google Drive account is connected to globus, Now click on <em><strong>Collections</strong></em>    <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_11.png" />  <br />
+For adding your Google Drive to collections, Click on <em><strong>Add a Guest Collection</strong></em>.   <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_12.png" />      <br />
+Now Click on <em><strong>Browse</strong></em>    <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_13.png" />  <br />
+Since this is the first time you are trying to access the end point, globus requires
+an authentication/Consent. In order to continue with the authentication,
+click on <em><strong>“continue.”</strong></em>   <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_14.png" /><br />
+Choose the identity to authenticate and access the Globus end point, Click on
+your “UNCG Email id” <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_15.png" /><br />
+Read all the conditions and Click on <strong>Allow</strong>.  <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_16.png" /> <br />
+Now Click on <strong>Browse</strong> and select desired directory (default is /My Drive).        <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_17.png" /> <br />
+You will be redirected back to Guest collection page, Now click on <strong>view more fields</strong>. <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_18.png" />     <br />
+Fill all the required columns shown below and Click on <strong>“Create Collection”</strong>   <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_19.png" /> <br />
+That’s it your Google Drive endpoint is created, Now you can transfer your
+Google Drive files to another endpoint.  <br />
+<img src="/assets/img/tutorialsimages/GoogleGlobusConnect/img_20.png" />  <br />
+Check the link below tolearn about how to transfer files using globus</p>
+<link href="https://gcrnet.github.io/tutorials/filetransfer.html" />
+
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+
+    
+    <div id="next-post">
+        <a alt="File transfer using Globus" href="/tutorials/filetransfer.html">
+            <p>Next post</p>
+            File transfer using Globus
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

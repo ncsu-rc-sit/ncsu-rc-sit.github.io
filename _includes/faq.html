@@ -1,0 +1,10 @@
+<div class="faq-list">
+    {% for item in site.faq %}
+    
+<li>
+<p><a href="{{ item.url | relative_url }}">{{ item.title }}</a></p> 
+</li>
+
+    {% endfor %}
+    
+</div>

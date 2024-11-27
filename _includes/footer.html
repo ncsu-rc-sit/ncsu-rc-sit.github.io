@@ -1,0 +1,31 @@
+
+<footer class="site-footer">
+    <p class="text">
+        {{ site.footer_text }}</p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                {% include icons.html %}
+                </ul>
+            </div>
+</footer>
+

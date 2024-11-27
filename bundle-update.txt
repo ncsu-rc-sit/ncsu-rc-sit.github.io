@@ -1,0 +1,64 @@
+HEADS UP! i18n 1.1 changed fallbacks to exclude default locale.
+But that may break your application.
+
+If you are upgrading your Rails application from an older version of Rails:
+
+Please check your Rails app for 'config.i18n.fallbacks = true'.
+If you're using I18n (>= 1.1.0) and Rails (< 5.2.2), this should be
+'config.i18n.fallbacks = [I18n.default_locale]'.
+If not, fallbacks will be broken in your app by I18n 1.1.x.
+
+If you are starting a NEW Rails application, you can ignore this notice.
+
+For more info see:
+https://github.com/svenfuchs/i18n/releases/tag/v1.1.0
+
+ Some common errors
+ ###########################################
+ if this seen
+ /usr/local/Cellar/ruby/3.0.2_1/lib/ruby/3.0.0/pathname.rb:41: warning: already initialized constant Pathname::ABSOLUTE_PATH
+/usr/local/lib/ruby/gems/3.0.0/gems/pathname-0.2.0/lib/pathname.rb:41: warning: previous definition of ABSOLUTE_PATH was here
+bundler: failed to load command: jekyll (/usr/local/lib/ruby/gems/3.0.0/bin/jekyll)
+/Users/j_fossot/.gem/ruby/3.0.0/gems/ffi-1.15.4/lib/ffi.rb:5:in `require': incompatible library version - /Users/j_fossot/.gem/ruby/3.0.0/gems/ffi-1.15.4/lib/ffi_c.bundle (LoadError)
+
+fix with 
+For those interested, these were the steps that I took to fix this problem:
+
+    Add gem "json", "2.0.2" to the GemFile
+
+    Uninstall ffi and reinstall ffi:
+
+    gem uninstall ffi
+    gem install ffi --platform=ruby
+https://github.com/jekyll/jekyll/issues/5423
+##################################################
+Generating... 
+       Jekyll Feed: Generating feed for posts
+          Conflict: The following destination is shared by multiple files.
+                    The written file may end up with unexpected contents.
+                    /Users/j_fossot/ITSProj/testgcrnet/gcrnet.github.io/_site/404.html
+                     - 404.html
+                     - pages/404.md
+                    
+@@@ resolve the conflict by deleting one of the 404. file as 404.html and 404.md are equivalent
+but only one is published
+see explanation below
+https://talk.jekyllrb.com/t/conflict-the-following-destination-is-shared-by-multiple-files/6123
+###########################################################
+ruby --version                 
+ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-darwin20]
+(base) j_fossot@G-C02C7C89MD6T gcrnet.github.io % ./execute_jekyll.sh            
+/usr/local/Cellar/ruby/3.0.2_1/lib/ruby/3.0.0/pathname.rb:20: warning: already initialized constant Pathname::TO_PATH
+/usr/local/lib/ruby/gems/3.0.0/gems/pathname-0.2.0/lib/pathname.rb:20: warning: previous definition of TO_PATH was here
+/usr/local/Cellar/ruby/3.0.2_1/lib/ruby/3.0.0/pathname.rb:22: warning: already initialized constant Pathname::SAME_PATHS
+/usr/local/lib/ruby/gems/3.0.0/gems/pathname-0.2.0/lib/pathname.rb:22: warning: previous definition of SAME_PATHS was here
+
+@@resolve the warnings with
+bundle clean --dry-run --force
+@@will show you files to removed
+bundle clean --force
+@@ removes highlighted files
+
+@@@@ see discussion
+https://github.com/Shopify/bootsnap/issues/112
+#########################################################

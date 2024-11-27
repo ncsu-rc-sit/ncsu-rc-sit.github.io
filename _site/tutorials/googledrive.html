@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/tutorials/googledrive.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>How to access Google Drive end point in Globus | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="How to access Google Drive end point in Globus" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A Step-by-step process to access the globus end point" />
+<meta property="og:description" content="A Step-by-step process to access the globus end point" />
+<link rel="canonical" href="http://localhost:4000/tutorials/googledrive.html" />
+<meta property="og:url" content="http://localhost:4000/tutorials/googledrive.html" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to access Google Drive end point in Globus" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"A Step-by-step process to access the globus end point","headline":"How to access Google Drive end point in Globus","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tutorials/googledrive.html"},"url":"http://localhost:4000/tutorials/googledrive.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="How+to+access+Google+Drive+end+point+in+Globus" class="title">How to access Google Drive end point in Globus</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <h1 id="a-step-by-step-process-to-access-the-globus-end-point">A Step-by-step process to access the globus end point</h1>
+
+<p><strong>By the end of this tutorial you will know:</strong></p>
+
+<ul>
+  <li>How to search the end points shared with the user.</li>
+  <li>How to access the end points shared with the user.</li>
+  <li>How to troubleshoot the problems occurred while accessing the end points.</li>
+  <li>Types of authentications for accessing the end points.</li>
+</ul>
+
+<p>When a new end point is created for a user, then the user may have to access the end points by following certain steps. <br /></p>
+
+<p>Login to your <a href="#https://tinyurl.com/wvfyws">globus account</a> in order to access the google drive end point. <br />
+Once you login, check the end points. Since it is the first time, click on <em><strong>“Shared With You.”</strong></em> <br />
+If you could not find the end point, search the endpoint in the search box with your username <br /></p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img1.png" /></p>
+
+<p>When you search with your username, all the end points with your username are displayed. Click the appropriate end point name.
+<img src="/assets/img/tutorialsimages/GoogleDrive/img2.png" /></p>
+
+<p>Click on <em><strong>“Open on File manager”</strong></em> to see the files that are shared from the end point</p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img3.png" /></p>
+
+<p>Since this is the first time you are trying to access the end point, globus requests for an authentication/Consent from the user.  <br />
+In order to continue with the authentication, click on <em><strong>“continue.”</strong></em></p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img4.png" /></p>
+
+<p>Choose the type of identity you prefer to authenticate with the Globus to access the end point.</p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img5.png" /></p>
+
+<p>After reading the terms and services, click on <em><strong>“Allow”</strong></em> to continue.</p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img6.png" /></p>
+
+<p>Once you are back to the File manager and the problem persists, then click on show details to see where the problem is.</p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img7.png" /></p>
+
+<p>If the error message says <em><strong>“Login failed”</strong></em> or <em><strong>“Your credential requires some initial setup”</strong></em> then you are required to follow few more additional steps in order to get the access. Click on continue for the next steps.</p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img8.png" /></p>
+
+<p>Once you are taken to the credentials page, click on <em><strong>“continue”.</strong></em></p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img9.png" /></p>
+
+<p>As the status says <em><strong>“invalid,”</strong></em> click on the preferences icon to fix the issue.</p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img10.png" /></p>
+
+<p>Click on the email that matches your globus email and follow the steps. If you  are logging in using your institution identity, it validates the credentials and forwards to next steps.</p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img11.png" /></p>
+
+<p>Click on <em><strong>Allow</strong></em> if you agree to the terms of service</p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img12.png" /></p>
+
+<p>If the status is changed to <strong>Active</strong>, that means you have granted the permission to access the end point files.</p>
+
+<p><img src="/assets/img/tutorialsimages/GoogleDrive/img13.png" /></p>
+
+<p>Thats it! Now you know how to access the endpoints that are shared with you.</p>
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="Access Globus from a Jupyter Notebook" href="/tutorials/globus_in_jupyter-nbk.html">
+            <p>Previous post</p>
+            Access Globus from a Jupyter Notebook
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="Jekyll static site generator" href="/tutorials/websitetutorial.html">
+            <p>Next post</p>
+            Jekyll static site generator
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

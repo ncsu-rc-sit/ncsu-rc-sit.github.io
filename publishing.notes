@@ -1,0 +1,7 @@
+This explains the publication process of any page
+o The necessary change is carried out in the _config.yml
+o If creating a new menu item, the following need to be done
+  - create a _newdirectory in the trunk (gcrnet.github.io)
+  - Add the necessary .html template in the _includes directory
+  - create the corresponding markdown template "newtemplate.md" in pages directory
+o Images to be added can actually stay in the repository

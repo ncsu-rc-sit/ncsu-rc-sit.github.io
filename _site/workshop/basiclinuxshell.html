@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/workshop/basiclinuxshell.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Basic Linux Commands | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Basic Linux Commands" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction Linux commands are issued to a computer program called shell. The shell enables us to send commands to the computer and receive output. It is also referred to as the terminal or command line interface~(CLI). Some computers include a default Unix Shell program. If not natively present, a program called Linux/Unix emulator can be installed to access a Unix Shell on a server. In addition, the command line is often the easiest way to interact with remote machines and supercomputers. Familiarity with the shell is near essential to run a variety of specialized tools and resources including high-performance computing systems. As clusters and cloud computing systems become more popular for scientific data crunching, being able to interact with the shell is becoming a necessary skill. We can build on the command-line skills covered here to tackle a wide range of scientific questions and computational challenges. This workshop is designed on the model developed by the Software and Data Carpentry. The material on this page is part from the Software Carpentry Lessons To continue with the learning process, we encourage participants to follow the steps below for setup. Setup Windows macOS Linux Setup Download data-shell.zip and move the file to your Desktop. Unzip/extract the file. You should have a new folder called data-shell on your Desktop. Open a terminal. If you’re not sure how to open a terminal in your operating system, see the instructions below. In the terminal type cd then press the ‘Return’ key. This step will make sure you start with your home folder as your working directory. Later on, you will find out how to access the data files in this folder. Windows Computers with Windows operating systems(OS) older than Windows 10 do not have the Bash shell installed by default. If you have a Windows OS older than Windows 10, we encourage you to use an emulator included in Git for Windows, which gives you access to both Bash shell commands and Git. Once installed, you can open a terminal by running the program Git Bash from the Windows start menu. Additionally, you can run Bash commands from a remote computer or server that already has a Unix Shell. This can usually be done through a Secure Shell (SSH) client. One such client available for free for Windows computers is PuTTY. See the reference below for information on installing and using PuTTY, using the Windows 10 command-line tool, or installing and using a Unix/Linux emulator. Reference Git for Windows - Recommended For advanced users, you may choose one of the following alternatives: Install the Windows Subsystem for Linux Using a Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client (Putty) Please note that commands in the Windows Subsystem for Linux or Cygwin may differ slightly from those shown in the lesson or presented in the workshop. macOS For a Mac computer running macOS Mojave or earlier releases, the default Unix Shell is Bash. For a Mac computer running macOS Catalina or later releases, the default Unix Shell is Zsh. Your default shell is available via the Terminal program within your Utilities folder. To open Terminal, try one or both of the following: In Finder, select the Go menu, then select Utilities. Locate Terminal in the Utilities folder and open it. Use the Mac Spotlight computer search function. Search for: Terminal and press Return. To check if your machine is set up to use something other than Bash, type echo $SHELL in your terminal window. If your machine uses something other than Bash, you can run it by opening a terminal and typing bash. How to Use Terminal on a Mac Linux The default Unix Shell for Linux operating systems is usually Bash. On most versions of Linux, it is accessible by running the Gnome Terminal or KDE Konsole or xterm, which can be found via the applications menu or the search bar. If your machine is set up to use something other than Bash, you can run it by opening a terminal and typing bash. This workshop will not make you an expert but will provide you with a good enough foundation for a personal exploration the Unix shell. The shell has a very rich echo system of commands but we will only touch on those deemed essential for scientific computing. The lesson is structured as follows: Introducing the Shell Navigating Files and Directories Pipes and Filters Finding Things Introducing the Shell Using the shell will take some effort and some time to learn. While a GUI presents you with choices to select, CLI choices are not automatically presented to you. Unlike a spoken language, a small number of “words” (i.e. commands) gets you a long way, and we’ll cover those essential few today. The grammar of a shell allows you to combine existing tools into powerful pipelines and handle large volumes of data automatically. Sequences of commands can be written into a script, improving the reproducibility of workflows. When the shell is first opened, you are presented with a prompt, indicating that the shell is waiting for input. Bash $ The shell typically uses $ as the prompt, but may use a different symbol. So let’s try our first command, ls which is short for listing. This command will list the contents of the current directory: Bash $ ls Output $ Desktop Downloads Movies Pictures Document Library Music Public *If the shell can’t find a program whose name is the command typed, it will print an error message such as: Bash $ ks Output $ ks: command not found This might happen if the command was mis-typed or if the program corresponding to that command is not installed. A Typical Problem A marine biologist, has just returned from a six-month survey of the North Pacific Gyre, where she has been sampling gelatinous marine life in the Great Pacific Garbage Patch. She has 1520 samples that she’s run through an assay machine to measure the relative abundance of 300 proteins. She needs to run these 1520 files through an imaginary program called goostats she inherited. On top of this huge task, she has to write up results by the end of the month so her paper can appear in a special issue of Aquatic Goo Letters. The bad news is that if she has to run goostats by hand using a GUI, she’ll have to select and open a file 1520 times. If goostats takes 30 seconds to run each file, the whole process will take more than 12 hours of the scientist’s attention. With the shell, she can instead assign her computer this mundane task while she focuses her attention on writing her paper. The next few lessons will explore the ways the task can be achieved. More specifically, they explain how command shell can be used to run the goostats program, using loops to automate the repetitive steps of entering file names, so that her computer can work while she writes her paper. As a bonus, once the processing pipeline has been put together, it can be used again whenever more data is collected. Navigating Files and Directories The part of the operating system responsible for managing files and directories is called the file system. It is organized in multiple layers. The top most layer is the root directory. When you remotely login to a computer for the first time, you get on the home directory. Every user account on a server (High Performance Computer) has a home directory. &lt;img src=”/assets/img/tutorialsimages/GoogleDrive/img1.png”, Alt = “Examples of a file system” &gt; The forward slash character / does two things: When it appears at the front of a file or directory name, it refers to the root directory. When it appears inside a path, it’s just a separator. The root directory / has /bin, /data, /Users, and /tmp directories. The /Users directory in turn has the /Users/Sarah, /Users/Jacob and /Users/Nelle directories. The path from the root directory to any targeted file or directory is called the absolute path. /Users/Sarah, /Users/Jacob and /Users/Nelle are the abasolute paths to Sarah’s, Jacob’s, and Nelle’s home directories. Download the data-shell.zip from the setup section on to your destop. Start the terminal on your computer. Use the command below to determine your home directory Bash $ echo $HOME Output $ /Users/Jacob Determine your current working directory (data-shell) Bash $ pwd Output $ /Users/Jacob/Desktop/data-shell List the content of your current working directory with ls Bash $ ls Output $ creatures molecules notes.txt solar.pdf data north-pacific-gyre pizza.cfg writing ls prints the names of the files and directories in the current directory. We can make its output more comprehensible by using the -F option (also known as a switch or a flag) , which tells ls to classify the output by adding a marker to file and directory names to indicate what they are: a trailing / indicates that this is a directory @ indicates a link * indicates an executable Depending on your default options, the shell might also use colors to indicate whether each entry is a file or directory. Bash $ ls -F Output $ creatures/ molecules/ notes.txt solar.pdf data/ north-pacific-gyre/ pizza.cfg writing/ Syntax of a shell command Consider a general example of a command, which we will dissect into its component parts: Bash $ ls -F / Output Applications/ System/ bin/ etc@ private/ usr/ Library/ Users/ cores/ home@ sbin/ var@ Network@ Volumes/ dev/ opt/ tmp@ ls is the command, with an option -F and an argument /. We’ve already encountered options (also called switches or flags) which either start with a single dash (-) or two dashes (–), and they change the behaviour of a command. Arguments tell the command what to operate on (e.g. files and directories). Sometimes options and arguments are referred to as parameters. A command can be called with more than one option and more than one argument, but doesn’t always require an argument or an option. Each part is separated by spaces: if you omit the space between ls and -F the shell will look for a command called ls-F, which doesn’t exist. Also, capitalization can be important. For example, ls -s will display the size of files and directories alongside the names, while ls -S will sort the files and directories by size, as shown below: Bash $ ls -s /Users/Jacob/Desktop/data-shell/data/ total 208 8 amino-acids.txt 0 elements/ 24 planets.txt 0 animal-counts/ 8 morse.txt 8 salmon.txt 8 animals.txt 0 pdb/ 152 sunspot.txt and Bash $ ls -S /Users/Jacob/Desktop/data-shell/data/ sunspot.txt elements/ morse.txt animals.txt salmon.txt planets.txt pdb/ amino-acids.txt animal-counts/ Getting Help There are two common ways to find out how to use a command and what options it accepts: We can pass a --help option to the command, such as Bash $ ls --help Output ls: illegal option -- - usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%] [file ...] We can read its manual with man, such as Bash $ man ls Output LS(1) BSD General Commands Manual LS(1) NAME ls -- list directory contents SYNOPSIS ls [-ABCFGHLOPRSTUW@abcdefghiklmnopqrstuwx1%] [file ...] DESCRIPTION For each operand that names a file of a type other than directory, ls displays its name as well as any requested, associated information. For each operand that names a file of type directory, ls displays the names of files contained within that directory, as well as any requested, associated information. If no operands are given, the contents of the current directory are displayed. If more than one operand is given, non-directory operands are displayed first; directory and non-directory operands are sorted separately and in lexicographical order. The following options are available: -@ Display extended attribute keys and sizes in long (-l) output. : Continue to push on the space bar of your computer to scroll down the ls manual. Sometimes at the bottom of the manual, you see some examples of how to use the command. Push the q key to exit the man page. If you try to use an option (flag) that is not supported, ls and other commands will usually print an error message similar to: Bash $ ls -j Output ls: illegal option -- j usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%] [file ...] Exploring Directories We can look at the content of data-shell by passing the directory name to ls Bash $ ls -F /Users/Jacob/data-shell Output creatures/ molecules/ notes.txt solar.pdf data/ north-pacific-gyre/ pizza.cfg writing/ We can use the change directory cd command to move from one directory to another. This is akin to double clicking on a directory in a GUI environment. The command below moves from data-shell directory to its subdirectory data. Bash $ cd data Use pwd command to confirm your location Bash $ pwd Output /Users/Jacob/Desktop/data-shell/data So far, ‘cd’ only sees sub-directories inside your current directory. There are different ways to see directories above your current location. This is done using a shortcut in the shell to move up one directory level that looks like this: Bash $ cd .. pwd can then be used to verify our location Bash $ pwd Output /Users/Jacob/Desktop/data-shell We can see that cd .. takes us back to data-shell directory. .. is a special directory that is always present in all directories. To see this special directory and other hidden files in a directory, we add -a option to the ls command. Bash $ ls -a -F Output ./ creatures/ north-pacific-gyre/ solar.pdf ../ data/ notes.txt writing/ .bash_profile molecules/ pizza.cfg -a stands for ‘show all’. It forces ls to show us file and directory names that begin with ., such as .. (which, if we’re in /Users/Jacob, refers to the /Users directory) As you can see, it also displays another special directory that’s just called ., which means ‘the current working directory’. Note that in most command line tools, multiple options can be combined with a single - and no spaces between the options, ls -F -a is equivalent to ls -Fa. Important Shortcuts ~ (tilde) at the start of a path means “the current user’s home directory”. For example, if Jacob’s home directory is /Users/Jacob, then ~/Deskstop/data-shell/data is equivalent to /Users/Jacob/Desktop/data-shell/data. This only works if ~ is the first character in the path - (dash) character istranslated by cd to mean previous directory I was in, which is faster than having to remember, then type, the full path. This is a very efficient way of moving back and forth between directories. Note that cd .. takes you up, one level while cd - takes you back where you were previousely. You can think of it as the Last channel button on a TV remote. Absolute and Relative Paths An absolute path is defined as specifying the location of a file or directory from the root directory(/). /Users/Jacob/Desktop/data-shell/data is the absolute path to the data directory. Use cd only or cd ~ to go back to your home directory. From your home directory, go back to the data directory using its absolute path Bash $ cd Bash $ pwd Output /Users/Jacob/ Bash $ cd /Users/Jacob/Desktop/data-shell/data Bash $ pwd Output /Users/Jacob/Desktop/data-shell/data Relative path is defined as the path related to the present working directly(pwd). Use the relative path to get to the Desktop directory and back to the data directory Bash $ cd ../.. Bash $ pwd Output /Users/Jacob/Desktop Now go back to the data directory Bash $ cd data-shell/data Bash $ pwd Output /Users/Jacob/Desktop/data-shell/data The relative path from data to Desktop directory is ../.. and the relative path back to data from Desktop directory is data-shell/data. Copying and Making Copies of Files and Directories Questions How can I create, copy, and delete files and directories? How can I edit files? Objectives Create a directory hierarchy that matches a given diagram. Create files in that hierarchy using an editor or by copying and renaming existing files. Delete, copy and move specified files and/or directories. We will now explore how to create files and directories. Let’s create a new directory called thesis using the command mkdir thesis: Bash $ mkdir thesis The -p option allows mkdir to create a directory with any number of nested subdirectories in a single operation: Bash $ mkdir -p thesis/chapter_1/section_1/subsection_1 The -R option to the ls command will list all nested subdirectories wtihin a directory. Let’s use ls -FR to recursively list the new directory hierarchy we just created beneath the thesis directory: Bash $ ls -FR thesis Output chapter_1/ thesis/chapter_1: section_1/ thesis/chapter_1/section_1: subsection_1/ Good Names for Files and Directories Complicated names of files and directories can make your life painful when working on the command line. A few useful tips for the names of your files: Don’t use spaces. Spaces are used to separate arguments on the command line. You can use - or _ instead (e.g. north-pacific-gyre/ rather than north pacific gyre/). Don’t begin the name with - (dash). Commands treat names starting with - as options. Stick with letters, numbers, . (period or full stop), - (dash) and _ (underscore). Many other characters have special meanings on the command line. Some can cause your command to not work as expected and can even result in data loss. If you need to refer to names of files or directories that have spaces or other special characters, you should surround the name in quotes (“”). Create a text file We can use the touch command to create an empty text file. A text editor could also be used. There are many text editors of which Emacs, vim, and nano are three of the most used. nano is the simplest and will be used for editing files. Create draft.txt file with the command nano draft.txt. Once the file is Open, type a few words and press Ctrl+O (press the Ctrl or Control key and, while holding it down, press the O key) to write our data to disk (we’ll be asked what file we want to save this to: press Return to accept the suggested default of draft.txt). Moving Files and Directories Bash $ cd ~/Desktop/data-shell/ In thesis directory is a file draft.txt which isn’t a particularly informative name, so let’s change the file’s name using mv, which is short for move: Bash $ mv thesis/draft.txt thesis/quotes.txt Use the ls command to verify if quotes.txt is in the directory. The file could be moved into the current directory represented by .: Bash $ mv thesis/quotes.txt . Copying Files and Directories The cp command works very much like mv, except it copies a file instead of moving it. Bash $ cp quotes.txt thesis/quotations.txt $ ls quotes.txt thesis/quotations.txt We can also copy a directory and all its contents by using the recursive option -r, e.g. to back up a directory: Bash $ cp -r thesis thesis_backup Removing Files and Directories Returning to the data-shell directory, let’s tidy up this directory by removing the quotes.txt file we created. The Unix command we’ll use for this is rm (short for ‘remove’): Bash $ rm quotes.txt Question: What happens when we execute rm -i thesis_backup/quotations.txt? Why would we want this protection when using rm? rm can remove a directory and all its contents if we use the recursive option -r, and it will do so without any confirmation prompts: Bash $ rm -r thesis Given that there is no way to retrieve files deleted using the shell, rm -r should be used with great caution (you might consider adding the interactive option rm -r -i). Using wildcards for accessing multiple files at once * is a wildcard, which matches zero or more characters. Let’s consider the data-shell/molecules directory: *.pdb matches all the files ending in .pdb Bash $ ls ~/Desktop/data-shell/molecules/*.pdb Output ~/Desktop/data-shell/molecules/cubane.pdb ~/Desktop/data-shell/molecules/ethane.pdb ~/Desktop/data-shell/molecules/methane.pdb ~/Desktop/data-shell/molecules/octane.pdb ~/Desktop/data-shell/molecules/pentane.pdb ~/Desktop/data-shell/molecules/propane.pdb ? is also a wildcard, but it matches exactly one character. So ?ethane.pdb would match methane.pdb whereas *ethane.pdb matches both ethane.pdb, and methane.pdb. Wildcards can be used in combination with each other e.g. ???ane.pdb matches three characters followed by ane.pdb, giving cubane.pdb, ethane.pdb, octane.pdb. Pipes and Filters Questions How can I combine existing commands to do new things? Objectives Redirect a command’s output to a file. Process a file instead of keyboard input using redirection. Construct command pipelines with two or more stages. We’ll start with the directory called data-shell/molecules that contains six files describing some simple organic molecules. The .pdb extension indicates that these files are in Protein Data Bank format, a simple text format that specifies the type and position of each atom in the molecule. Bash $ cd ~/Desktop/data-shell/molecules wc is the word count command: it counts the number of lines, words, and characters in files (from left to right, in that order). If we run the command wc \*.pdb, the * in *.pdb matches zero or more characters, so the shell turns *.pdb into a list of all .pdb files in the current directory: Bash $ wc *.pdb Output 20 156 1158 cubane.pdb 12 84 622 ethane.pdb 9 57 422 methane.pdb 30 246 1828 octane.pdb 21 165 1226 pentane.pdb 15 111 825 propane.pdb 107 819 6081 total The -m, -w and -l options can also be used with the wc command, to show only the number of characters, words or the number of lines in the files. Bash $ wc -l *.pdb Output 20 cubane.pdb 12 ethane.pdb 9 methane.pdb 30 octane.pdb 21 pentane.pdb 15 propane.pdb 107 total We can redirect our output into a file say “lenghts.txt”, “characters.txt” or “words.txt” Bash $ wc -l *.pdb &gt; lenghts.txt Bash $ wc -m *.pdb &gt; characters.txt Bash $ wc -w *.pdb &gt; words.txt We can merge the three files and direct the output into a new file “lwc.txt”: Bash $ cat lenghts.txt words.txt characters.txt &gt; lwc.txt By default sort do an alphanumerical reordering and the -n option specifies that the sort is numerical instead: Bash $ sort lwc.txt The output of the previous command is long but we can choose to print only the the first 5 lines using head command or the last 5 lines using the tail command: Bash $ sort lwc.txt | head -n 5 Output 9 methane.pdb 12 ethane.pdb 15 propane.pdb 20 cubane.pdb 21 pentane.pdb Bash $ sort lwc.txt | head -n 5 Output 825 propane.pdb 1158 cubane.pdb 1226 pentane.pdb 1828 octane.pdb 6081 total We can show the efficiency of piping and the cut command. A file called animals.txt (in the data-shell/data folder) contains the following data: Bash $ cat ~/Desktop/data-shell/data/animal.txt The cut command, the delimiter -d , and the field -f 2 returns the animal’s names Bash $ cut -d , -f 2 animals.txt Output deer rabbit raccoon rabbit deer fox rabbit bear The contain of the files is split at the comma into 2 fields and the second field is returned. Check for errors Nelle has run her samples through the assay machines and created 17 files in the north-pacific-gyre/2012-07-03 directory. As a quick check, starting from her home directory, Nelle types: Bash $ cd north-pacific-gyre/2012-07-03/ $ wc -l *.txt Output 300 NENE01729A.txt 300 NENE01729B.txt 300 NENE01736A.txt 300 NENE01751A.txt 300 NENE01751B.txt 300 NENE01812A.txt 300 NENE01843A.txt ... ... We can sort the output to look for inconsistencies Bash $ wc -l *.txt | sort -n | head -n 5 Output 240 NENE02018B.txt 300 NENE01729A.txt 300 NENE01729B.txt 300 NENE01736A.txt 300 NENE01751A.txt We can see that one of the files has 60 fewer lines. Finding Things Questions How can I find files? How can I find things in files? Objectives Use grep to select lines from text files that match simple patterns. Use find to find files and directories whose names match simple patterns. Unix programmers often use the word grep. grep is a contraction of global/regular expression/print, a common sequence of operations in early Unix text editors. It is also the name of a very useful command-line program. grep finds and prints lines in files that match a pattern. For this set of examples, we’re going to be working in the writing subdirectory: Bash $ cd $ cd ~/Desktop/data-shell/writing $ cat haiku.txt Let’s find lines that contain word not : Bash $ grep not haiku.txt By default, grep searches for a pattern in a case-sensitive way. In addition, the search pattern we have selected does not have to form a complete word, as we will see in the next example. Let’s search for the pattern: ‘The’. Bash grep The haiku.txt This time, two lines that include the letters The are outputted, one of which contained our search pattern within a larger word, ‘Thesis’. To restrict matches to lines containing the word The on its own, we can give grep with the -w option. This will limit matches to word boundaries. Bash grep -w The haiku.txt Sometimes we don’t want to search for a single word, but a phrase. This is also easy to do with grep by putting the phrase in quotes. Bash $ grep -w &quot;is not&quot; haiku.txt Another useful option is -n, which numbers the lines that match: Bash $ grep -n &quot;it&quot; haiku.txt Now, we want to use the option -v to invert our search, i.e., we want to output the lines that do not contain the word ‘the’. Bash $ grep -nwv &quot;the&quot; haiku.txt While grep finds lines in files, the find command finds files themselves. Again, it has a lot of options; we will show how the simplest ones work. For our first command, let’s run find . (remember to run this command from the data-shell/writing folder). Bash $ find . The first option in our list is -type d that means things are directories. Bash $ find . -type d Notice that the objects find finds are not listed in any particular order. If we change -type d to -type f, we get a listing of all the files instead: Bash $ find . -type f Now let’s try matching by name Bash $ find . -name *.txt Output $ ./haiku.txt We expected it to find all the text files, but it only prints out ./haiku.txt. The problem is that the shell expands wildcard characters like * before commands run. Since *.txt in the current directory expands to haiku.txt. To get what we want, let’s do what we did with grep: put *.txt in quotes to prevent the shell from expanding the * wildcard. This way, find actually gets the pattern *.txt, not the expanded filename haiku.txt: Bash $ find . -name &quot;*.txt&quot; The command line’s power lies in combining tools. We’ve seen how to do that with pipes; let’s look at another technique. As we just saw, find . -name &quot;*.txt&quot; gives us a list of all text files in or below the current directory. How can we combine that with wc -l to count the lines in all those files? The simplest way is to put the find command inside $(): Bash $ wc -l $(find . -name &quot;*.txt&quot;) Output 11 ./haiku.txt 300 ./data/two.txt 21022 ./data/LittleWomen.txt 70 ./data/one.txt 21403 total" />
+<meta property="og:description" content="Introduction Linux commands are issued to a computer program called shell. The shell enables us to send commands to the computer and receive output. It is also referred to as the terminal or command line interface~(CLI). Some computers include a default Unix Shell program. If not natively present, a program called Linux/Unix emulator can be installed to access a Unix Shell on a server. In addition, the command line is often the easiest way to interact with remote machines and supercomputers. Familiarity with the shell is near essential to run a variety of specialized tools and resources including high-performance computing systems. As clusters and cloud computing systems become more popular for scientific data crunching, being able to interact with the shell is becoming a necessary skill. We can build on the command-line skills covered here to tackle a wide range of scientific questions and computational challenges. This workshop is designed on the model developed by the Software and Data Carpentry. The material on this page is part from the Software Carpentry Lessons To continue with the learning process, we encourage participants to follow the steps below for setup. Setup Windows macOS Linux Setup Download data-shell.zip and move the file to your Desktop. Unzip/extract the file. You should have a new folder called data-shell on your Desktop. Open a terminal. If you’re not sure how to open a terminal in your operating system, see the instructions below. In the terminal type cd then press the ‘Return’ key. This step will make sure you start with your home folder as your working directory. Later on, you will find out how to access the data files in this folder. Windows Computers with Windows operating systems(OS) older than Windows 10 do not have the Bash shell installed by default. If you have a Windows OS older than Windows 10, we encourage you to use an emulator included in Git for Windows, which gives you access to both Bash shell commands and Git. Once installed, you can open a terminal by running the program Git Bash from the Windows start menu. Additionally, you can run Bash commands from a remote computer or server that already has a Unix Shell. This can usually be done through a Secure Shell (SSH) client. One such client available for free for Windows computers is PuTTY. See the reference below for information on installing and using PuTTY, using the Windows 10 command-line tool, or installing and using a Unix/Linux emulator. Reference Git for Windows - Recommended For advanced users, you may choose one of the following alternatives: Install the Windows Subsystem for Linux Using a Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client (Putty) Please note that commands in the Windows Subsystem for Linux or Cygwin may differ slightly from those shown in the lesson or presented in the workshop. macOS For a Mac computer running macOS Mojave or earlier releases, the default Unix Shell is Bash. For a Mac computer running macOS Catalina or later releases, the default Unix Shell is Zsh. Your default shell is available via the Terminal program within your Utilities folder. To open Terminal, try one or both of the following: In Finder, select the Go menu, then select Utilities. Locate Terminal in the Utilities folder and open it. Use the Mac Spotlight computer search function. Search for: Terminal and press Return. To check if your machine is set up to use something other than Bash, type echo $SHELL in your terminal window. If your machine uses something other than Bash, you can run it by opening a terminal and typing bash. How to Use Terminal on a Mac Linux The default Unix Shell for Linux operating systems is usually Bash. On most versions of Linux, it is accessible by running the Gnome Terminal or KDE Konsole or xterm, which can be found via the applications menu or the search bar. If your machine is set up to use something other than Bash, you can run it by opening a terminal and typing bash. This workshop will not make you an expert but will provide you with a good enough foundation for a personal exploration the Unix shell. The shell has a very rich echo system of commands but we will only touch on those deemed essential for scientific computing. The lesson is structured as follows: Introducing the Shell Navigating Files and Directories Pipes and Filters Finding Things Introducing the Shell Using the shell will take some effort and some time to learn. While a GUI presents you with choices to select, CLI choices are not automatically presented to you. Unlike a spoken language, a small number of “words” (i.e. commands) gets you a long way, and we’ll cover those essential few today. The grammar of a shell allows you to combine existing tools into powerful pipelines and handle large volumes of data automatically. Sequences of commands can be written into a script, improving the reproducibility of workflows. When the shell is first opened, you are presented with a prompt, indicating that the shell is waiting for input. Bash $ The shell typically uses $ as the prompt, but may use a different symbol. So let’s try our first command, ls which is short for listing. This command will list the contents of the current directory: Bash $ ls Output $ Desktop Downloads Movies Pictures Document Library Music Public *If the shell can’t find a program whose name is the command typed, it will print an error message such as: Bash $ ks Output $ ks: command not found This might happen if the command was mis-typed or if the program corresponding to that command is not installed. A Typical Problem A marine biologist, has just returned from a six-month survey of the North Pacific Gyre, where she has been sampling gelatinous marine life in the Great Pacific Garbage Patch. She has 1520 samples that she’s run through an assay machine to measure the relative abundance of 300 proteins. She needs to run these 1520 files through an imaginary program called goostats she inherited. On top of this huge task, she has to write up results by the end of the month so her paper can appear in a special issue of Aquatic Goo Letters. The bad news is that if she has to run goostats by hand using a GUI, she’ll have to select and open a file 1520 times. If goostats takes 30 seconds to run each file, the whole process will take more than 12 hours of the scientist’s attention. With the shell, she can instead assign her computer this mundane task while she focuses her attention on writing her paper. The next few lessons will explore the ways the task can be achieved. More specifically, they explain how command shell can be used to run the goostats program, using loops to automate the repetitive steps of entering file names, so that her computer can work while she writes her paper. As a bonus, once the processing pipeline has been put together, it can be used again whenever more data is collected. Navigating Files and Directories The part of the operating system responsible for managing files and directories is called the file system. It is organized in multiple layers. The top most layer is the root directory. When you remotely login to a computer for the first time, you get on the home directory. Every user account on a server (High Performance Computer) has a home directory. &lt;img src=”/assets/img/tutorialsimages/GoogleDrive/img1.png”, Alt = “Examples of a file system” &gt; The forward slash character / does two things: When it appears at the front of a file or directory name, it refers to the root directory. When it appears inside a path, it’s just a separator. The root directory / has /bin, /data, /Users, and /tmp directories. The /Users directory in turn has the /Users/Sarah, /Users/Jacob and /Users/Nelle directories. The path from the root directory to any targeted file or directory is called the absolute path. /Users/Sarah, /Users/Jacob and /Users/Nelle are the abasolute paths to Sarah’s, Jacob’s, and Nelle’s home directories. Download the data-shell.zip from the setup section on to your destop. Start the terminal on your computer. Use the command below to determine your home directory Bash $ echo $HOME Output $ /Users/Jacob Determine your current working directory (data-shell) Bash $ pwd Output $ /Users/Jacob/Desktop/data-shell List the content of your current working directory with ls Bash $ ls Output $ creatures molecules notes.txt solar.pdf data north-pacific-gyre pizza.cfg writing ls prints the names of the files and directories in the current directory. We can make its output more comprehensible by using the -F option (also known as a switch or a flag) , which tells ls to classify the output by adding a marker to file and directory names to indicate what they are: a trailing / indicates that this is a directory @ indicates a link * indicates an executable Depending on your default options, the shell might also use colors to indicate whether each entry is a file or directory. Bash $ ls -F Output $ creatures/ molecules/ notes.txt solar.pdf data/ north-pacific-gyre/ pizza.cfg writing/ Syntax of a shell command Consider a general example of a command, which we will dissect into its component parts: Bash $ ls -F / Output Applications/ System/ bin/ etc@ private/ usr/ Library/ Users/ cores/ home@ sbin/ var@ Network@ Volumes/ dev/ opt/ tmp@ ls is the command, with an option -F and an argument /. We’ve already encountered options (also called switches or flags) which either start with a single dash (-) or two dashes (–), and they change the behaviour of a command. Arguments tell the command what to operate on (e.g. files and directories). Sometimes options and arguments are referred to as parameters. A command can be called with more than one option and more than one argument, but doesn’t always require an argument or an option. Each part is separated by spaces: if you omit the space between ls and -F the shell will look for a command called ls-F, which doesn’t exist. Also, capitalization can be important. For example, ls -s will display the size of files and directories alongside the names, while ls -S will sort the files and directories by size, as shown below: Bash $ ls -s /Users/Jacob/Desktop/data-shell/data/ total 208 8 amino-acids.txt 0 elements/ 24 planets.txt 0 animal-counts/ 8 morse.txt 8 salmon.txt 8 animals.txt 0 pdb/ 152 sunspot.txt and Bash $ ls -S /Users/Jacob/Desktop/data-shell/data/ sunspot.txt elements/ morse.txt animals.txt salmon.txt planets.txt pdb/ amino-acids.txt animal-counts/ Getting Help There are two common ways to find out how to use a command and what options it accepts: We can pass a --help option to the command, such as Bash $ ls --help Output ls: illegal option -- - usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%] [file ...] We can read its manual with man, such as Bash $ man ls Output LS(1) BSD General Commands Manual LS(1) NAME ls -- list directory contents SYNOPSIS ls [-ABCFGHLOPRSTUW@abcdefghiklmnopqrstuwx1%] [file ...] DESCRIPTION For each operand that names a file of a type other than directory, ls displays its name as well as any requested, associated information. For each operand that names a file of type directory, ls displays the names of files contained within that directory, as well as any requested, associated information. If no operands are given, the contents of the current directory are displayed. If more than one operand is given, non-directory operands are displayed first; directory and non-directory operands are sorted separately and in lexicographical order. The following options are available: -@ Display extended attribute keys and sizes in long (-l) output. : Continue to push on the space bar of your computer to scroll down the ls manual. Sometimes at the bottom of the manual, you see some examples of how to use the command. Push the q key to exit the man page. If you try to use an option (flag) that is not supported, ls and other commands will usually print an error message similar to: Bash $ ls -j Output ls: illegal option -- j usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%] [file ...] Exploring Directories We can look at the content of data-shell by passing the directory name to ls Bash $ ls -F /Users/Jacob/data-shell Output creatures/ molecules/ notes.txt solar.pdf data/ north-pacific-gyre/ pizza.cfg writing/ We can use the change directory cd command to move from one directory to another. This is akin to double clicking on a directory in a GUI environment. The command below moves from data-shell directory to its subdirectory data. Bash $ cd data Use pwd command to confirm your location Bash $ pwd Output /Users/Jacob/Desktop/data-shell/data So far, ‘cd’ only sees sub-directories inside your current directory. There are different ways to see directories above your current location. This is done using a shortcut in the shell to move up one directory level that looks like this: Bash $ cd .. pwd can then be used to verify our location Bash $ pwd Output /Users/Jacob/Desktop/data-shell We can see that cd .. takes us back to data-shell directory. .. is a special directory that is always present in all directories. To see this special directory and other hidden files in a directory, we add -a option to the ls command. Bash $ ls -a -F Output ./ creatures/ north-pacific-gyre/ solar.pdf ../ data/ notes.txt writing/ .bash_profile molecules/ pizza.cfg -a stands for ‘show all’. It forces ls to show us file and directory names that begin with ., such as .. (which, if we’re in /Users/Jacob, refers to the /Users directory) As you can see, it also displays another special directory that’s just called ., which means ‘the current working directory’. Note that in most command line tools, multiple options can be combined with a single - and no spaces between the options, ls -F -a is equivalent to ls -Fa. Important Shortcuts ~ (tilde) at the start of a path means “the current user’s home directory”. For example, if Jacob’s home directory is /Users/Jacob, then ~/Deskstop/data-shell/data is equivalent to /Users/Jacob/Desktop/data-shell/data. This only works if ~ is the first character in the path - (dash) character istranslated by cd to mean previous directory I was in, which is faster than having to remember, then type, the full path. This is a very efficient way of moving back and forth between directories. Note that cd .. takes you up, one level while cd - takes you back where you were previousely. You can think of it as the Last channel button on a TV remote. Absolute and Relative Paths An absolute path is defined as specifying the location of a file or directory from the root directory(/). /Users/Jacob/Desktop/data-shell/data is the absolute path to the data directory. Use cd only or cd ~ to go back to your home directory. From your home directory, go back to the data directory using its absolute path Bash $ cd Bash $ pwd Output /Users/Jacob/ Bash $ cd /Users/Jacob/Desktop/data-shell/data Bash $ pwd Output /Users/Jacob/Desktop/data-shell/data Relative path is defined as the path related to the present working directly(pwd). Use the relative path to get to the Desktop directory and back to the data directory Bash $ cd ../.. Bash $ pwd Output /Users/Jacob/Desktop Now go back to the data directory Bash $ cd data-shell/data Bash $ pwd Output /Users/Jacob/Desktop/data-shell/data The relative path from data to Desktop directory is ../.. and the relative path back to data from Desktop directory is data-shell/data. Copying and Making Copies of Files and Directories Questions How can I create, copy, and delete files and directories? How can I edit files? Objectives Create a directory hierarchy that matches a given diagram. Create files in that hierarchy using an editor or by copying and renaming existing files. Delete, copy and move specified files and/or directories. We will now explore how to create files and directories. Let’s create a new directory called thesis using the command mkdir thesis: Bash $ mkdir thesis The -p option allows mkdir to create a directory with any number of nested subdirectories in a single operation: Bash $ mkdir -p thesis/chapter_1/section_1/subsection_1 The -R option to the ls command will list all nested subdirectories wtihin a directory. Let’s use ls -FR to recursively list the new directory hierarchy we just created beneath the thesis directory: Bash $ ls -FR thesis Output chapter_1/ thesis/chapter_1: section_1/ thesis/chapter_1/section_1: subsection_1/ Good Names for Files and Directories Complicated names of files and directories can make your life painful when working on the command line. A few useful tips for the names of your files: Don’t use spaces. Spaces are used to separate arguments on the command line. You can use - or _ instead (e.g. north-pacific-gyre/ rather than north pacific gyre/). Don’t begin the name with - (dash). Commands treat names starting with - as options. Stick with letters, numbers, . (period or full stop), - (dash) and _ (underscore). Many other characters have special meanings on the command line. Some can cause your command to not work as expected and can even result in data loss. If you need to refer to names of files or directories that have spaces or other special characters, you should surround the name in quotes (“”). Create a text file We can use the touch command to create an empty text file. A text editor could also be used. There are many text editors of which Emacs, vim, and nano are three of the most used. nano is the simplest and will be used for editing files. Create draft.txt file with the command nano draft.txt. Once the file is Open, type a few words and press Ctrl+O (press the Ctrl or Control key and, while holding it down, press the O key) to write our data to disk (we’ll be asked what file we want to save this to: press Return to accept the suggested default of draft.txt). Moving Files and Directories Bash $ cd ~/Desktop/data-shell/ In thesis directory is a file draft.txt which isn’t a particularly informative name, so let’s change the file’s name using mv, which is short for move: Bash $ mv thesis/draft.txt thesis/quotes.txt Use the ls command to verify if quotes.txt is in the directory. The file could be moved into the current directory represented by .: Bash $ mv thesis/quotes.txt . Copying Files and Directories The cp command works very much like mv, except it copies a file instead of moving it. Bash $ cp quotes.txt thesis/quotations.txt $ ls quotes.txt thesis/quotations.txt We can also copy a directory and all its contents by using the recursive option -r, e.g. to back up a directory: Bash $ cp -r thesis thesis_backup Removing Files and Directories Returning to the data-shell directory, let’s tidy up this directory by removing the quotes.txt file we created. The Unix command we’ll use for this is rm (short for ‘remove’): Bash $ rm quotes.txt Question: What happens when we execute rm -i thesis_backup/quotations.txt? Why would we want this protection when using rm? rm can remove a directory and all its contents if we use the recursive option -r, and it will do so without any confirmation prompts: Bash $ rm -r thesis Given that there is no way to retrieve files deleted using the shell, rm -r should be used with great caution (you might consider adding the interactive option rm -r -i). Using wildcards for accessing multiple files at once * is a wildcard, which matches zero or more characters. Let’s consider the data-shell/molecules directory: *.pdb matches all the files ending in .pdb Bash $ ls ~/Desktop/data-shell/molecules/*.pdb Output ~/Desktop/data-shell/molecules/cubane.pdb ~/Desktop/data-shell/molecules/ethane.pdb ~/Desktop/data-shell/molecules/methane.pdb ~/Desktop/data-shell/molecules/octane.pdb ~/Desktop/data-shell/molecules/pentane.pdb ~/Desktop/data-shell/molecules/propane.pdb ? is also a wildcard, but it matches exactly one character. So ?ethane.pdb would match methane.pdb whereas *ethane.pdb matches both ethane.pdb, and methane.pdb. Wildcards can be used in combination with each other e.g. ???ane.pdb matches three characters followed by ane.pdb, giving cubane.pdb, ethane.pdb, octane.pdb. Pipes and Filters Questions How can I combine existing commands to do new things? Objectives Redirect a command’s output to a file. Process a file instead of keyboard input using redirection. Construct command pipelines with two or more stages. We’ll start with the directory called data-shell/molecules that contains six files describing some simple organic molecules. The .pdb extension indicates that these files are in Protein Data Bank format, a simple text format that specifies the type and position of each atom in the molecule. Bash $ cd ~/Desktop/data-shell/molecules wc is the word count command: it counts the number of lines, words, and characters in files (from left to right, in that order). If we run the command wc \*.pdb, the * in *.pdb matches zero or more characters, so the shell turns *.pdb into a list of all .pdb files in the current directory: Bash $ wc *.pdb Output 20 156 1158 cubane.pdb 12 84 622 ethane.pdb 9 57 422 methane.pdb 30 246 1828 octane.pdb 21 165 1226 pentane.pdb 15 111 825 propane.pdb 107 819 6081 total The -m, -w and -l options can also be used with the wc command, to show only the number of characters, words or the number of lines in the files. Bash $ wc -l *.pdb Output 20 cubane.pdb 12 ethane.pdb 9 methane.pdb 30 octane.pdb 21 pentane.pdb 15 propane.pdb 107 total We can redirect our output into a file say “lenghts.txt”, “characters.txt” or “words.txt” Bash $ wc -l *.pdb &gt; lenghts.txt Bash $ wc -m *.pdb &gt; characters.txt Bash $ wc -w *.pdb &gt; words.txt We can merge the three files and direct the output into a new file “lwc.txt”: Bash $ cat lenghts.txt words.txt characters.txt &gt; lwc.txt By default sort do an alphanumerical reordering and the -n option specifies that the sort is numerical instead: Bash $ sort lwc.txt The output of the previous command is long but we can choose to print only the the first 5 lines using head command or the last 5 lines using the tail command: Bash $ sort lwc.txt | head -n 5 Output 9 methane.pdb 12 ethane.pdb 15 propane.pdb 20 cubane.pdb 21 pentane.pdb Bash $ sort lwc.txt | head -n 5 Output 825 propane.pdb 1158 cubane.pdb 1226 pentane.pdb 1828 octane.pdb 6081 total We can show the efficiency of piping and the cut command. A file called animals.txt (in the data-shell/data folder) contains the following data: Bash $ cat ~/Desktop/data-shell/data/animal.txt The cut command, the delimiter -d , and the field -f 2 returns the animal’s names Bash $ cut -d , -f 2 animals.txt Output deer rabbit raccoon rabbit deer fox rabbit bear The contain of the files is split at the comma into 2 fields and the second field is returned. Check for errors Nelle has run her samples through the assay machines and created 17 files in the north-pacific-gyre/2012-07-03 directory. As a quick check, starting from her home directory, Nelle types: Bash $ cd north-pacific-gyre/2012-07-03/ $ wc -l *.txt Output 300 NENE01729A.txt 300 NENE01729B.txt 300 NENE01736A.txt 300 NENE01751A.txt 300 NENE01751B.txt 300 NENE01812A.txt 300 NENE01843A.txt ... ... We can sort the output to look for inconsistencies Bash $ wc -l *.txt | sort -n | head -n 5 Output 240 NENE02018B.txt 300 NENE01729A.txt 300 NENE01729B.txt 300 NENE01736A.txt 300 NENE01751A.txt We can see that one of the files has 60 fewer lines. Finding Things Questions How can I find files? How can I find things in files? Objectives Use grep to select lines from text files that match simple patterns. Use find to find files and directories whose names match simple patterns. Unix programmers often use the word grep. grep is a contraction of global/regular expression/print, a common sequence of operations in early Unix text editors. It is also the name of a very useful command-line program. grep finds and prints lines in files that match a pattern. For this set of examples, we’re going to be working in the writing subdirectory: Bash $ cd $ cd ~/Desktop/data-shell/writing $ cat haiku.txt Let’s find lines that contain word not : Bash $ grep not haiku.txt By default, grep searches for a pattern in a case-sensitive way. In addition, the search pattern we have selected does not have to form a complete word, as we will see in the next example. Let’s search for the pattern: ‘The’. Bash grep The haiku.txt This time, two lines that include the letters The are outputted, one of which contained our search pattern within a larger word, ‘Thesis’. To restrict matches to lines containing the word The on its own, we can give grep with the -w option. This will limit matches to word boundaries. Bash grep -w The haiku.txt Sometimes we don’t want to search for a single word, but a phrase. This is also easy to do with grep by putting the phrase in quotes. Bash $ grep -w &quot;is not&quot; haiku.txt Another useful option is -n, which numbers the lines that match: Bash $ grep -n &quot;it&quot; haiku.txt Now, we want to use the option -v to invert our search, i.e., we want to output the lines that do not contain the word ‘the’. Bash $ grep -nwv &quot;the&quot; haiku.txt While grep finds lines in files, the find command finds files themselves. Again, it has a lot of options; we will show how the simplest ones work. For our first command, let’s run find . (remember to run this command from the data-shell/writing folder). Bash $ find . The first option in our list is -type d that means things are directories. Bash $ find . -type d Notice that the objects find finds are not listed in any particular order. If we change -type d to -type f, we get a listing of all the files instead: Bash $ find . -type f Now let’s try matching by name Bash $ find . -name *.txt Output $ ./haiku.txt We expected it to find all the text files, but it only prints out ./haiku.txt. The problem is that the shell expands wildcard characters like * before commands run. Since *.txt in the current directory expands to haiku.txt. To get what we want, let’s do what we did with grep: put *.txt in quotes to prevent the shell from expanding the * wildcard. This way, find actually gets the pattern *.txt, not the expanded filename haiku.txt: Bash $ find . -name &quot;*.txt&quot; The command line’s power lies in combining tools. We’ve seen how to do that with pipes; let’s look at another technique. As we just saw, find . -name &quot;*.txt&quot; gives us a list of all text files in or below the current directory. How can we combine that with wc -l to count the lines in all those files? The simplest way is to put the find command inside $(): Bash $ wc -l $(find . -name &quot;*.txt&quot;) Output 11 ./haiku.txt 300 ./data/two.txt 21022 ./data/LittleWomen.txt 70 ./data/one.txt 21403 total" />
+<link rel="canonical" href="http://localhost:4000/workshop/basiclinuxshell.html" />
+<meta property="og:url" content="http://localhost:4000/workshop/basiclinuxshell.html" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Basic Linux Commands" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"Introduction Linux commands are issued to a computer program called shell. The shell enables us to send commands to the computer and receive output. It is also referred to as the terminal or command line interface~(CLI). Some computers include a default Unix Shell program. If not natively present, a program called Linux/Unix emulator can be installed to access a Unix Shell on a server. In addition, the command line is often the easiest way to interact with remote machines and supercomputers. Familiarity with the shell is near essential to run a variety of specialized tools and resources including high-performance computing systems. As clusters and cloud computing systems become more popular for scientific data crunching, being able to interact with the shell is becoming a necessary skill. We can build on the command-line skills covered here to tackle a wide range of scientific questions and computational challenges. This workshop is designed on the model developed by the Software and Data Carpentry. The material on this page is part from the Software Carpentry Lessons To continue with the learning process, we encourage participants to follow the steps below for setup. Setup Windows macOS Linux Setup Download data-shell.zip and move the file to your Desktop. Unzip/extract the file. You should have a new folder called data-shell on your Desktop. Open a terminal. If you’re not sure how to open a terminal in your operating system, see the instructions below. In the terminal type cd then press the ‘Return’ key. This step will make sure you start with your home folder as your working directory. Later on, you will find out how to access the data files in this folder. Windows Computers with Windows operating systems(OS) older than Windows 10 do not have the Bash shell installed by default. If you have a Windows OS older than Windows 10, we encourage you to use an emulator included in Git for Windows, which gives you access to both Bash shell commands and Git. Once installed, you can open a terminal by running the program Git Bash from the Windows start menu. Additionally, you can run Bash commands from a remote computer or server that already has a Unix Shell. This can usually be done through a Secure Shell (SSH) client. One such client available for free for Windows computers is PuTTY. See the reference below for information on installing and using PuTTY, using the Windows 10 command-line tool, or installing and using a Unix/Linux emulator. Reference Git for Windows - Recommended For advanced users, you may choose one of the following alternatives: Install the Windows Subsystem for Linux Using a Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client (Putty) Please note that commands in the Windows Subsystem for Linux or Cygwin may differ slightly from those shown in the lesson or presented in the workshop. macOS For a Mac computer running macOS Mojave or earlier releases, the default Unix Shell is Bash. For a Mac computer running macOS Catalina or later releases, the default Unix Shell is Zsh. Your default shell is available via the Terminal program within your Utilities folder. To open Terminal, try one or both of the following: In Finder, select the Go menu, then select Utilities. Locate Terminal in the Utilities folder and open it. Use the Mac Spotlight computer search function. Search for: Terminal and press Return. To check if your machine is set up to use something other than Bash, type echo $SHELL in your terminal window. If your machine uses something other than Bash, you can run it by opening a terminal and typing bash. How to Use Terminal on a Mac Linux The default Unix Shell for Linux operating systems is usually Bash. On most versions of Linux, it is accessible by running the Gnome Terminal or KDE Konsole or xterm, which can be found via the applications menu or the search bar. If your machine is set up to use something other than Bash, you can run it by opening a terminal and typing bash. This workshop will not make you an expert but will provide you with a good enough foundation for a personal exploration the Unix shell. The shell has a very rich echo system of commands but we will only touch on those deemed essential for scientific computing. The lesson is structured as follows: Introducing the Shell Navigating Files and Directories Pipes and Filters Finding Things Introducing the Shell Using the shell will take some effort and some time to learn. While a GUI presents you with choices to select, CLI choices are not automatically presented to you. Unlike a spoken language, a small number of “words” (i.e. commands) gets you a long way, and we’ll cover those essential few today. The grammar of a shell allows you to combine existing tools into powerful pipelines and handle large volumes of data automatically. Sequences of commands can be written into a script, improving the reproducibility of workflows. When the shell is first opened, you are presented with a prompt, indicating that the shell is waiting for input. Bash $ The shell typically uses $ as the prompt, but may use a different symbol. So let’s try our first command, ls which is short for listing. This command will list the contents of the current directory: Bash $ ls Output $ Desktop Downloads Movies Pictures Document Library Music Public *If the shell can’t find a program whose name is the command typed, it will print an error message such as: Bash $ ks Output $ ks: command not found This might happen if the command was mis-typed or if the program corresponding to that command is not installed. A Typical Problem A marine biologist, has just returned from a six-month survey of the North Pacific Gyre, where she has been sampling gelatinous marine life in the Great Pacific Garbage Patch. She has 1520 samples that she’s run through an assay machine to measure the relative abundance of 300 proteins. She needs to run these 1520 files through an imaginary program called goostats she inherited. On top of this huge task, she has to write up results by the end of the month so her paper can appear in a special issue of Aquatic Goo Letters. The bad news is that if she has to run goostats by hand using a GUI, she’ll have to select and open a file 1520 times. If goostats takes 30 seconds to run each file, the whole process will take more than 12 hours of the scientist’s attention. With the shell, she can instead assign her computer this mundane task while she focuses her attention on writing her paper. The next few lessons will explore the ways the task can be achieved. More specifically, they explain how command shell can be used to run the goostats program, using loops to automate the repetitive steps of entering file names, so that her computer can work while she writes her paper. As a bonus, once the processing pipeline has been put together, it can be used again whenever more data is collected. Navigating Files and Directories The part of the operating system responsible for managing files and directories is called the file system. It is organized in multiple layers. The top most layer is the root directory. When you remotely login to a computer for the first time, you get on the home directory. Every user account on a server (High Performance Computer) has a home directory. &lt;img src=”/assets/img/tutorialsimages/GoogleDrive/img1.png”, Alt = “Examples of a file system” &gt; The forward slash character / does two things: When it appears at the front of a file or directory name, it refers to the root directory. When it appears inside a path, it’s just a separator. The root directory / has /bin, /data, /Users, and /tmp directories. The /Users directory in turn has the /Users/Sarah, /Users/Jacob and /Users/Nelle directories. The path from the root directory to any targeted file or directory is called the absolute path. /Users/Sarah, /Users/Jacob and /Users/Nelle are the abasolute paths to Sarah’s, Jacob’s, and Nelle’s home directories. Download the data-shell.zip from the setup section on to your destop. Start the terminal on your computer. Use the command below to determine your home directory Bash $ echo $HOME Output $ /Users/Jacob Determine your current working directory (data-shell) Bash $ pwd Output $ /Users/Jacob/Desktop/data-shell List the content of your current working directory with ls Bash $ ls Output $ creatures molecules notes.txt solar.pdf data north-pacific-gyre pizza.cfg writing ls prints the names of the files and directories in the current directory. We can make its output more comprehensible by using the -F option (also known as a switch or a flag) , which tells ls to classify the output by adding a marker to file and directory names to indicate what they are: a trailing / indicates that this is a directory @ indicates a link * indicates an executable Depending on your default options, the shell might also use colors to indicate whether each entry is a file or directory. Bash $ ls -F Output $ creatures/ molecules/ notes.txt solar.pdf data/ north-pacific-gyre/ pizza.cfg writing/ Syntax of a shell command Consider a general example of a command, which we will dissect into its component parts: Bash $ ls -F / Output Applications/ System/ bin/ etc@ private/ usr/ Library/ Users/ cores/ home@ sbin/ var@ Network@ Volumes/ dev/ opt/ tmp@ ls is the command, with an option -F and an argument /. We’ve already encountered options (also called switches or flags) which either start with a single dash (-) or two dashes (–), and they change the behaviour of a command. Arguments tell the command what to operate on (e.g. files and directories). Sometimes options and arguments are referred to as parameters. A command can be called with more than one option and more than one argument, but doesn’t always require an argument or an option. Each part is separated by spaces: if you omit the space between ls and -F the shell will look for a command called ls-F, which doesn’t exist. Also, capitalization can be important. For example, ls -s will display the size of files and directories alongside the names, while ls -S will sort the files and directories by size, as shown below: Bash $ ls -s /Users/Jacob/Desktop/data-shell/data/ total 208 8 amino-acids.txt 0 elements/ 24 planets.txt 0 animal-counts/ 8 morse.txt 8 salmon.txt 8 animals.txt 0 pdb/ 152 sunspot.txt and Bash $ ls -S /Users/Jacob/Desktop/data-shell/data/ sunspot.txt elements/ morse.txt animals.txt salmon.txt planets.txt pdb/ amino-acids.txt animal-counts/ Getting Help There are two common ways to find out how to use a command and what options it accepts: We can pass a --help option to the command, such as Bash $ ls --help Output ls: illegal option -- - usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%] [file ...] We can read its manual with man, such as Bash $ man ls Output LS(1) BSD General Commands Manual LS(1) NAME ls -- list directory contents SYNOPSIS ls [-ABCFGHLOPRSTUW@abcdefghiklmnopqrstuwx1%] [file ...] DESCRIPTION For each operand that names a file of a type other than directory, ls displays its name as well as any requested, associated information. For each operand that names a file of type directory, ls displays the names of files contained within that directory, as well as any requested, associated information. If no operands are given, the contents of the current directory are displayed. If more than one operand is given, non-directory operands are displayed first; directory and non-directory operands are sorted separately and in lexicographical order. The following options are available: -@ Display extended attribute keys and sizes in long (-l) output. : Continue to push on the space bar of your computer to scroll down the ls manual. Sometimes at the bottom of the manual, you see some examples of how to use the command. Push the q key to exit the man page. If you try to use an option (flag) that is not supported, ls and other commands will usually print an error message similar to: Bash $ ls -j Output ls: illegal option -- j usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%] [file ...] Exploring Directories We can look at the content of data-shell by passing the directory name to ls Bash $ ls -F /Users/Jacob/data-shell Output creatures/ molecules/ notes.txt solar.pdf data/ north-pacific-gyre/ pizza.cfg writing/ We can use the change directory cd command to move from one directory to another. This is akin to double clicking on a directory in a GUI environment. The command below moves from data-shell directory to its subdirectory data. Bash $ cd data Use pwd command to confirm your location Bash $ pwd Output /Users/Jacob/Desktop/data-shell/data So far, ‘cd’ only sees sub-directories inside your current directory. There are different ways to see directories above your current location. This is done using a shortcut in the shell to move up one directory level that looks like this: Bash $ cd .. pwd can then be used to verify our location Bash $ pwd Output /Users/Jacob/Desktop/data-shell We can see that cd .. takes us back to data-shell directory. .. is a special directory that is always present in all directories. To see this special directory and other hidden files in a directory, we add -a option to the ls command. Bash $ ls -a -F Output ./ creatures/ north-pacific-gyre/ solar.pdf ../ data/ notes.txt writing/ .bash_profile molecules/ pizza.cfg -a stands for ‘show all’. It forces ls to show us file and directory names that begin with ., such as .. (which, if we’re in /Users/Jacob, refers to the /Users directory) As you can see, it also displays another special directory that’s just called ., which means ‘the current working directory’. Note that in most command line tools, multiple options can be combined with a single - and no spaces between the options, ls -F -a is equivalent to ls -Fa. Important Shortcuts ~ (tilde) at the start of a path means “the current user’s home directory”. For example, if Jacob’s home directory is /Users/Jacob, then ~/Deskstop/data-shell/data is equivalent to /Users/Jacob/Desktop/data-shell/data. This only works if ~ is the first character in the path - (dash) character istranslated by cd to mean previous directory I was in, which is faster than having to remember, then type, the full path. This is a very efficient way of moving back and forth between directories. Note that cd .. takes you up, one level while cd - takes you back where you were previousely. You can think of it as the Last channel button on a TV remote. Absolute and Relative Paths An absolute path is defined as specifying the location of a file or directory from the root directory(/). /Users/Jacob/Desktop/data-shell/data is the absolute path to the data directory. Use cd only or cd ~ to go back to your home directory. From your home directory, go back to the data directory using its absolute path Bash $ cd Bash $ pwd Output /Users/Jacob/ Bash $ cd /Users/Jacob/Desktop/data-shell/data Bash $ pwd Output /Users/Jacob/Desktop/data-shell/data Relative path is defined as the path related to the present working directly(pwd). Use the relative path to get to the Desktop directory and back to the data directory Bash $ cd ../.. Bash $ pwd Output /Users/Jacob/Desktop Now go back to the data directory Bash $ cd data-shell/data Bash $ pwd Output /Users/Jacob/Desktop/data-shell/data The relative path from data to Desktop directory is ../.. and the relative path back to data from Desktop directory is data-shell/data. Copying and Making Copies of Files and Directories Questions How can I create, copy, and delete files and directories? How can I edit files? Objectives Create a directory hierarchy that matches a given diagram. Create files in that hierarchy using an editor or by copying and renaming existing files. Delete, copy and move specified files and/or directories. We will now explore how to create files and directories. Let’s create a new directory called thesis using the command mkdir thesis: Bash $ mkdir thesis The -p option allows mkdir to create a directory with any number of nested subdirectories in a single operation: Bash $ mkdir -p thesis/chapter_1/section_1/subsection_1 The -R option to the ls command will list all nested subdirectories wtihin a directory. Let’s use ls -FR to recursively list the new directory hierarchy we just created beneath the thesis directory: Bash $ ls -FR thesis Output chapter_1/ thesis/chapter_1: section_1/ thesis/chapter_1/section_1: subsection_1/ Good Names for Files and Directories Complicated names of files and directories can make your life painful when working on the command line. A few useful tips for the names of your files: Don’t use spaces. Spaces are used to separate arguments on the command line. You can use - or _ instead (e.g. north-pacific-gyre/ rather than north pacific gyre/). Don’t begin the name with - (dash). Commands treat names starting with - as options. Stick with letters, numbers, . (period or full stop), - (dash) and _ (underscore). Many other characters have special meanings on the command line. Some can cause your command to not work as expected and can even result in data loss. If you need to refer to names of files or directories that have spaces or other special characters, you should surround the name in quotes (“”). Create a text file We can use the touch command to create an empty text file. A text editor could also be used. There are many text editors of which Emacs, vim, and nano are three of the most used. nano is the simplest and will be used for editing files. Create draft.txt file with the command nano draft.txt. Once the file is Open, type a few words and press Ctrl+O (press the Ctrl or Control key and, while holding it down, press the O key) to write our data to disk (we’ll be asked what file we want to save this to: press Return to accept the suggested default of draft.txt). Moving Files and Directories Bash $ cd ~/Desktop/data-shell/ In thesis directory is a file draft.txt which isn’t a particularly informative name, so let’s change the file’s name using mv, which is short for move: Bash $ mv thesis/draft.txt thesis/quotes.txt Use the ls command to verify if quotes.txt is in the directory. The file could be moved into the current directory represented by .: Bash $ mv thesis/quotes.txt . Copying Files and Directories The cp command works very much like mv, except it copies a file instead of moving it. Bash $ cp quotes.txt thesis/quotations.txt $ ls quotes.txt thesis/quotations.txt We can also copy a directory and all its contents by using the recursive option -r, e.g. to back up a directory: Bash $ cp -r thesis thesis_backup Removing Files and Directories Returning to the data-shell directory, let’s tidy up this directory by removing the quotes.txt file we created. The Unix command we’ll use for this is rm (short for ‘remove’): Bash $ rm quotes.txt Question: What happens when we execute rm -i thesis_backup/quotations.txt? Why would we want this protection when using rm? rm can remove a directory and all its contents if we use the recursive option -r, and it will do so without any confirmation prompts: Bash $ rm -r thesis Given that there is no way to retrieve files deleted using the shell, rm -r should be used with great caution (you might consider adding the interactive option rm -r -i). Using wildcards for accessing multiple files at once * is a wildcard, which matches zero or more characters. Let’s consider the data-shell/molecules directory: *.pdb matches all the files ending in .pdb Bash $ ls ~/Desktop/data-shell/molecules/*.pdb Output ~/Desktop/data-shell/molecules/cubane.pdb ~/Desktop/data-shell/molecules/ethane.pdb ~/Desktop/data-shell/molecules/methane.pdb ~/Desktop/data-shell/molecules/octane.pdb ~/Desktop/data-shell/molecules/pentane.pdb ~/Desktop/data-shell/molecules/propane.pdb ? is also a wildcard, but it matches exactly one character. So ?ethane.pdb would match methane.pdb whereas *ethane.pdb matches both ethane.pdb, and methane.pdb. Wildcards can be used in combination with each other e.g. ???ane.pdb matches three characters followed by ane.pdb, giving cubane.pdb, ethane.pdb, octane.pdb. Pipes and Filters Questions How can I combine existing commands to do new things? Objectives Redirect a command’s output to a file. Process a file instead of keyboard input using redirection. Construct command pipelines with two or more stages. We’ll start with the directory called data-shell/molecules that contains six files describing some simple organic molecules. The .pdb extension indicates that these files are in Protein Data Bank format, a simple text format that specifies the type and position of each atom in the molecule. Bash $ cd ~/Desktop/data-shell/molecules wc is the word count command: it counts the number of lines, words, and characters in files (from left to right, in that order). If we run the command wc \\*.pdb, the * in *.pdb matches zero or more characters, so the shell turns *.pdb into a list of all .pdb files in the current directory: Bash $ wc *.pdb Output 20 156 1158 cubane.pdb 12 84 622 ethane.pdb 9 57 422 methane.pdb 30 246 1828 octane.pdb 21 165 1226 pentane.pdb 15 111 825 propane.pdb 107 819 6081 total The -m, -w and -l options can also be used with the wc command, to show only the number of characters, words or the number of lines in the files. Bash $ wc -l *.pdb Output 20 cubane.pdb 12 ethane.pdb 9 methane.pdb 30 octane.pdb 21 pentane.pdb 15 propane.pdb 107 total We can redirect our output into a file say “lenghts.txt”, “characters.txt” or “words.txt” Bash $ wc -l *.pdb &gt; lenghts.txt Bash $ wc -m *.pdb &gt; characters.txt Bash $ wc -w *.pdb &gt; words.txt We can merge the three files and direct the output into a new file “lwc.txt”: Bash $ cat lenghts.txt words.txt characters.txt &gt; lwc.txt By default sort do an alphanumerical reordering and the -n option specifies that the sort is numerical instead: Bash $ sort lwc.txt The output of the previous command is long but we can choose to print only the the first 5 lines using head command or the last 5 lines using the tail command: Bash $ sort lwc.txt | head -n 5 Output 9 methane.pdb 12 ethane.pdb 15 propane.pdb 20 cubane.pdb 21 pentane.pdb Bash $ sort lwc.txt | head -n 5 Output 825 propane.pdb 1158 cubane.pdb 1226 pentane.pdb 1828 octane.pdb 6081 total We can show the efficiency of piping and the cut command. A file called animals.txt (in the data-shell/data folder) contains the following data: Bash $ cat ~/Desktop/data-shell/data/animal.txt The cut command, the delimiter -d , and the field -f 2 returns the animal’s names Bash $ cut -d , -f 2 animals.txt Output deer rabbit raccoon rabbit deer fox rabbit bear The contain of the files is split at the comma into 2 fields and the second field is returned. Check for errors Nelle has run her samples through the assay machines and created 17 files in the north-pacific-gyre/2012-07-03 directory. As a quick check, starting from her home directory, Nelle types: Bash $ cd north-pacific-gyre/2012-07-03/ $ wc -l *.txt Output 300 NENE01729A.txt 300 NENE01729B.txt 300 NENE01736A.txt 300 NENE01751A.txt 300 NENE01751B.txt 300 NENE01812A.txt 300 NENE01843A.txt ... ... We can sort the output to look for inconsistencies Bash $ wc -l *.txt | sort -n | head -n 5 Output 240 NENE02018B.txt 300 NENE01729A.txt 300 NENE01729B.txt 300 NENE01736A.txt 300 NENE01751A.txt We can see that one of the files has 60 fewer lines. Finding Things Questions How can I find files? How can I find things in files? Objectives Use grep to select lines from text files that match simple patterns. Use find to find files and directories whose names match simple patterns. Unix programmers often use the word grep. grep is a contraction of global/regular expression/print, a common sequence of operations in early Unix text editors. It is also the name of a very useful command-line program. grep finds and prints lines in files that match a pattern. For this set of examples, we’re going to be working in the writing subdirectory: Bash $ cd $ cd ~/Desktop/data-shell/writing $ cat haiku.txt Let’s find lines that contain word not : Bash $ grep not haiku.txt By default, grep searches for a pattern in a case-sensitive way. In addition, the search pattern we have selected does not have to form a complete word, as we will see in the next example. Let’s search for the pattern: ‘The’. Bash grep The haiku.txt This time, two lines that include the letters The are outputted, one of which contained our search pattern within a larger word, ‘Thesis’. To restrict matches to lines containing the word The on its own, we can give grep with the -w option. This will limit matches to word boundaries. Bash grep -w The haiku.txt Sometimes we don’t want to search for a single word, but a phrase. This is also easy to do with grep by putting the phrase in quotes. Bash $ grep -w &quot;is not&quot; haiku.txt Another useful option is -n, which numbers the lines that match: Bash $ grep -n &quot;it&quot; haiku.txt Now, we want to use the option -v to invert our search, i.e., we want to output the lines that do not contain the word ‘the’. Bash $ grep -nwv &quot;the&quot; haiku.txt While grep finds lines in files, the find command finds files themselves. Again, it has a lot of options; we will show how the simplest ones work. For our first command, let’s run find . (remember to run this command from the data-shell/writing folder). Bash $ find . The first option in our list is -type d that means things are directories. Bash $ find . -type d Notice that the objects find finds are not listed in any particular order. If we change -type d to -type f, we get a listing of all the files instead: Bash $ find . -type f Now let’s try matching by name Bash $ find . -name *.txt Output $ ./haiku.txt We expected it to find all the text files, but it only prints out ./haiku.txt. The problem is that the shell expands wildcard characters like * before commands run. Since *.txt in the current directory expands to haiku.txt. To get what we want, let’s do what we did with grep: put *.txt in quotes to prevent the shell from expanding the * wildcard. This way, find actually gets the pattern *.txt, not the expanded filename haiku.txt: Bash $ find . -name &quot;*.txt&quot; The command line’s power lies in combining tools. We’ve seen how to do that with pipes; let’s look at another technique. As we just saw, find . -name &quot;*.txt&quot; gives us a list of all text files in or below the current directory. How can we combine that with wc -l to count the lines in all those files? The simplest way is to put the find command inside $(): Bash $ wc -l $(find . -name &quot;*.txt&quot;) Output 11 ./haiku.txt 300 ./data/two.txt 21022 ./data/LittleWomen.txt 70 ./data/one.txt 21403 total","headline":"Basic Linux Commands","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/workshop/basiclinuxshell.html"},"url":"http://localhost:4000/workshop/basiclinuxshell.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="Basic+Linux+Commands" class="title">Basic Linux Commands</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <h2 id="introduction">Introduction</h2>
+<p>Linux commands are issued to a computer program called
+<code class="language-plaintext highlighter-rouge">shell</code>. The shell enables us to send commands to the
+computer and receive output. It is also referred to as
+the terminal or command line interface~(CLI). Some
+computers include a default Unix Shell program. If not
+natively present, a program called Linux/Unix emulator
+can be installed to access a Unix Shell on a server.</p>
+
+<p>In addition, the command line is often the easiest way to interact
+with remote machines and supercomputers. <strong>Familiarity with the shell
+is near essential to run a variety of specialized tools and resources
+including high-performance computing systems</strong>. As clusters and cloud
+computing systems become more popular for scientific data crunching,
+being able to interact with the shell is becoming a necessary skill.
+We can build on the command-line skills covered here to tackle a wide
+range of scientific questions and computational challenges.</p>
+
+<p>This workshop is designed on the model developed by the <a href="https://carpentries.org/workshops/">Software and Data
+Carpentry</a>. The material on this page is
+part from the <a href="https://software-carpentry.org/lessons/">Software Carpentry Lessons</a></p>
+
+<p>To continue with the learning process, we encourage participants to follow the
+steps below for setup.</p>
+<ul>
+  <li><a href="#TheSetup">Setup</a></li>
+  <li><a href="#Windows">Windows</a></li>
+  <li><a href="#macOS">macOS</a></li>
+  <li><a href="#Linux">Linux</a></li>
+</ul>
+
+<p><a name="TheSetup"></a></p>
+<h2 id="setup">Setup</h2>
+<p>Download <a href="http://swcarpentry.github.io/
+shell-novice/data/data-shell.zip">data-shell.zip</a> and move the file to
+your Desktop. Unzip/extract the file. You should have a
+new folder called <code class="language-plaintext highlighter-rouge">data-shell</code> on your Desktop.
+Open a terminal. If you’re not sure how to open a
+terminal in your operating system, see the instructions
+below. In the terminal type <code class="language-plaintext highlighter-rouge">cd</code> then press the ‘Return’
+key. This step will make sure you start with your home
+folder as your working directory. Later on, you will
+find out how to access the data files in this folder.</p>
+
+<p><a name="Windows"></a></p>
+<h3 id="windows">Windows</h3>
+<p>Computers with Windows operating systems(OS) older than
+Windows 10 do not have the Bash shell installed by default.
+If you have a Windows OS older than Windows 10, we encourage
+you to use an emulator included in Git for Windows, which
+gives you access to both Bash shell commands and Git. Once
+installed, you can open a terminal by running the program Git
+Bash from the Windows start menu.</p>
+
+<p>Additionally, you can run Bash commands from a remote
+computer or server that already has a Unix Shell. This
+can usually be done through a Secure Shell (SSH) client.
+One such client available for free for Windows computers
+is PuTTY. See the <strong>reference</strong> below for information on
+installing and using PuTTY, using the Windows 10 command-line
+tool, or installing and using a Unix/Linux emulator.</p>
+
+<p><strong>Reference</strong></p>
+<ul>
+  <li><a href="https://gitforwindows.org/">Git for Windows</a> - Recommended</li>
+</ul>
+
+<p><strong>For advanced users, you may choose one of the following alternatives</strong>:</p>
+<ul>
+  <li><a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">Install the Windows Subsystem for Linux</a></li>
+  <li><a href="http://faculty.smu.edu/reynolds/unixtut/windows.html">Using a Unix/Linux emulator (Cygwin) or Secure Shell (SSH) client (Putty)</a>
+Please note that commands in the Windows Subsystem for Linux or Cygwin may differ slightly from those shown in the lesson or presented in the workshop.</li>
+</ul>
+
+<p><a name="macOS"></a></p>
+<h3 id="macos">macOS</h3>
+<p>For a Mac computer running macOS Mojave or earlier
+releases, the default Unix Shell is Bash. For a Mac
+computer running macOS Catalina or later releases,
+the default Unix Shell is <code class="language-plaintext highlighter-rouge">Zsh</code>. Your default shell is
+available via the Terminal program within your Utilities
+folder. To open Terminal, try one or both of the following:</p>
+<ul>
+  <li>In Finder, select the Go menu, then select Utilities. Locate Terminal in the Utilities folder and open it.</li>
+  <li>Use the Mac <code class="language-plaintext highlighter-rouge">Spotlight</code> computer search function. Search for: <code class="language-plaintext highlighter-rouge">Terminal</code> and press <code class="language-plaintext highlighter-rouge">Return</code>.</li>
+</ul>
+
+<p>To check if your machine is set up to use something other than Bash, type <code class="language-plaintext highlighter-rouge">echo $SHELL</code> in your terminal
+window.</p>
+
+<p>If your machine uses something other than Bash, you can run it by opening a terminal and typing
+<code class="language-plaintext highlighter-rouge">bash</code>.</p>
+
+<ul>
+  <li><a href="http://www.macworld.co.uk/feature/mac-software/how-use-terminal-on-mac-3608274/">How to Use Terminal on a Mac</a></li>
+</ul>
+
+<p><a name="Linux"></a></p>
+<h3 id="linux">Linux</h3>
+<p>The default Unix Shell for Linux operating systems is
+usually Bash. On most versions of Linux, it is accessible
+by running the <a href="https://help.gnome.org/users/gnome-terminal/stable/">Gnome Terminal</a>
+or <a href="https://konsole.kde.org/">KDE Konsole</a> or <a href="https://en.wikipedia.org/wiki/Xterm">xterm</a>,
+which can be found via the applications menu or the
+search bar. If your machine is set up to use something
+other than Bash, you can run it by opening a terminal
+and typing bash.</p>
+
+<p>This workshop will not make you an expert but will provide you with a good
+enough foundation for a personal exploration the Unix shell. The shell has
+a very rich echo system of commands but we will only touch on those deemed
+essential for scientific computing. The lesson is structured as follows:</p>
+
+<ol>
+  <li><a href="#TheShell">Introducing the Shell</a></li>
+  <li><a href="#FilesDirectories">Navigating Files and Directories</a></li>
+  <li><a href="#PipesFilters">Pipes and Filters</a></li>
+  <li><a href="#FindThings">Finding Things</a></li>
+</ol>
+
+<p><a name="TheShell"></a></p>
+<h2 id="introducing-the-shell">Introducing the Shell</h2>
+<p>Using the shell will take some effort and some time to learn.
+While a GUI presents you with choices to select, CLI choices
+are not automatically presented to you. Unlike a spoken language,
+a small number of “words” (i.e. commands) gets you a long way,
+and we’ll cover those essential few today.</p>
+
+<p>The grammar of a shell allows you to combine existing tools into
+powerful pipelines and handle large volumes of data automatically.
+Sequences of commands can be written into a script, improving the
+reproducibility of workflows.</p>
+
+<p>When the shell is first opened, you are presented with a prompt,
+indicating that the shell is waiting for input.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$  
+</code></pre></div></div>
+<p>The shell typically uses <code class="language-plaintext highlighter-rouge">$</code> as the prompt, but may use a different symbol.
+So let’s try our first command, <code class="language-plaintext highlighter-rouge">ls</code> which is short for listing. This command
+will list the contents of the current directory:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls  
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+
+$ Desktop   Downloads  Movies  Pictures
+  Document  Library    Music   Public   
+</code></pre></div></div>
+
+<p>*If the shell can’t find a program whose name is the command typed, it will print an error message such as:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ks  
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+
+$ ks: command not found
+</code></pre></div></div>
+<p>This might happen if the command was mis-typed or if the program corresponding to that command is not installed.</p>
+
+<p><strong>A Typical Problem</strong>
+A marine biologist, has just returned from a six-month survey of the <a href="https://en.wikipedia.org/wiki/North_Pacific_Gyre">North Pacific Gyre</a>, where she has been sampling gelatinous marine life in the <a href="https://en.wikipedia.org/wiki/Great_Pacific_garbage_patch">Great Pacific Garbage Patch</a>. She has <em>1520</em> samples that she’s run through an assay machine to
+measure the relative abundance of <em>300</em> proteins. She needs to run these 1520 files through an imaginary program called
+<code class="language-plaintext highlighter-rouge">goostats</code> she inherited. On top of this huge task, she has to write up results by the end of the month so her paper
+can appear in a special issue of <code class="language-plaintext highlighter-rouge">Aquatic Goo Letters</code>.</p>
+
+<p>The bad news is that if she has to run <code class="language-plaintext highlighter-rouge">goostats</code> by hand using a GUI, she’ll have to select and open a file <em>1520</em>
+times. If <code class="language-plaintext highlighter-rouge">goostats</code> takes <em>30</em> seconds to run each file, the whole process will take more than <em>12</em> hours of the
+scientist’s attention. With the shell, she can instead assign her computer this mundane task while she focuses her
+attention on writing her paper.</p>
+
+<p>The next few lessons will explore the ways the task can be achieved. More specifically, they explain how command
+shell can be used to run the <code class="language-plaintext highlighter-rouge">goostats</code> program, using loops to automate the repetitive steps of entering file names,
+so that her computer can work while she writes her paper.</p>
+
+<p>As a bonus, once the processing pipeline has been put together, it can be used again whenever more data is collected.</p>
+
+<p><a name="FilesDirectories"></a></p>
+<h2 id="navigating-files-and-directories">Navigating Files and Directories</h2>
+
+<p>The part of the operating system responsible for managing files and directories is called the <strong>file system</strong>.
+It is organized in multiple layers. The top most layer is the root directory. When you remotely login to a
+computer for the first time, you get on the home directory. Every user account on a server (High Performance Computer)
+has a home directory.</p>
+
+<p>&lt;img src=”/assets/img/tutorialsimages/GoogleDrive/img1.png”, Alt = “Examples of a file system” &gt;</p>
+
+<p>The forward slash character <code class="language-plaintext highlighter-rouge">/</code> does two things:</p>
+<ul>
+  <li>When it appears at the front of a file or directory name, it refers to the root directory.</li>
+  <li>When it appears inside a path, it’s just a separator.</li>
+</ul>
+
+<p>The root directory <code class="language-plaintext highlighter-rouge">/</code> has <code class="language-plaintext highlighter-rouge">/bin</code>, <code class="language-plaintext highlighter-rouge">/data</code>, <code class="language-plaintext highlighter-rouge">/Users</code>, and <code class="language-plaintext highlighter-rouge">/tmp</code> directories. The <code class="language-plaintext highlighter-rouge">/Users</code> directory in turn
+has the <code class="language-plaintext highlighter-rouge">/Users/Sarah</code>, <code class="language-plaintext highlighter-rouge">/Users/Jacob</code> and <code class="language-plaintext highlighter-rouge">/Users/Nelle</code> directories. The path from the root directory
+to any targeted file or directory is called the <strong>absolute path</strong>. <code class="language-plaintext highlighter-rouge">/Users/Sarah</code>, <code class="language-plaintext highlighter-rouge">/Users/Jacob</code> and <code class="language-plaintext highlighter-rouge">/Users/Nelle</code>
+are the abasolute paths to Sarah’s, Jacob’s, and Nelle’s home directories.</p>
+
+<p>Download the <code class="language-plaintext highlighter-rouge">data-shell.zip</code> from the setup section on to your destop. Start the terminal on your computer.</p>
+
+<p>Use the command below to determine your home directory</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ echo $HOME  
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+$ /Users/Jacob
+</code></pre></div></div>
+<p>Determine your current working directory (data-shell)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ pwd  
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+$ /Users/Jacob/Desktop/data-shell
+</code></pre></div></div>
+<p>List the content of your current working directory with <code class="language-plaintext highlighter-rouge">ls</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+$ creatures          molecules          notes.txt           solar.pdf
+  data               north-pacific-gyre pizza.cfg           writing
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">ls</code> prints the names of the files and directories in the current directory. We can make its output more
+comprehensible by using the <em>-F</em> option (also known as a switch or a flag) , which tells <code class="language-plaintext highlighter-rouge">ls</code> to classify
+the output by adding a marker to file and directory names to indicate what they are:</p>
+<ul>
+  <li>a trailing / indicates that this is a directory</li>
+  <li>@ indicates a link</li>
+  <li>* indicates an executable</li>
+</ul>
+
+<p>Depending on your default options, the shell might also use colors to indicate whether each entry is a file
+or directory.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls -F 
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+$ creatures/          molecules/          notes.txt           solar.pdf
+  data/               north-pacific-gyre/ pizza.cfg           writing/
+</code></pre></div></div>
+<h3 id="syntax-of-a-shell-command">Syntax of a shell command</h3>
+<p>Consider a general example of a command, which we will dissect into its component parts:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls -F /
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+Applications/ System/       bin/          etc@          private/      usr/
+Library/      Users/        cores/        home@         sbin/         var@
+Network@      Volumes/      dev/          opt/          tmp@
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ls</code> is the command, with an option <code class="language-plaintext highlighter-rouge">-F</code> and an argument <code class="language-plaintext highlighter-rouge">/</code>.  We’ve already encountered options
+(also called switches or flags) which either start with a single dash (-) or two dashes (–), and
+they change the behaviour of a command. Arguments tell the command what to operate on (e.g. files and directories).
+Sometimes options and arguments are referred to as parameters. A command can be called with more than one option
+and more than one argument, but doesn’t always require an argument or an option.</p>
+
+<p>Each part is separated by spaces: if you omit the space between <code class="language-plaintext highlighter-rouge">ls</code> and <code class="language-plaintext highlighter-rouge">-F</code> the shell will look for a command
+called <code class="language-plaintext highlighter-rouge">ls-F</code>, which doesn’t exist. Also, capitalization can be important. For example, <code class="language-plaintext highlighter-rouge">ls -s</code> will display the
+size of files and directories alongside the names, while <code class="language-plaintext highlighter-rouge">ls -S</code> will sort the files and directories by size, as
+shown below:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls -s /Users/Jacob/Desktop/data-shell/data/
+total 208
+  8 amino-acids.txt    0 elements/         24 planets.txt
+  0 animal-counts/     8 morse.txt          8 salmon.txt
+  8 animals.txt        0 pdb/             152 sunspot.txt
+</code></pre></div></div>
+<p>and</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls -S /Users/Jacob/Desktop/data-shell/data/
+sunspot.txt      elements/        morse.txt        animals.txt      salmon.txt
+planets.txt      pdb/             amino-acids.txt  animal-counts/
+
+</code></pre></div></div>
+<h3 id="getting-help">Getting Help</h3>
+<p>There are two common ways to find out how to use a command and what options it accepts:</p>
+<ol>
+  <li>We can pass a<code class="language-plaintext highlighter-rouge"> --help</code> option to the command, such as
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Bash
+  $ ls --help
+</code></pre></div>    </div>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Output
+  ls: illegal option -- -
+  usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%] [file ...]
+</code></pre></div>    </div>
+  </li>
+  <li>We can read its manual with <code class="language-plaintext highlighter-rouge">man</code>, such as
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Bash
+  $ man ls
+</code></pre></div>    </div>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Output     
+   LS(1)                     BSD General Commands Manual                    LS(1)
+   NAME
+  ls -- list directory contents
+   SYNOPSIS
+  ls [-ABCFGHLOPRSTUW@abcdefghiklmnopqrstuwx1%] [file ...]
+   DESCRIPTION
+  For each operand that names a file of a type other than directory, ls displays
+  its name as well as any requested, associated information.  For each operand that
+  names a file of type directory, ls displays the names of files contained within
+  that directory, as well as any requested, associated information.
+    
+  If no operands are given, the contents of the current directory are displayed.
+  If more than one operand is given, non-directory operands are displayed first;
+  directory and non-directory operands are sorted separately and in lexicographical
+  order.
+
+  The following options are available:
+
+  -@      Display extended attribute keys and sizes in long (-l) output.
+   :
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Continue to push on the space bar of your computer to scroll down the <code class="language-plaintext highlighter-rouge">ls</code> manual.
+Sometimes at the bottom of the manual, you see some examples of how to use the command.
+Push the <code class="language-plaintext highlighter-rouge">q</code> key to exit the <code class="language-plaintext highlighter-rouge">man</code> page.</p>
+
+<p>If you try to use an option (flag) that is not supported, <code class="language-plaintext highlighter-rouge">ls</code> and other commands will usually print
+an error message similar to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls -j
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+ls: illegal option -- j
+usage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%] [file ...]
+</code></pre></div></div>
+
+<h3 id="exploring-directories">Exploring Directories</h3>
+
+<p>We can look at the content of <code class="language-plaintext highlighter-rouge">data-shell</code> by passing the directory name to ls</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls -F /Users/Jacob/data-shell
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+creatures/          molecules/          notes.txt           solar.pdf
+data/               north-pacific-gyre/ pizza.cfg           writing/
+</code></pre></div></div>
+<p>We can use the <em>change directory</em> <code class="language-plaintext highlighter-rouge">cd</code> command to move from one directory to another.
+This is akin to double clicking on a directory in a GUI environment. The command below
+moves from <code class="language-plaintext highlighter-rouge">data-shell</code> directory to its subdirectory <code class="language-plaintext highlighter-rouge">data</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cd data
+</code></pre></div></div>
+<p>Use <code class="language-plaintext highlighter-rouge">pwd</code> command to confirm your location</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ pwd
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+/Users/Jacob/Desktop/data-shell/data
+
+</code></pre></div></div>
+<p>So far, ‘cd’ only sees sub-directories inside your current directory. There are different
+ways to see directories above your current location. This is done using a shortcut in the
+shell to move up one directory level that looks like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cd ..
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">pwd</code> can then be used to verify our location</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ pwd
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+/Users/Jacob/Desktop/data-shell
+
+</code></pre></div></div>
+<p>We can see that <code class="language-plaintext highlighter-rouge">cd ..</code> takes us back to <code class="language-plaintext highlighter-rouge">data-shell</code> directory.
+<code class="language-plaintext highlighter-rouge">..</code> is a special directory that is always present in all directories. To see
+this special directory and other hidden files in a directory, we add <code class="language-plaintext highlighter-rouge">-a</code> option to the
+<code class="language-plaintext highlighter-rouge">ls</code> command.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls -a -F
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+./                  creatures/          north-pacific-gyre/ solar.pdf
+../                 data/               notes.txt           writing/
+.bash_profile       molecules/          pizza.cfg
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">-a</code> stands for ‘show all’. It forces <code class="language-plaintext highlighter-rouge">ls</code> to show us file and directory names that begin with <code class="language-plaintext highlighter-rouge">.</code>,
+such as <code class="language-plaintext highlighter-rouge">..</code> (which, if we’re in /Users/Jacob, refers to the /Users directory) As you can see,
+it also displays another special directory that’s just called <code class="language-plaintext highlighter-rouge">.</code>, which means ‘the current working directory’.</p>
+
+<p><strong>Note that</strong> in most command line tools, multiple options can be combined with a single <code class="language-plaintext highlighter-rouge">-</code> and no
+spaces between the options, <code class="language-plaintext highlighter-rouge">ls -F -a</code> is equivalent to <code class="language-plaintext highlighter-rouge">ls -Fa</code>.</p>
+
+<p><strong>Important Shortcuts</strong><br />
+<code class="language-plaintext highlighter-rouge">~</code> (tilde) at the start of a path means “the current user’s home directory”. For example, if Jacob’s
+home directory is /Users/Jacob, then <code class="language-plaintext highlighter-rouge">~/Deskstop/data-shell/data</code> is equivalent to
+<code class="language-plaintext highlighter-rouge">/Users/Jacob/Desktop/data-shell/data</code>. <em>This only works if <code class="language-plaintext highlighter-rouge">~</code> is the first character in the path</em></p>
+
+<p><code class="language-plaintext highlighter-rouge">-</code> (dash) character istranslated by <code class="language-plaintext highlighter-rouge">cd</code> to mean <em>previous directory</em> I was in, which is faster than
+having to remember, then type, the full path. This is a very efficient way of moving back and forth
+between directories.</p>
+
+<p><strong>Note that</strong> <code class="language-plaintext highlighter-rouge">cd ..</code> takes you up, one level while <code class="language-plaintext highlighter-rouge">cd -</code> takes you back where you were previousely.
+You can think of it as the Last channel button on a TV remote.</p>
+
+<h3 id="absolute-and-relative-paths">Absolute and Relative Paths</h3>
+<p>An <em>absolute path</em> is defined as specifying the location of a file or directory from the root directory(/).
+<code class="language-plaintext highlighter-rouge">/Users/Jacob/Desktop/data-shell/data</code> is the absolute path to the <code class="language-plaintext highlighter-rouge">data</code> directory. Use <code class="language-plaintext highlighter-rouge">cd</code> only or <code class="language-plaintext highlighter-rouge">cd ~</code>
+to go back to your home directory. From your home directory, go back to the <code class="language-plaintext highlighter-rouge">data</code> directory using its absolute
+path</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cd
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ pwd
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+/Users/Jacob/
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cd /Users/Jacob/Desktop/data-shell/data
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ pwd
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+/Users/Jacob/Desktop/data-shell/data
+</code></pre></div></div>
+<p><em>Relative path</em> is defined as the path related to the present working directly(pwd).
+Use the <em>relative path</em> to get to the <code class="language-plaintext highlighter-rouge">Desktop</code> directory and back to the <code class="language-plaintext highlighter-rouge">data</code> directory</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cd ../..
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ pwd
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+/Users/Jacob/Desktop
+</code></pre></div></div>
+<p>Now go back to the <code class="language-plaintext highlighter-rouge">data</code> directory</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cd data-shell/data
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ pwd
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+/Users/Jacob/Desktop/data-shell/data
+</code></pre></div></div>
+<p>The relative path from <code class="language-plaintext highlighter-rouge">data</code> to <code class="language-plaintext highlighter-rouge">Desktop</code> directory is <code class="language-plaintext highlighter-rouge">../..</code> and the relative path
+back to <code class="language-plaintext highlighter-rouge">data</code> from <code class="language-plaintext highlighter-rouge">Desktop</code> directory is <code class="language-plaintext highlighter-rouge">data-shell/data</code>.</p>
+
+<h3 id="copying-and-making-copies-of-files-and-directories">Copying and Making Copies of Files and Directories</h3>
+
+<p><strong>Questions</strong></p>
+<ul>
+  <li>How can I create, copy, and delete files and directories?</li>
+  <li>How can I edit files?</li>
+</ul>
+
+<p><strong>Objectives</strong></p>
+<ul>
+  <li>Create a directory hierarchy that matches a given diagram.</li>
+  <li>Create files in that hierarchy using an editor or by copying and renaming existing files.</li>
+  <li>Delete, copy and move specified files and/or directories.</li>
+</ul>
+
+<p>We will now explore how to create files and directories. Let’s create a new
+directory called <code class="language-plaintext highlighter-rouge">thesis</code> using the command <code class="language-plaintext highlighter-rouge">mkdir thesis</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ mkdir thesis
+</code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">-p</code> option allows <code class="language-plaintext highlighter-rouge">mkdir</code> to create a directory with any number of nested
+subdirectories in a single operation:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ mkdir -p thesis/chapter_1/section_1/subsection_1
+</code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">-R</code> option to the <code class="language-plaintext highlighter-rouge">ls</code> command will list all nested subdirectories
+wtihin a directory. Let’s use <code class="language-plaintext highlighter-rouge">ls -FR</code> to recursively list the new directory
+hierarchy we just created beneath the <code class="language-plaintext highlighter-rouge">thesis</code> directory:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls -FR thesis
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+     chapter_1/
+
+     thesis/chapter_1:
+     section_1/
+
+     thesis/chapter_1/section_1:
+     subsection_1/
+</code></pre></div></div>
+<p><strong>Good Names for Files and Directories</strong></p>
+
+<p>Complicated names of files and directories can make your life painful when
+working on the command line. A few useful tips for the names of your files:</p>
+
+<ol>
+  <li>
+    <p><em>Don’t use spaces.</em> Spaces are used to separate arguments on the command
+line. You can use <code class="language-plaintext highlighter-rouge">-</code> or <code class="language-plaintext highlighter-rouge">_</code> instead (e.g. north-pacific-gyre/ rather than north pacific gyre/).</p>
+  </li>
+  <li>
+    <p><em>Don’t begin the name with <code class="language-plaintext highlighter-rouge">-</code> (dash).</em> Commands treat names starting with - as options.</p>
+  </li>
+  <li>
+    <p><em>Stick with letters, numbers, <code class="language-plaintext highlighter-rouge">.</code> (period or <code class="language-plaintext highlighter-rouge">full stop</code>), - (dash) and <code class="language-plaintext highlighter-rouge">_</code>
+(underscore).</em> Many other characters have special meanings on the command
+line. Some can cause your command to not work as expected and can even result
+in data loss.</p>
+  </li>
+</ol>
+
+<p>If you need to refer to names of files or directories that have spaces or
+other special characters, you should surround the name in quotes (“”).</p>
+
+<p><strong>Create a text file</strong>
+ We can use the <code class="language-plaintext highlighter-rouge">touch</code> command to create an empty text file.
+ A text editor could also be used. There are many text editors of which
+ <a href="https://www.emacswiki.org/"><code class="language-plaintext highlighter-rouge">Emacs</code></a>, <a href="https://www.vim.org/"><code class="language-plaintext highlighter-rouge">vim</code></a>,
+ and <a href="https://www.nano-editor.org/"><code class="language-plaintext highlighter-rouge">nano</code></a> are three of the most used. <code class="language-plaintext highlighter-rouge">nano</code>
+ is the simplest and will be used for editing files.</p>
+
+<p>Create <code class="language-plaintext highlighter-rouge">draft.txt</code> file with the command  <code class="language-plaintext highlighter-rouge">nano draft.txt</code>. Once the file is
+Open, type a few words and press <code class="language-plaintext highlighter-rouge">Ctrl+O</code> (press the Ctrl or Control key and,
+while holding it down, press the O key) to write our data to disk (we’ll be
+asked what file we want to save this to: press <code class="language-plaintext highlighter-rouge">Return</code> to accept the
+suggested default of draft.txt).</p>
+
+<p><strong>Moving Files and Directories</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cd ~/Desktop/data-shell/
+</code></pre></div></div>
+<p>In <code class="language-plaintext highlighter-rouge">thesis</code> directory is a file <code class="language-plaintext highlighter-rouge">draft.txt</code> which isn’t a particularly
+informative name, so let’s change the file’s name using <code class="language-plaintext highlighter-rouge">mv</code>, which is
+short for <code class="language-plaintext highlighter-rouge">move</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ mv thesis/draft.txt thesis/quotes.txt
+</code></pre></div></div>
+<p>Use the <code class="language-plaintext highlighter-rouge">ls</code> command to verify if <code class="language-plaintext highlighter-rouge">quotes.txt</code> is in the directory. The file
+could be moved into the current directory represented by <code class="language-plaintext highlighter-rouge">.</code>:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ mv thesis/quotes.txt .
+</code></pre></div></div>
+<p><strong>Copying Files and Directories</strong>                  <br />
+The <code class="language-plaintext highlighter-rouge">cp</code> command works very much like <code class="language-plaintext highlighter-rouge">mv</code>, except it copies a file instead
+of moving it.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cp quotes.txt thesis/quotations.txt
+$ ls quotes.txt thesis/quotations.txt
+</code></pre></div></div>
+<p>We can also copy a directory and all its contents by using the recursive
+option <code class="language-plaintext highlighter-rouge">-r</code>, e.g. to back up a directory:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cp -r thesis thesis_backup
+</code></pre></div></div>
+
+<p><strong>Removing Files and Directories</strong>         <br />
+Returning to the <code class="language-plaintext highlighter-rouge">data-shell</code> directory, let’s tidy up this directory by
+removing the <code class="language-plaintext highlighter-rouge">quotes.txt</code> file we created. The Unix command we’ll use for
+this is <code class="language-plaintext highlighter-rouge">rm</code> (short for ‘remove’):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ rm quotes.txt
+</code></pre></div></div>
+<p><strong>Question</strong>: What happens when we execute <code class="language-plaintext highlighter-rouge">rm -i thesis_backup/quotations.txt</code>? Why would we want this protection when using <code class="language-plaintext highlighter-rouge">rm</code>?</p>
+
+<p><code class="language-plaintext highlighter-rouge">rm</code> can remove a directory and all its contents if we use the recursive
+option <code class="language-plaintext highlighter-rouge">-r</code>, and it will do so without any confirmation prompts:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ rm -r thesis
+</code></pre></div></div>
+<p><span style="color:red">Given that there is no way to retrieve files deleted using the shell, <code class="language-plaintext highlighter-rouge">rm -r</code> should be used with great caution (you might consider adding the interactive option <code class="language-plaintext highlighter-rouge">rm -r -i</code>)</span>.</p>
+
+<p><strong>Using wildcards for accessing multiple files at once</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">*</code> is a <strong>wildcard</strong>, which matches zero or more characters. Let’s consider
+the <code class="language-plaintext highlighter-rouge">data-shell/molecules</code> directory: <code class="language-plaintext highlighter-rouge">*.pdb</code> matches all the files ending
+in <code class="language-plaintext highlighter-rouge">.pdb</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ ls ~/Desktop/data-shell/molecules/*.pdb
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+     ~/Desktop/data-shell/molecules/cubane.pdb
+     ~/Desktop/data-shell/molecules/ethane.pdb
+     ~/Desktop/data-shell/molecules/methane.pdb
+     ~/Desktop/data-shell/molecules/octane.pdb
+     ~/Desktop/data-shell/molecules/pentane.pdb
+     ~/Desktop/data-shell/molecules/propane.pdb
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">?</code> is also a wildcard, but it matches exactly one character. So
+ <code class="language-plaintext highlighter-rouge">?ethane.pdb</code> would match <code class="language-plaintext highlighter-rouge">methane.pdb</code> whereas <code class="language-plaintext highlighter-rouge">*ethane.pdb</code> matches
+ both <code class="language-plaintext highlighter-rouge">ethane.pdb</code>, and <code class="language-plaintext highlighter-rouge">methane.pdb</code>.</p>
+
+<p>Wildcards can be used in combination with each other e.g. <code class="language-plaintext highlighter-rouge">???ane.pdb</code> matches
+three characters followed by <code class="language-plaintext highlighter-rouge">ane.pdb</code>, giving <code class="language-plaintext highlighter-rouge">cubane.pdb</code>, <code class="language-plaintext highlighter-rouge">ethane.pdb</code>, <code class="language-plaintext highlighter-rouge">octane.pdb</code>.</p>
+
+<p><a name="PipesFilters"></a></p>
+<h2 id="pipes-and-filters">Pipes and Filters</h2>
+
+<p><strong>Questions</strong></p>
+<ul>
+  <li>How can I combine existing commands to do new things?</li>
+</ul>
+
+<p><strong>Objectives</strong></p>
+<ul>
+  <li>Redirect a command’s output to a file.</li>
+  <li>Process a file instead of keyboard input using redirection.</li>
+  <li>Construct command pipelines with two or more stages.</li>
+</ul>
+
+<p>We’ll start with the directory called <code class="language-plaintext highlighter-rouge">data-shell/molecules</code> that contains six
+files describing some simple organic molecules. The .pdb extension indicates
+that these files are in Protein Data Bank format, a simple text format that
+specifies the type and position of each atom in the molecule.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cd ~/Desktop/data-shell/molecules
+</code></pre></div></div>
+<p><em>wc</em> is the <code class="language-plaintext highlighter-rouge">word count</code> command: it counts the number of lines, words, and
+characters in files (from left to right, in that order).</p>
+
+<p>If we run the command <code class="language-plaintext highlighter-rouge">wc \*.pdb</code>, the * in *.pdb matches zero or more
+characters, so the shell turns *.pdb into a list of all .pdb files in the
+current directory:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ wc *.pdb
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+ 20     156    1158 cubane.pdb
+ 12      84     622 ethane.pdb
+  9      57     422 methane.pdb
+ 30     246    1828 octane.pdb
+ 21     165    1226 pentane.pdb
+ 15     111     825 propane.pdb
+107     819    6081 total
+</code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">-m</code>, <code class="language-plaintext highlighter-rouge">-w</code> and <code class="language-plaintext highlighter-rouge">-l</code> options can also be used with the wc command, to show
+only the number of characters, words or the number of lines in the files.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ wc -l *.pdb
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+ 20 cubane.pdb
+ 12 ethane.pdb
+  9 methane.pdb
+ 30 octane.pdb
+ 21 pentane.pdb
+ 15 propane.pdb
+107 total
+</code></pre></div></div>
+<p>We can redirect our output into a file say “lenghts.txt”, “characters.txt” or
+“words.txt”</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ wc -l *.pdb &gt; lenghts.txt
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ wc -m *.pdb &gt; characters.txt
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ wc -w *.pdb &gt; words.txt
+</code></pre></div></div>
+<p>We can merge the three files and direct the output into a new file “lwc.txt”:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cat lenghts.txt words.txt characters.txt &gt; lwc.txt
+</code></pre></div></div>
+<p>By default <code class="language-plaintext highlighter-rouge">sort</code> do an alphanumerical reordering and the <code class="language-plaintext highlighter-rouge">-n</code> option
+specifies that the sort is numerical instead:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ sort lwc.txt
+</code></pre></div></div>
+<p>The output of the previous command is long but we can choose to print only
+the the first 5 lines using <code class="language-plaintext highlighter-rouge">head</code> command or the last 5 lines using the
+<code class="language-plaintext highlighter-rouge">tail</code> command:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ sort lwc.txt | head -n 5
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+ 9 methane.pdb
+12 ethane.pdb
+15 propane.pdb
+20 cubane.pdb
+21 pentane.pdb
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ sort lwc.txt | head -n 5
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+ 825 propane.pdb
+1158 cubane.pdb
+1226 pentane.pdb
+1828 octane.pdb
+6081 total
+</code></pre></div></div>
+<p>We can show the efficiency of piping and the <code class="language-plaintext highlighter-rouge">cut</code> command.
+A file called animals.txt (in the data-shell/data folder) contains the
+following data:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cat ~/Desktop/data-shell/data/animal.txt
+</code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">cut</code> command, the delimiter <code class="language-plaintext highlighter-rouge">-d ,</code> and the field <code class="language-plaintext highlighter-rouge">-f 2</code> returns the
+animal’s names</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cut -d , -f 2 animals.txt
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+deer
+rabbit
+raccoon
+rabbit
+deer
+fox
+rabbit
+bear
+</code></pre></div></div>
+<p>The contain of the files is split at the comma into 2 fields and the second
+field is returned.</p>
+
+<p><strong>Check for errors</strong></p>
+
+<p>Nelle has run her samples through the assay machines and created 17 files in
+the north-pacific-gyre/2012-07-03 directory. As a quick check, starting from
+her home directory, Nelle types:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cd north-pacific-gyre/2012-07-03/
+$ wc -l *.txt
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+    300 NENE01729A.txt
+    300 NENE01729B.txt
+    300 NENE01736A.txt
+    300 NENE01751A.txt
+    300 NENE01751B.txt
+    300 NENE01812A.txt
+    300 NENE01843A.txt
+    ... ...     
+</code></pre></div></div>
+<p>We can sort the output to look for inconsistencies</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ wc -l *.txt | sort -n | head -n 5
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+     240 NENE02018B.txt
+     300 NENE01729A.txt
+     300 NENE01729B.txt
+     300 NENE01736A.txt
+     300 NENE01751A.txt
+</code></pre></div></div>
+<p>We can see that one of the files has 60 fewer lines.</p>
+
+<p><a name="FindThings"></a></p>
+<h2 id="finding-things">Finding Things</h2>
+
+<p><strong>Questions</strong></p>
+<ul>
+  <li>How can I find files?</li>
+  <li>How can I find things in files?</li>
+</ul>
+
+<p><strong>Objectives</strong></p>
+<ul>
+  <li>Use <em>grep</em> to select lines from text files that match simple patterns.</li>
+  <li>Use find to find files and directories whose names match simple patterns.</li>
+</ul>
+
+<p>Unix programmers often use the word <code class="language-plaintext highlighter-rouge">grep</code>. <code class="language-plaintext highlighter-rouge">grep</code> is a contraction of
+<code class="language-plaintext highlighter-rouge">global/regular expression/print</code>, a common sequence of operations in early
+Unix text editors. It is also the name of a very useful command-line program.<br />
+<code class="language-plaintext highlighter-rouge">grep</code> finds and prints lines in files that match a pattern. For this set of examples, we’re going to be working in the writing subdirectory:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ cd
+$ cd ~/Desktop/data-shell/writing
+$ cat haiku.txt
+</code></pre></div></div>
+<p>Let’s find lines that contain word not :</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ grep not haiku.txt
+</code></pre></div></div>
+<p>By default, grep searches for a pattern in a case-sensitive way. In addition,
+the search pattern we have selected does not have to form a complete word, as
+we will see in the next example. Let’s search for the pattern: ‘The’.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+grep The haiku.txt
+</code></pre></div></div>
+<p>This time, two lines that include the letters <code class="language-plaintext highlighter-rouge">The</code> are outputted, one of
+which contained our search pattern within a larger word, ‘Thesis’. To restrict
+matches to lines containing the word <code class="language-plaintext highlighter-rouge">The</code> on its own, we can give grep with
+the <em>-w</em> option. This will limit matches to word boundaries.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+grep -w The haiku.txt
+</code></pre></div></div>
+<p>Sometimes we don’t want to search for a single word, but a phrase. This is
+also easy to do with grep by putting the phrase in quotes.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ grep -w "is not" haiku.txt
+</code></pre></div></div>
+<p>Another useful option is <em>-n</em>, which numbers the lines that match:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ grep -n "it" haiku.txt
+</code></pre></div></div>
+<p>Now, we want to use the option <em>-v</em> to invert our search, i.e., we want to
+output the lines that do not contain the word ‘the’.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ grep -nwv "the" haiku.txt
+</code></pre></div></div>
+<p>While grep finds lines in files, the find command finds files themselves.
+Again, it has a lot of options; we will show how the simplest ones work.</p>
+
+<p>For our first command, let’s run <code class="language-plaintext highlighter-rouge">find .</code> (remember to run this command from
+the data-shell/writing folder).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ find .
+</code></pre></div></div>
+<p>The first option in our list is <code class="language-plaintext highlighter-rouge">-type d</code> that means things are directories.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ find . -type d
+</code></pre></div></div>
+<p>Notice that the objects <code class="language-plaintext highlighter-rouge">find</code> finds are not listed in any particular order.
+If we change <code class="language-plaintext highlighter-rouge">-type d</code> to <code class="language-plaintext highlighter-rouge">-type f</code>, we get a listing of all the files instead:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ find . -type f
+</code></pre></div></div>
+<p>Now let’s try matching by name</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ find . -name *.txt
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+$ ./haiku.txt
+</code></pre></div></div>
+<p>We expected it to find all the text files, but it only prints out
+<code class="language-plaintext highlighter-rouge">./haiku.txt</code>. The problem is that the shell expands wildcard characters
+like * before commands run. Since *.txt in the current directory expands
+to haiku.txt.</p>
+
+<p>To get what we want, let’s do what we did with grep: put *.txt in quotes to
+prevent the shell from expanding the * wildcard. This way, <code class="language-plaintext highlighter-rouge">find</code> actually
+gets the pattern *.txt, not the expanded filename haiku.txt:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ find . -name "*.txt"
+</code></pre></div></div>
+<p>The command line’s power lies in combining tools. We’ve seen how to do that
+with pipes; let’s look at another technique. As we just saw,
+<code class="language-plaintext highlighter-rouge">find . -name "*.txt"</code> gives us a list of all text files in or below the
+current directory. How can we combine that with <code class="language-plaintext highlighter-rouge">wc -l</code> to count the lines in
+all those files?</p>
+
+<p>The simplest way is to put the find command inside $():</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Bash
+$ wc -l $(find . -name "*.txt")
+</code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Output
+11 ./haiku.txt
+300 ./data/two.txt
+21022 ./data/LittleWomen.txt
+70 ./data/one.txt
+21403 total
+</code></pre></div></div>
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="Intermediate Bash Shell Scripting" href="/workshop/bashshellprogramming.html">
+            <p>Previous post</p>
+            Intermediate Bash Shell Scripting
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="Persistent Data Transfer over the Science DMZ" href="/workshop/datatransfer.html">
+            <p>Next post</p>
+            Persistent Data Transfer over the Science DMZ
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

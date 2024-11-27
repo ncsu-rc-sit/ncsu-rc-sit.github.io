@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/tutorials/websitetutorial.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Jekyll static site generator | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Jekyll static site generator" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Jekyll is really useful for building static websites. You can use a Jekyll theme to write posts using markdown with less amount of HTML, CSS, and have a responsive good looking website. If you are a developer who loves to create websites while having control of every single aspect of HTML and CSS, Jekyll allows for all of that. You can create your own themes, layouts, control, and configure the entire site. We will present enough information to get you started with your first Jekyll website, from creating content to serving them on Github pages. Installation Creating a site Front matter Config.yaml Installing themes Layouts Includes Hosting on Github pages Wiki Installation The Jekyll website provides installation instructions that cover Windows, Mac, and Linux operating systems. Creating a site For this tutorial, we will name our website “test_blog”. Issue the command below at the terminal to create your new site. jekyll new test_blog Jekyll creates some default content for the new site. Change directory into the test_blog directory cd test_blog Run the command below at the terminal and Jekyll will take all the pieces of our website and serve them in our browser. Browse the displayed server address http://127.0.0.1:400/ to see the content of the website. You can also stop the display with the command ctrl-c bundle exec jekyll serve The local host server now displays the new website from the browser. test_blog: the root directory _posts: folder with all the blog posts. _site: folder with the final output of the website. _config.yaml: file with the settings and basic attributes of the site. Gemfile: holds all the dependencies for the website. pages: Folder for adding new pages to website. The rest of the files just default basic parts of our website. Front matter Front matter is the site attribute such as Title and author&#39;s name and many others, depending on our preference. Jekyll reads the front matter first when a file is being executed to check the layout specifications. See the example below. --- layout: post title: Jekyll static site generator date: 14 August 2020 author: Joe Doe --- We see some special information at the top of our post which is different from the content, That is called front matter. config.yaml file has the settings and basic attributes of the site. Config.yaml It is the very important file in creating the website as this file has the settings and the attributes related to the site. The format of the config.yaml file looks like this: title: Your awesome title author: name: GitHub User email: your-email@domain.com description: &gt; # this means to ignore newlines until &quot;show_excerpts:&quot; Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description. show_excerpts: false # set to true to show excerpts on the homepage # Minima date format # refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this minima: date_format: &quot;%b %-d, %Y&quot; # generate social links in the footer social_links: twitter: jekyllrb github: jekyll # devto: jekyll # dribbble: jekyll # facebook: jekyll # flickr: jekyll # instagram: jekyll # linkedin: jekyll # pinterest: jekyll # youtube: jekyll # youtube_channel: UC8CXR0-3I70i1tfPg1PAE1g # youtube_channel_name: CloudCannon # telegram: jekyll # googleplus: +jekyll # microdotblog: jekyll # keybase: jekyll # Mastodon instances # mastodon: # - username: jekyll # instance: example.com # - username: jekyll2 # instance: example.com # GitLab instances # gitlab: # - username: jekyll # instance: example.com # - username: jekyll2 # instance: example.com # If you want to link only specific pages in your header, uncomment # this and add the path to the pages in order as they should show up #header_pages: # - about.md # Build settings theme: minima plugins: - jekyll-feed - jekyll-seo-tag Above is an example config.yaml file of jekyll-minimal theme. As said earlier this has all the basic configurations and settings of the website. The detailed information of each attribute is as follows: Title: The title of the page. Author: name: THe name of the website author. email: The email of the author description: This contains the information about website. Minima date format: This contains the date format to be used in the website. social_links: You may add the links to your social accounts here. This generates a hyperlink directly to your mentioned social account. Build settings: This section have the information related to the theme. For a detailed information on how to setup the config file, click here Installing themes By default, we will be having a minima theme for our Jekyll website. If we want a different theme for our website, there are lots of freely available themes on the internet. Website for free themes: Jekyll themes Free jekyll themes You can find many other good websites on the internet. We will be showing an example of the theme change. Every theme has a link to the Github repository which shows exactly how to use the theme in the readme.md section. For the example, we selected a “Jekyll-hacker theme” from the internet. We will read the instructions on how to use it and install it. We will show the difference between the Jekyll minima theme and the new theme. We can see the theme change. So basic steps to follow once you select a theme are, In the gem file add your selected theme, then install the theme by the command below. bundle install Change the theme attribute in the _config.yaml file and restart the server with the command below. bundle exec jekyll serve Do not forget to change the layout names in your posts according to the theme you selected. If you don&#39;t change the layout you will not see the changes once you restart the server. Layouts Layouts are skeletons of HTML code used to define the looks and feels of different pages or your entire site. By default, Jekyll will provide layouts for our pages. If you want to create your own layout. Go to the root directory and create the _layouts folder. Create an html file of your own and start making your own layout. In the _layouts folder creating your own layout looks like this. The code snippet below is an example of a layout called “Home.html” which uses the default layout. --- layout: default --- &lt;div class=&quot;home&quot;&gt; &lt;div id=&quot;main&quot; class=&quot;call-out&quot; style=&quot;background-image: url(&#39;/assets/img/background-color.png&#39;)&quot;&gt; &lt;h1&gt; &lt;code&gt;NC State RC-SIT&lt;/code&gt; &lt;/h1&gt; &lt;/div&gt; &lt;/div&gt; After you create your own layout, you can switch your site layout to it, which will then show up. Includes Includes allow us to take certain components of our site such as the header, the footer, or a navigation list and abstract them into their own html files. That means we can have an html file that describes the header or footer for the entire site. We can have a navigation list designed and include that on any page we want on the site. Follow the steps below to create your own layout. Go to the root directory and create the includes folder. Create a html file of your own and start to make components of your website. In the _includes folder creating your own layout looks like this. The code snippet below is an example of an include html file which creates a navigation list and can be further used anywhere on the site. &lt;div class=&quot;navigation-list&quot;&gt; &lt;li&gt; &lt;p&gt;&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; &lt;/div&gt; The include file can be included in any part of your website. Creating blog posts The _posts folder is where your blog posts live. Posts can be written in both Markdown and HTML. In the root directory, open the _posts folder. Add all the similar blog posts to that particular folder. BLog posts should start with a front matter. You may include pictures/ images in the blog posts. To do that, use ![My helpful screenshot](/assets/screenshot.jpg) This helps in icluding images in the post. Assets and how to use them Using CSS, JS, images and other assets is straightforward with Jekyll. Place them in your site folder and they’ll copy across to the built site. Jekyll sites often use this structure to keep assets organized: ├── assets │ ├── css │ ├── images │ └── js So, from your assets folder, create folders called css, images and js. Additionally, directly under the root create another folder called ‘_sass’. You could use a standard CSS file for styling, we’re going to take it a step further by using Sass. CSS file In CSS folder, save the styling files and the bootstrap files. JS file In this folder, we have all other UI related files. Assets folder Assets folder can also be used to store images and call these images in the posts. Simply add images in the assets folder and use the image path in the blog posts. here are two ways to call the images in the blog posts. Use HTML tags &lt;img src=&quot;/assets/images/img.jpg&quot; &gt; img is a HTML tag to display image. src is the path for the image where the image is located. This path is counted from the root directory. In the above example, assests is the root folder, in assets there is another folder as images and inside images folder the image, img.jpg is stored. However, we can create many folders inside image folder and sort the images respectively. The image path should be used in order to display the images on the webpage. Use simple syntax ![](/assets/screenshot.jpg) Instead of using html tags, we can use image path to display images on the webpage. Instead of giving html tag, simple use the image path in the parentheses. For example, Let us see how we have displayed the below image in this page. Steps involved: Save the image in the Assets folder. Copy the path of the image. The path looks like this: “/assets/img.jpg” Use the path in the file where the image needs to be displayed by using one of paths above. Note: When displaying images, always use the correct extension of the image. If the image used is JPEG, use imagename.JPEG. follow same for png and jpg. OK! But can we display a pdf on the webpage? The answer is YES! we can display pdf, create a link to open pdf as a new webpage using Jekyll. This can be acheived by using HTML tags. Display the pdf in the same webpage. &lt;embed src=&quot;/assets/pdf/1.pdf&quot; width=&quot;100%&quot; height=&quot;1200px&quot; /&gt; embed: It the HTML tag that allows to display the pdf on the webpage. src: The path where the pdf is saved. We have saved the pdf in the pdf folder that is in the assets folder. You may save the pdf whereever you want. Simply copy the path and use it in the above code snippet to display the pdf on the webpage. width: Defining the width of the pdf to be displayed on the webpage. height: Defining the height of the pdf to be displayed on the webpage. Create a link to display the pdf in a seperate webpage. &lt;a href = &quot;https://gcrnet.github.io/assets/pdf/1.pdf&quot;&gt; This is basically creating a hyperlink to display the pdf an a new webpage. In href, use the path as, “page url/pdf path”. In the above code snippet, we want to display the pdf for the same website. Hence we are using “https://gcrnet.github.io” as the page url and “/assets/pdf/1.pdf” as page path. After all the formating is done and when the website is ready to publish, we use git hub to host the website. Hosting on Github pages Github pages (gh-pages) is a service that Github offers and allows you to build and host a static website completely for free. Jekyll integrates with gh-pages very well. Setting up and hosting a static site in gh-pages: Create a Github account. Install git on your computer. Create a new repository and name that, test_blog. Do not initialize a readme file. After creating the repository, we need to edit a variable in the config.yaml file. Edit baseurl attribute. Add the website name into the base URL, in this case, it is test_blog. If you are planning on using a custom domain name you need to put that in the base URL. Set up a Github repository inside of the Jekyll project and upload it into Github. Git commands for creating a repository and uploading all files to Github : git init This will initialize an empty repository. git chechout -b gh-pages We need to store our files on the gh-pages branch of our repository. The above command will checkout the gh-pages branch. git add . This will add all our files to staging. git commit -m &quot;initial commit&quot; This is an initial commit. git remote add origin &quot;add your repository address here&quot; git push origin gh-pages This will upload all the files to the gh-pages. After you upload you will see all the files in Github You can go to the settings tab and scroll down you will see “your site is published.” You can use that link to visit your static website. Wiki This link will give a more detailed step by step guidance to build the website. Here is a link to a video tutorial by Giraffe academy. This tutorial is very helpful for more detailed information." />
+<meta property="og:description" content="Jekyll is really useful for building static websites. You can use a Jekyll theme to write posts using markdown with less amount of HTML, CSS, and have a responsive good looking website. If you are a developer who loves to create websites while having control of every single aspect of HTML and CSS, Jekyll allows for all of that. You can create your own themes, layouts, control, and configure the entire site. We will present enough information to get you started with your first Jekyll website, from creating content to serving them on Github pages. Installation Creating a site Front matter Config.yaml Installing themes Layouts Includes Hosting on Github pages Wiki Installation The Jekyll website provides installation instructions that cover Windows, Mac, and Linux operating systems. Creating a site For this tutorial, we will name our website “test_blog”. Issue the command below at the terminal to create your new site. jekyll new test_blog Jekyll creates some default content for the new site. Change directory into the test_blog directory cd test_blog Run the command below at the terminal and Jekyll will take all the pieces of our website and serve them in our browser. Browse the displayed server address http://127.0.0.1:400/ to see the content of the website. You can also stop the display with the command ctrl-c bundle exec jekyll serve The local host server now displays the new website from the browser. test_blog: the root directory _posts: folder with all the blog posts. _site: folder with the final output of the website. _config.yaml: file with the settings and basic attributes of the site. Gemfile: holds all the dependencies for the website. pages: Folder for adding new pages to website. The rest of the files just default basic parts of our website. Front matter Front matter is the site attribute such as Title and author&#39;s name and many others, depending on our preference. Jekyll reads the front matter first when a file is being executed to check the layout specifications. See the example below. --- layout: post title: Jekyll static site generator date: 14 August 2020 author: Joe Doe --- We see some special information at the top of our post which is different from the content, That is called front matter. config.yaml file has the settings and basic attributes of the site. Config.yaml It is the very important file in creating the website as this file has the settings and the attributes related to the site. The format of the config.yaml file looks like this: title: Your awesome title author: name: GitHub User email: your-email@domain.com description: &gt; # this means to ignore newlines until &quot;show_excerpts:&quot; Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description. show_excerpts: false # set to true to show excerpts on the homepage # Minima date format # refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this minima: date_format: &quot;%b %-d, %Y&quot; # generate social links in the footer social_links: twitter: jekyllrb github: jekyll # devto: jekyll # dribbble: jekyll # facebook: jekyll # flickr: jekyll # instagram: jekyll # linkedin: jekyll # pinterest: jekyll # youtube: jekyll # youtube_channel: UC8CXR0-3I70i1tfPg1PAE1g # youtube_channel_name: CloudCannon # telegram: jekyll # googleplus: +jekyll # microdotblog: jekyll # keybase: jekyll # Mastodon instances # mastodon: # - username: jekyll # instance: example.com # - username: jekyll2 # instance: example.com # GitLab instances # gitlab: # - username: jekyll # instance: example.com # - username: jekyll2 # instance: example.com # If you want to link only specific pages in your header, uncomment # this and add the path to the pages in order as they should show up #header_pages: # - about.md # Build settings theme: minima plugins: - jekyll-feed - jekyll-seo-tag Above is an example config.yaml file of jekyll-minimal theme. As said earlier this has all the basic configurations and settings of the website. The detailed information of each attribute is as follows: Title: The title of the page. Author: name: THe name of the website author. email: The email of the author description: This contains the information about website. Minima date format: This contains the date format to be used in the website. social_links: You may add the links to your social accounts here. This generates a hyperlink directly to your mentioned social account. Build settings: This section have the information related to the theme. For a detailed information on how to setup the config file, click here Installing themes By default, we will be having a minima theme for our Jekyll website. If we want a different theme for our website, there are lots of freely available themes on the internet. Website for free themes: Jekyll themes Free jekyll themes You can find many other good websites on the internet. We will be showing an example of the theme change. Every theme has a link to the Github repository which shows exactly how to use the theme in the readme.md section. For the example, we selected a “Jekyll-hacker theme” from the internet. We will read the instructions on how to use it and install it. We will show the difference between the Jekyll minima theme and the new theme. We can see the theme change. So basic steps to follow once you select a theme are, In the gem file add your selected theme, then install the theme by the command below. bundle install Change the theme attribute in the _config.yaml file and restart the server with the command below. bundle exec jekyll serve Do not forget to change the layout names in your posts according to the theme you selected. If you don&#39;t change the layout you will not see the changes once you restart the server. Layouts Layouts are skeletons of HTML code used to define the looks and feels of different pages or your entire site. By default, Jekyll will provide layouts for our pages. If you want to create your own layout. Go to the root directory and create the _layouts folder. Create an html file of your own and start making your own layout. In the _layouts folder creating your own layout looks like this. The code snippet below is an example of a layout called “Home.html” which uses the default layout. --- layout: default --- &lt;div class=&quot;home&quot;&gt; &lt;div id=&quot;main&quot; class=&quot;call-out&quot; style=&quot;background-image: url(&#39;/assets/img/background-color.png&#39;)&quot;&gt; &lt;h1&gt; &lt;code&gt;NC State RC-SIT&lt;/code&gt; &lt;/h1&gt; &lt;/div&gt; &lt;/div&gt; After you create your own layout, you can switch your site layout to it, which will then show up. Includes Includes allow us to take certain components of our site such as the header, the footer, or a navigation list and abstract them into their own html files. That means we can have an html file that describes the header or footer for the entire site. We can have a navigation list designed and include that on any page we want on the site. Follow the steps below to create your own layout. Go to the root directory and create the includes folder. Create a html file of your own and start to make components of your website. In the _includes folder creating your own layout looks like this. The code snippet below is an example of an include html file which creates a navigation list and can be further used anywhere on the site. &lt;div class=&quot;navigation-list&quot;&gt; &lt;li&gt; &lt;p&gt;&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; &lt;/div&gt; The include file can be included in any part of your website. Creating blog posts The _posts folder is where your blog posts live. Posts can be written in both Markdown and HTML. In the root directory, open the _posts folder. Add all the similar blog posts to that particular folder. BLog posts should start with a front matter. You may include pictures/ images in the blog posts. To do that, use ![My helpful screenshot](/assets/screenshot.jpg) This helps in icluding images in the post. Assets and how to use them Using CSS, JS, images and other assets is straightforward with Jekyll. Place them in your site folder and they’ll copy across to the built site. Jekyll sites often use this structure to keep assets organized: ├── assets │ ├── css │ ├── images │ └── js So, from your assets folder, create folders called css, images and js. Additionally, directly under the root create another folder called ‘_sass’. You could use a standard CSS file for styling, we’re going to take it a step further by using Sass. CSS file In CSS folder, save the styling files and the bootstrap files. JS file In this folder, we have all other UI related files. Assets folder Assets folder can also be used to store images and call these images in the posts. Simply add images in the assets folder and use the image path in the blog posts. here are two ways to call the images in the blog posts. Use HTML tags &lt;img src=&quot;/assets/images/img.jpg&quot; &gt; img is a HTML tag to display image. src is the path for the image where the image is located. This path is counted from the root directory. In the above example, assests is the root folder, in assets there is another folder as images and inside images folder the image, img.jpg is stored. However, we can create many folders inside image folder and sort the images respectively. The image path should be used in order to display the images on the webpage. Use simple syntax ![](/assets/screenshot.jpg) Instead of using html tags, we can use image path to display images on the webpage. Instead of giving html tag, simple use the image path in the parentheses. For example, Let us see how we have displayed the below image in this page. Steps involved: Save the image in the Assets folder. Copy the path of the image. The path looks like this: “/assets/img.jpg” Use the path in the file where the image needs to be displayed by using one of paths above. Note: When displaying images, always use the correct extension of the image. If the image used is JPEG, use imagename.JPEG. follow same for png and jpg. OK! But can we display a pdf on the webpage? The answer is YES! we can display pdf, create a link to open pdf as a new webpage using Jekyll. This can be acheived by using HTML tags. Display the pdf in the same webpage. &lt;embed src=&quot;/assets/pdf/1.pdf&quot; width=&quot;100%&quot; height=&quot;1200px&quot; /&gt; embed: It the HTML tag that allows to display the pdf on the webpage. src: The path where the pdf is saved. We have saved the pdf in the pdf folder that is in the assets folder. You may save the pdf whereever you want. Simply copy the path and use it in the above code snippet to display the pdf on the webpage. width: Defining the width of the pdf to be displayed on the webpage. height: Defining the height of the pdf to be displayed on the webpage. Create a link to display the pdf in a seperate webpage. &lt;a href = &quot;https://gcrnet.github.io/assets/pdf/1.pdf&quot;&gt; This is basically creating a hyperlink to display the pdf an a new webpage. In href, use the path as, “page url/pdf path”. In the above code snippet, we want to display the pdf for the same website. Hence we are using “https://gcrnet.github.io” as the page url and “/assets/pdf/1.pdf” as page path. After all the formating is done and when the website is ready to publish, we use git hub to host the website. Hosting on Github pages Github pages (gh-pages) is a service that Github offers and allows you to build and host a static website completely for free. Jekyll integrates with gh-pages very well. Setting up and hosting a static site in gh-pages: Create a Github account. Install git on your computer. Create a new repository and name that, test_blog. Do not initialize a readme file. After creating the repository, we need to edit a variable in the config.yaml file. Edit baseurl attribute. Add the website name into the base URL, in this case, it is test_blog. If you are planning on using a custom domain name you need to put that in the base URL. Set up a Github repository inside of the Jekyll project and upload it into Github. Git commands for creating a repository and uploading all files to Github : git init This will initialize an empty repository. git chechout -b gh-pages We need to store our files on the gh-pages branch of our repository. The above command will checkout the gh-pages branch. git add . This will add all our files to staging. git commit -m &quot;initial commit&quot; This is an initial commit. git remote add origin &quot;add your repository address here&quot; git push origin gh-pages This will upload all the files to the gh-pages. After you upload you will see all the files in Github You can go to the settings tab and scroll down you will see “your site is published.” You can use that link to visit your static website. Wiki This link will give a more detailed step by step guidance to build the website. Here is a link to a video tutorial by Giraffe academy. This tutorial is very helpful for more detailed information." />
+<link rel="canonical" href="http://localhost:4000/tutorials/websitetutorial.html" />
+<meta property="og:url" content="http://localhost:4000/tutorials/websitetutorial.html" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Jekyll static site generator" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"Jekyll is really useful for building static websites. You can use a Jekyll theme to write posts using markdown with less amount of HTML, CSS, and have a responsive good looking website. If you are a developer who loves to create websites while having control of every single aspect of HTML and CSS, Jekyll allows for all of that. You can create your own themes, layouts, control, and configure the entire site. We will present enough information to get you started with your first Jekyll website, from creating content to serving them on Github pages. Installation Creating a site Front matter Config.yaml Installing themes Layouts Includes Hosting on Github pages Wiki Installation The Jekyll website provides installation instructions that cover Windows, Mac, and Linux operating systems. Creating a site For this tutorial, we will name our website “test_blog”. Issue the command below at the terminal to create your new site. jekyll new test_blog Jekyll creates some default content for the new site. Change directory into the test_blog directory cd test_blog Run the command below at the terminal and Jekyll will take all the pieces of our website and serve them in our browser. Browse the displayed server address http://127.0.0.1:400/ to see the content of the website. You can also stop the display with the command ctrl-c bundle exec jekyll serve The local host server now displays the new website from the browser. test_blog: the root directory _posts: folder with all the blog posts. _site: folder with the final output of the website. _config.yaml: file with the settings and basic attributes of the site. Gemfile: holds all the dependencies for the website. pages: Folder for adding new pages to website. The rest of the files just default basic parts of our website. Front matter Front matter is the site attribute such as Title and author&#39;s name and many others, depending on our preference. Jekyll reads the front matter first when a file is being executed to check the layout specifications. See the example below. --- layout: post title: Jekyll static site generator date: 14 August 2020 author: Joe Doe --- We see some special information at the top of our post which is different from the content, That is called front matter. config.yaml file has the settings and basic attributes of the site. Config.yaml It is the very important file in creating the website as this file has the settings and the attributes related to the site. The format of the config.yaml file looks like this: title: Your awesome title author: name: GitHub User email: your-email@domain.com description: &gt; # this means to ignore newlines until &quot;show_excerpts:&quot; Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description. show_excerpts: false # set to true to show excerpts on the homepage # Minima date format # refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this minima: date_format: &quot;%b %-d, %Y&quot; # generate social links in the footer social_links: twitter: jekyllrb github: jekyll # devto: jekyll # dribbble: jekyll # facebook: jekyll # flickr: jekyll # instagram: jekyll # linkedin: jekyll # pinterest: jekyll # youtube: jekyll # youtube_channel: UC8CXR0-3I70i1tfPg1PAE1g # youtube_channel_name: CloudCannon # telegram: jekyll # googleplus: +jekyll # microdotblog: jekyll # keybase: jekyll # Mastodon instances # mastodon: # - username: jekyll # instance: example.com # - username: jekyll2 # instance: example.com # GitLab instances # gitlab: # - username: jekyll # instance: example.com # - username: jekyll2 # instance: example.com # If you want to link only specific pages in your header, uncomment # this and add the path to the pages in order as they should show up #header_pages: # - about.md # Build settings theme: minima plugins: - jekyll-feed - jekyll-seo-tag Above is an example config.yaml file of jekyll-minimal theme. As said earlier this has all the basic configurations and settings of the website. The detailed information of each attribute is as follows: Title: The title of the page. Author: name: THe name of the website author. email: The email of the author description: This contains the information about website. Minima date format: This contains the date format to be used in the website. social_links: You may add the links to your social accounts here. This generates a hyperlink directly to your mentioned social account. Build settings: This section have the information related to the theme. For a detailed information on how to setup the config file, click here Installing themes By default, we will be having a minima theme for our Jekyll website. If we want a different theme for our website, there are lots of freely available themes on the internet. Website for free themes: Jekyll themes Free jekyll themes You can find many other good websites on the internet. We will be showing an example of the theme change. Every theme has a link to the Github repository which shows exactly how to use the theme in the readme.md section. For the example, we selected a “Jekyll-hacker theme” from the internet. We will read the instructions on how to use it and install it. We will show the difference between the Jekyll minima theme and the new theme. We can see the theme change. So basic steps to follow once you select a theme are, In the gem file add your selected theme, then install the theme by the command below. bundle install Change the theme attribute in the _config.yaml file and restart the server with the command below. bundle exec jekyll serve Do not forget to change the layout names in your posts according to the theme you selected. If you don&#39;t change the layout you will not see the changes once you restart the server. Layouts Layouts are skeletons of HTML code used to define the looks and feels of different pages or your entire site. By default, Jekyll will provide layouts for our pages. If you want to create your own layout. Go to the root directory and create the _layouts folder. Create an html file of your own and start making your own layout. In the _layouts folder creating your own layout looks like this. The code snippet below is an example of a layout called “Home.html” which uses the default layout. --- layout: default --- &lt;div class=&quot;home&quot;&gt; &lt;div id=&quot;main&quot; class=&quot;call-out&quot; style=&quot;background-image: url(&#39;/assets/img/background-color.png&#39;)&quot;&gt; &lt;h1&gt; &lt;code&gt;NC State RC-SIT&lt;/code&gt; &lt;/h1&gt; &lt;/div&gt; &lt;/div&gt; After you create your own layout, you can switch your site layout to it, which will then show up. Includes Includes allow us to take certain components of our site such as the header, the footer, or a navigation list and abstract them into their own html files. That means we can have an html file that describes the header or footer for the entire site. We can have a navigation list designed and include that on any page we want on the site. Follow the steps below to create your own layout. Go to the root directory and create the includes folder. Create a html file of your own and start to make components of your website. In the _includes folder creating your own layout looks like this. The code snippet below is an example of an include html file which creates a navigation list and can be further used anywhere on the site. &lt;div class=&quot;navigation-list&quot;&gt; &lt;li&gt; &lt;p&gt;&lt;a href=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; &lt;/div&gt; The include file can be included in any part of your website. Creating blog posts The _posts folder is where your blog posts live. Posts can be written in both Markdown and HTML. In the root directory, open the _posts folder. Add all the similar blog posts to that particular folder. BLog posts should start with a front matter. You may include pictures/ images in the blog posts. To do that, use ![My helpful screenshot](/assets/screenshot.jpg) This helps in icluding images in the post. Assets and how to use them Using CSS, JS, images and other assets is straightforward with Jekyll. Place them in your site folder and they’ll copy across to the built site. Jekyll sites often use this structure to keep assets organized: ├── assets │ ├── css │ ├── images │ └── js So, from your assets folder, create folders called css, images and js. Additionally, directly under the root create another folder called ‘_sass’. You could use a standard CSS file for styling, we’re going to take it a step further by using Sass. CSS file In CSS folder, save the styling files and the bootstrap files. JS file In this folder, we have all other UI related files. Assets folder Assets folder can also be used to store images and call these images in the posts. Simply add images in the assets folder and use the image path in the blog posts. here are two ways to call the images in the blog posts. Use HTML tags &lt;img src=&quot;/assets/images/img.jpg&quot; &gt; img is a HTML tag to display image. src is the path for the image where the image is located. This path is counted from the root directory. In the above example, assests is the root folder, in assets there is another folder as images and inside images folder the image, img.jpg is stored. However, we can create many folders inside image folder and sort the images respectively. The image path should be used in order to display the images on the webpage. Use simple syntax ![](/assets/screenshot.jpg) Instead of using html tags, we can use image path to display images on the webpage. Instead of giving html tag, simple use the image path in the parentheses. For example, Let us see how we have displayed the below image in this page. Steps involved: Save the image in the Assets folder. Copy the path of the image. The path looks like this: “/assets/img.jpg” Use the path in the file where the image needs to be displayed by using one of paths above. Note: When displaying images, always use the correct extension of the image. If the image used is JPEG, use imagename.JPEG. follow same for png and jpg. OK! But can we display a pdf on the webpage? The answer is YES! we can display pdf, create a link to open pdf as a new webpage using Jekyll. This can be acheived by using HTML tags. Display the pdf in the same webpage. &lt;embed src=&quot;/assets/pdf/1.pdf&quot; width=&quot;100%&quot; height=&quot;1200px&quot; /&gt; embed: It the HTML tag that allows to display the pdf on the webpage. src: The path where the pdf is saved. We have saved the pdf in the pdf folder that is in the assets folder. You may save the pdf whereever you want. Simply copy the path and use it in the above code snippet to display the pdf on the webpage. width: Defining the width of the pdf to be displayed on the webpage. height: Defining the height of the pdf to be displayed on the webpage. Create a link to display the pdf in a seperate webpage. &lt;a href = &quot;https://gcrnet.github.io/assets/pdf/1.pdf&quot;&gt; This is basically creating a hyperlink to display the pdf an a new webpage. In href, use the path as, “page url/pdf path”. In the above code snippet, we want to display the pdf for the same website. Hence we are using “https://gcrnet.github.io” as the page url and “/assets/pdf/1.pdf” as page path. After all the formating is done and when the website is ready to publish, we use git hub to host the website. Hosting on Github pages Github pages (gh-pages) is a service that Github offers and allows you to build and host a static website completely for free. Jekyll integrates with gh-pages very well. Setting up and hosting a static site in gh-pages: Create a Github account. Install git on your computer. Create a new repository and name that, test_blog. Do not initialize a readme file. After creating the repository, we need to edit a variable in the config.yaml file. Edit baseurl attribute. Add the website name into the base URL, in this case, it is test_blog. If you are planning on using a custom domain name you need to put that in the base URL. Set up a Github repository inside of the Jekyll project and upload it into Github. Git commands for creating a repository and uploading all files to Github : git init This will initialize an empty repository. git chechout -b gh-pages We need to store our files on the gh-pages branch of our repository. The above command will checkout the gh-pages branch. git add . This will add all our files to staging. git commit -m &quot;initial commit&quot; This is an initial commit. git remote add origin &quot;add your repository address here&quot; git push origin gh-pages This will upload all the files to the gh-pages. After you upload you will see all the files in Github You can go to the settings tab and scroll down you will see “your site is published.” You can use that link to visit your static website. Wiki This link will give a more detailed step by step guidance to build the website. Here is a link to a video tutorial by Giraffe academy. This tutorial is very helpful for more detailed information.","headline":"Jekyll static site generator","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tutorials/websitetutorial.html"},"url":"http://localhost:4000/tutorials/websitetutorial.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="Jekyll+static+site+generator" class="title">Jekyll static site generator</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <p>Jekyll is really useful for building static websites. You can use a Jekyll theme to write posts using markdown with less amount of HTML, CSS, and have a responsive good looking website. If you are a developer who loves to create websites while having control of every single aspect of HTML and CSS, Jekyll allows for all of that. You can create your own themes, layouts, control, and configure the entire site.</p>
+
+<p>We will present enough information to get you started with your first Jekyll website, from creating content to serving them on Github pages.</p>
+
+<ol>
+  <li><a href="#install">Installation</a></li>
+  <li><a href="#create">Creating a site</a></li>
+  <li><a href="#front">Front matter</a></li>
+  <li><a href="#config">Config.yaml</a></li>
+  <li><a href="#themes">Installing themes</a></li>
+  <li><a href="#layouts">Layouts</a></li>
+  <li><a href="#includes">Includes</a></li>
+  <li><a href="#hosting">Hosting on Github pages</a></li>
+  <li><a href="#wiki">Wiki</a></li>
+</ol>
+
+<p><a name="install"></a></p>
+<h2 id="installation">Installation</h2>
+<p>The Jekyll website provides <a href="https://jekyllrb.com/docs/installation/">installation</a> instructions that cover Windows, Mac, and Linux operating systems.</p>
+
+<p><a name="create"></a></p>
+<h2 id="creating-a-site">Creating a site</h2>
+<p>For this tutorial, we will name our website “test_blog”. Issue the command below at the terminal to create your new site.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">jekyll new test_blog</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/tutorialsimages/jekyll/1.png" /></p>
+
+<p>Jekyll creates some default content for the new site.</p>
+
+<p><img src="/assets/img/tutorialsimages/jekyll/2.png" />
+Change directory into the <code class="language-plaintext highlighter-rouge">test_blog</code> directory</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">cd test_blog</span>
+</code></pre></div></div>
+<p>Run the command below at the terminal and Jekyll will take all the pieces of our website and serve them in our browser. Browse the displayed server address <code class="language-plaintext highlighter-rouge">http://127.0.0.1:400/</code> to see the content of the website. You can also stop the display with the command <code class="language-plaintext highlighter-rouge">ctrl-c</code></p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">bundle exec jekyll serve</span>
+</code></pre></div></div>
+<p><img src="/assets/img/tutorialsimages/jekyll/3.png" /></p>
+
+<p>The local host server now displays the new website from the browser.</p>
+
+<p><img src="/assets/img/tutorialsimages/jekyll/4.png" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">test_blog</code>: the root directory
+<code class="language-plaintext highlighter-rouge">_posts</code>: folder with all the blog posts.
+<code class="language-plaintext highlighter-rouge">_site</code>:  folder with the final output of the website.
+<code class="language-plaintext highlighter-rouge">_config.yaml</code>: file with the settings and basic attributes of the site.
+<code class="language-plaintext highlighter-rouge">Gemfile</code>: holds all the dependencies for the website.
+<code class="language-plaintext highlighter-rouge">pages</code>: Folder for adding new pages to website.
+The rest of the files just default basic parts of our website.</p>
+
+<p><a name="front"></a></p>
+<h2 id="front-matter">Front matter</h2>
+<p><a href="https://jekyllrb.com/docs/front-matter/">Front matter</a> is the site attribute
+such as <code class="language-plaintext highlighter-rouge">Title</code> and <code class="language-plaintext highlighter-rouge">author's name</code> and many others, depending on our preference.
+Jekyll reads the front matter first when a file is being executed to check the
+layout specifications. See the example below.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: post
+title: Jekyll static site generator
+date: 14 August 2020
+author: Joe Doe
+---
+</code></pre></div></div>
+<p>We see some special information at the top of our post which is different from the content, That is called front matter.</p>
+
+<p>config.yaml file has the settings and basic attributes of the site. 
+<a name="config"></a></p>
+<h2 id="configyaml">Config.yaml</h2>
+<p>It is the very important file in creating the website as this file has the settings and the attributes related to the site.
+The format of the config.yaml file looks like this:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">Your awesome title</span>
+<span class="na">author</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">GitHub User</span>
+  <span class="na">email</span><span class="pi">:</span> <span class="s">your-email@domain.com</span>
+<span class="na">description</span><span class="pi">:</span> <span class="pi">&gt;</span> <span class="c1"># this means to ignore newlines until "show_excerpts:"</span>
+  <span class="s">Write an awesome description for your new site here. You can edit this</span>
+  <span class="s">line in _config.yml. It will appear in your document head meta (for</span>
+  <span class="s">Google search results) and in your feed.xml site description.</span>
+<span class="na">show_excerpts</span><span class="pi">:</span> <span class="kc">false</span> <span class="c1"># set to true to show excerpts on the homepage</span>
+
+<span class="c1"># Minima date format</span>
+<span class="c1"># refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this</span>
+<span class="na">minima</span><span class="pi">:</span>
+  <span class="na">date_format</span><span class="pi">:</span> <span class="s2">"</span><span class="s">%b</span><span class="nv"> </span><span class="s">%-d,</span><span class="nv"> </span><span class="s">%Y"</span>
+
+  <span class="c1"># generate social links in the footer</span>
+  <span class="na">social_links</span><span class="pi">:</span>
+    <span class="na">twitter</span><span class="pi">:</span> <span class="s">jekyllrb</span>
+    <span class="na">github</span><span class="pi">:</span>  <span class="s">jekyll</span>
+    <span class="c1"># devto: jekyll</span>
+    <span class="c1"># dribbble: jekyll</span>
+    <span class="c1"># facebook: jekyll</span>
+    <span class="c1"># flickr:   jekyll</span>
+    <span class="c1"># instagram: jekyll</span>
+    <span class="c1"># linkedin: jekyll</span>
+    <span class="c1"># pinterest: jekyll</span>
+    <span class="c1"># youtube: jekyll</span>
+    <span class="c1"># youtube_channel: UC8CXR0-3I70i1tfPg1PAE1g</span>
+    <span class="c1"># youtube_channel_name: CloudCannon</span>
+    <span class="c1"># telegram: jekyll</span>
+    <span class="c1"># googleplus: +jekyll</span>
+    <span class="c1"># microdotblog: jekyll</span>
+    <span class="c1"># keybase: jekyll</span>
+
+    <span class="c1"># Mastodon instances</span>
+    <span class="c1"># mastodon:</span>
+    <span class="c1"># - username: jekyll</span>
+    <span class="c1">#   instance: example.com</span>
+    <span class="c1"># - username: jekyll2</span>
+    <span class="c1">#   instance: example.com</span>
+
+    <span class="c1"># GitLab instances</span>
+    <span class="c1"># gitlab:</span>
+    <span class="c1"># - username: jekyll</span>
+    <span class="c1">#   instance: example.com</span>
+    <span class="c1"># - username: jekyll2</span>
+    <span class="c1">#   instance: example.com</span>
+
+<span class="c1"># If you want to link only specific pages in your header, uncomment</span>
+<span class="c1"># this and add the path to the pages in order as they should show up</span>
+<span class="c1">#header_pages:</span>
+<span class="c1"># - about.md</span>
+
+<span class="c1"># Build settings</span>
+<span class="na">theme</span><span class="pi">:</span> <span class="s">minima</span>
+
+<span class="na">plugins</span><span class="pi">:</span>
+ <span class="pi">-</span> <span class="s">jekyll-feed</span>
+ <span class="pi">-</span> <span class="s">jekyll-seo-tag</span>
+</code></pre></div></div>
+<p>Above is an example config.yaml file of <code class="language-plaintext highlighter-rouge">jekyll-minimal</code> theme. As said earlier this has all the basic configurations and settings of the website.</p>
+
+<p>The detailed information of each attribute is as follows:</p>
+
+<p><strong>Title</strong>: The title of the page. <br />
+<strong>Author</strong>: <br />
+  <strong>name</strong>: THe name of the website author. <br />
+  <strong>email</strong>: The email of the author <br />
+<strong>description</strong>: This contains the information about website. <br />
+<strong>Minima date format</strong>: This contains the date format to be used in the website. <br />
+<strong>social_links</strong>: You may add the links to your social accounts here. This generates a hyperlink directly to your mentioned social account. <br />
+<strong>Build settings</strong>: This section have the information related to the theme. <br /></p>
+
+<p>For a detailed information on how to setup the config file, click <a href="https://jekyllrb.com/docs/step-by-step/09-collections/">here</a></p>
+
+<p><a name="themes"></a></p>
+<h2 id="installing-themes">Installing themes</h2>
+<p>By default, we will be having a minima theme for our Jekyll website. If we want a different theme for our website, there are lots of freely available themes on the internet.</p>
+
+<p>Website for free themes:</p>
+<ul>
+  <li><a href="http://jekyllthemes.org/">Jekyll themes</a></li>
+  <li><a href="https://jekyll-themes.com/free/">Free jekyll themes</a></li>
+</ul>
+
+<p>You can find many other good websites on the internet.</p>
+
+<p>We will be showing an example of the theme change.
+Every theme has a link to the Github repository which shows exactly how to use the theme in the <code class="language-plaintext highlighter-rouge">readme.md</code> section.
+For the example, we selected a “Jekyll-hacker theme” from the internet. We will read the instructions on how to use it and install it. We will show the difference between the Jekyll minima theme and the new theme.</p>
+
+<p><img src="/assets/img/tutorialsimages/jekyll/5.png" /></p>
+
+<p>We can see the theme change.</p>
+
+<p>So basic steps to follow once you select a theme are,
+ In the gem file add your selected theme, then install the theme by the command below.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">bundle install</span>
+</code></pre></div></div>
+<p>Change the theme attribute in the <code class="language-plaintext highlighter-rouge">_config.yaml</code> file and restart the server with the command below.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">bundle exec jekyll serve</span>
+</code></pre></div></div>
+
+<p><mark> Do not forget to change the layout names in your posts according to the theme you selected. If you don't change the layout you will not see the changes once you restart the server. </mark></p>
+
+<p><a name="layouts"></a></p>
+<h2 id="layouts">Layouts</h2>
+<p>Layouts are skeletons of HTML code used to define the looks and feels of different pages or your entire site. By default, Jekyll will provide layouts for our pages. If you want to create your own layout.</p>
+<ol>
+  <li>Go to the root directory and create the <code class="language-plaintext highlighter-rouge">_layouts</code> folder.</li>
+  <li>Create an html file of your own and start making your own layout.</li>
+</ol>
+
+<p>In the <code class="language-plaintext highlighter-rouge">_layouts</code> folder creating your own layout looks like this.
+The code snippet below is an example of a layout called “<code class="language-plaintext highlighter-rouge">Home.html</code>” which uses the default layout.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: default
+---
+
+&lt;div class="home"&gt;
+
+    &lt;div id="main" class="call-out"
+         style="background-image: url('/assets/img/background-color.png')"&gt;
+        &lt;h1&gt; &lt;code&gt;NC State RC-SIT&lt;/code&gt; &lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre></div></div>
+
+<p>After you create your own layout, you can switch your site layout to it, which will then show up.</p>
+
+<p><a name="includes"></a></p>
+<h2 id="includes">Includes</h2>
+<p>Includes allow us to take certain components of our site such as the header, the footer, or a navigation list and abstract them into their own html files. That means we can have an html file that describes the header or footer for the entire site. We can have a navigation list designed and include that on any page we want on the site. Follow the steps below to create your own layout.</p>
+<ol>
+  <li>Go to the root directory and create the <code class="language-plaintext highlighter-rouge">includes</code> folder.</li>
+  <li>Create a html file of your own and start to make components of your website.</li>
+</ol>
+
+<p>In the <code class="language-plaintext highlighter-rouge">_includes</code> folder creating your own layout looks like this.
+The code snippet below is an example of an include html file which creates a navigation list and can be further used anywhere on the site.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;div class="navigation-list"&gt;
+   
+&lt;li&gt;
+&lt;p&gt;&lt;a href=""&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+   
+&lt;/div&gt;
+
+</code></pre></div></div>
+
+<p>The include file can be included in any part of your website.</p>
+
+<p><a name="Posts"></a></p>
+<h2 id="creating-blog-posts">Creating blog posts</h2>
+<p>The _posts folder is where your blog posts live. Posts can be written in both Markdown and HTML.</p>
+<ol>
+  <li>In the root directory, open the _posts folder.</li>
+  <li>Add all the similar blog posts to that particular folder.</li>
+</ol>
+
+<ul>
+  <li>BLog posts should start with a front matter.</li>
+</ul>
+
+<p>You may include pictures/ images in the blog posts. To do that, use</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>![My helpful screenshot](/assets/screenshot.jpg)
+</code></pre></div></div>
+
+<p>This helps in icluding images in the post.</p>
+
+<p><a name="Assets"></a></p>
+<h2 id="assets-and-how-to-use-them">Assets and how to use them</h2>
+
+<p>Using CSS, JS, images and other assets is straightforward with Jekyll. Place them in your site folder and they’ll copy across to the built site.
+Jekyll sites often use this structure to keep assets organized:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── assets
+│   ├── css
+│   ├── images
+│   └── js
+</code></pre></div></div>
+
+<p>So, from your assets folder, create folders called css, images and js. Additionally, directly under the root create another folder called ‘_sass’. You could use a standard CSS file for styling, we’re going to take it a step further by using Sass.</p>
+
+<p><strong>CSS file</strong>
+In CSS folder, save the styling files and the bootstrap files.</p>
+
+<p><strong>JS file</strong>
+In this folder, we have all other UI related files.</p>
+
+<p><strong>Assets folder</strong>
+Assets folder can also be used to store images and call these images in the posts. Simply add images in the assets folder and use the image path in the blog posts. 
+here are two ways to call the images in the blog posts.</p>
+
+<p><strong>Use HTML tags</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;img src="/assets/images/img.jpg" &gt;
+</code></pre></div></div>
+<p><em><strong>img</strong></em> is a HTML tag to display image. src is the path for the image where the image is located. This path is counted from the root directory. In the above example, assests is the root folder, in assets there is another folder as images and inside images folder the image, img.jpg is stored. However, we can create many folders inside image folder and sort the images respectively. The image path should be used in order to display the images on the webpage.</p>
+
+<p><strong>Use simple syntax</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>![](/assets/screenshot.jpg)
+</code></pre></div></div>
+<p>Instead of using html tags, we can use image path to display images on the webpage. Instead of giving html tag, simple use the image path in the parentheses.</p>
+
+<p>For example, Let us see how we have displayed the below image in this page.</p>
+
+<p><img src="/assets/img/tutorialsimages/jekyll/image(1).png" alt="" /></p>
+
+<p>Steps involved:</p>
+<ol>
+  <li>Save the image in the Assets folder.</li>
+  <li>Copy the path of the image. The path looks like this: “/assets/img.jpg”</li>
+  <li>Use the path in the file where the image needs to be displayed by using one of paths above.</li>
+</ol>
+
+<p><strong>Note:</strong> When displaying images, always use the correct extension of the image. If the image used is JPEG, use imagename.JPEG. follow same for png and jpg.</p>
+
+<p>OK! But can we display a pdf on the webpage?</p>
+
+<p>The answer is YES! we can display pdf, create a link to open pdf as a new webpage using Jekyll. This can be acheived by using HTML tags.</p>
+
+<ol>
+  <li>Display the pdf in the same webpage.</li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;embed src="/assets/pdf/1.pdf" width="100%" height="1200px" /&gt;
+</code></pre></div></div>
+<p><strong>embed:</strong> It the HTML tag that allows to display the pdf on the webpage.</p>
+
+<p><strong>src:</strong> The path where the pdf is saved. We have saved the pdf in the pdf folder that is in the assets folder. You may save the pdf whereever you want. Simply copy the path and use it in the above code snippet to display the pdf on the webpage.</p>
+
+<p><strong>width:</strong> Defining the width of the pdf to be displayed on the webpage.</p>
+
+<p><strong>height:</strong> Defining the height of the pdf to be displayed on the webpage.</p>
+
+<ol>
+  <li>Create a link to display the pdf in a seperate webpage.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;a href = "https://gcrnet.github.io/assets/pdf/1.pdf"&gt;
+</code></pre></div>    </div>
+    <p>This is basically creating a hyperlink to display the pdf an a new webpage. In href, use the path as, “page url/pdf path”. In the above code snippet, we want to display the pdf for the same website. Hence we are using <strong>“https://gcrnet.github.io”</strong> as the page url and <strong>“/assets/pdf/1.pdf”</strong> as page path.</p>
+  </li>
+</ol>
+
+<p>After all the formating is done and when the website is ready to publish, we use git hub to host the website.</p>
+
+<p><a name="hosting"></a></p>
+<h2 id="hosting-on-github-pages">Hosting on Github pages</h2>
+<p>Github pages (gh-pages) is a service that Github offers and allows you to build and host a static website completely for free. Jekyll integrates with gh-pages very well.</p>
+
+<p>Setting up and hosting a static site in gh-pages:</p>
+<ol>
+  <li>Create a Github account.</li>
+  <li>Install git on your computer.</li>
+  <li>Create a new repository and name that, <code class="language-plaintext highlighter-rouge">test_blog</code>. Do not initialize a readme file.
+<img src="/assets/img/tutorialsimages/jekyll/6.png" /></li>
+  <li>After creating the repository, we need to edit a variable in the config.yaml file.
+    <ul>
+      <li>Edit <code class="language-plaintext highlighter-rouge">baseurl</code> attribute.</li>
+      <li>Add the website name into the base URL, in this case, it is <code class="language-plaintext highlighter-rouge">test_blog</code>.</li>
+      <li>If you are planning on using a custom domain name you need to put that in the base URL.
+<img src="/assets/img/tutorialsimages/jekyll/7.png" /></li>
+    </ul>
+  </li>
+  <li>Set up a Github repository inside of the Jekyll project and upload it into Github.</li>
+</ol>
+
+<p>Git commands for creating a repository and uploading all files to Github :</p>
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">git init</code> <br />
+This will initialize an empty repository.</li>
+  <li><code class="language-plaintext highlighter-rouge">git chechout -b gh-pages</code> <br />
+We need to store our files on the gh-pages branch of our repository. The above command will checkout the gh-pages branch.</li>
+  <li><code class="language-plaintext highlighter-rouge">git add .</code> <br />
+This will add all our files to staging.</li>
+  <li><code class="language-plaintext highlighter-rouge">git commit -m "initial commit"</code><br />
+This is an initial commit.</li>
+  <li><code class="language-plaintext highlighter-rouge">git remote add origin "add your repository address here"</code><br /></li>
+  <li><code class="language-plaintext highlighter-rouge">git push origin gh-pages</code> <br />
+This will upload all the files to the gh-pages.</li>
+</ol>
+
+<p><img src="/assets/img/tutorialsimages/jekyll/8.png" /></p>
+
+<p>After you upload you will see all the files in Github</p>
+
+<p><img src="/assets/img/tutorialsimages/jekyll/9.png" /></p>
+
+<p>You can go to the settings tab and scroll down you will see “your site is published.”</p>
+
+<p><img src="/assets/img/tutorialsimages/jekyll/10.png" /></p>
+
+<p>You can use that link to visit your static website.</p>
+
+<p><a name="wiki"></a></p>
+<h2 id="wiki">Wiki</h2>
+
+<p><a href="https://jekyllrb.com/docs/step-by-step/01-setup/">This link</a> will give a more detailed step by step guidance to build the website.</p>
+
+<p><a href="https://www.youtube.com/watch?v=T1itpPvFWHI&amp;list=PLLAZ4kZ9dFpOPV5C5Ay0pHaa0RJFhcmcB">Here</a> is a link to a video tutorial by Giraffe academy.
+This tutorial is very helpful for more detailed information.</p>
+
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="How to access Google Drive end point in Globus" href="/tutorials/googledrive.html">
+            <p>Previous post</p>
+            How to access Google Drive end point in Globus
+        </a>
+    </div>
+    
+
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

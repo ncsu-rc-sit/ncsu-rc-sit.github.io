@@ -1,0 +1,1 @@
+https://hbctraining.github.io/Training-modules/Intermediate_shell/lessons/vim.html

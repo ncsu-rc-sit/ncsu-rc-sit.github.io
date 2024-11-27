@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/tutorials/filetransfer.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>File transfer using Globus | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="File transfer using Globus" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Globus is a fast, reliable file transfer service that makes it easy for users to move data between two GridFTP servers or between a GridFTP server and a user’s machine (Windows, Mac or Linux). Globus automates the activity of managing file transfers: monitoring performance, retrying failed transfers, recovering from faults automatically whenever possible, and reporting status. Steps for users wanting to transfer files between hosts configured for Globus access: Sign in to Globus using your Globus username and password. After successful login you will be directed to this page, Select File manager from the left side menu bar. The panels button help us split the screen and we can view two collections side by side. We can see the screen splits after a user toggles to the split view We can search the desired end points from the “collection” search bar. After desired endpoints are selected, Path can be set in the path field. Here in the below screenshot the left side, endpoint (koundinya_challa) is a personal endpoint on a laptop and on the right side, endpoint (UNCG Computer Science) is an institutional endpoint. You will see a listing of the contents of your home directory . Double click on a directory to view its contents. Select a file you want to transfer and click on the start button. A file has been selected to transfer and the directory where the file has to be sent is also selected. You will get a pop up saying that the transfer has been request submitted successfully after you click on the start button. You can click on the view details options to see the details. You will get an overview of the transfer in this page. Event log will show all the events that happened after submitting the transfer request. You can similarly, send an entire directory from one endpoint to another. In the example below, the directory Globus_playground is selected to be sent. The same steps can be repeated to send an entire directory. The directory selected was successfully sent." />
+<meta property="og:description" content="Globus is a fast, reliable file transfer service that makes it easy for users to move data between two GridFTP servers or between a GridFTP server and a user’s machine (Windows, Mac or Linux). Globus automates the activity of managing file transfers: monitoring performance, retrying failed transfers, recovering from faults automatically whenever possible, and reporting status. Steps for users wanting to transfer files between hosts configured for Globus access: Sign in to Globus using your Globus username and password. After successful login you will be directed to this page, Select File manager from the left side menu bar. The panels button help us split the screen and we can view two collections side by side. We can see the screen splits after a user toggles to the split view We can search the desired end points from the “collection” search bar. After desired endpoints are selected, Path can be set in the path field. Here in the below screenshot the left side, endpoint (koundinya_challa) is a personal endpoint on a laptop and on the right side, endpoint (UNCG Computer Science) is an institutional endpoint. You will see a listing of the contents of your home directory . Double click on a directory to view its contents. Select a file you want to transfer and click on the start button. A file has been selected to transfer and the directory where the file has to be sent is also selected. You will get a pop up saying that the transfer has been request submitted successfully after you click on the start button. You can click on the view details options to see the details. You will get an overview of the transfer in this page. Event log will show all the events that happened after submitting the transfer request. You can similarly, send an entire directory from one endpoint to another. In the example below, the directory Globus_playground is selected to be sent. The same steps can be repeated to send an entire directory. The directory selected was successfully sent." />
+<link rel="canonical" href="http://localhost:4000/tutorials/filetransfer.html" />
+<meta property="og:url" content="http://localhost:4000/tutorials/filetransfer.html" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="File transfer using Globus" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"Globus is a fast, reliable file transfer service that makes it easy for users to move data between two GridFTP servers or between a GridFTP server and a user’s machine (Windows, Mac or Linux). Globus automates the activity of managing file transfers: monitoring performance, retrying failed transfers, recovering from faults automatically whenever possible, and reporting status. Steps for users wanting to transfer files between hosts configured for Globus access: Sign in to Globus using your Globus username and password. After successful login you will be directed to this page, Select File manager from the left side menu bar. The panels button help us split the screen and we can view two collections side by side. We can see the screen splits after a user toggles to the split view We can search the desired end points from the “collection” search bar. After desired endpoints are selected, Path can be set in the path field. Here in the below screenshot the left side, endpoint (koundinya_challa) is a personal endpoint on a laptop and on the right side, endpoint (UNCG Computer Science) is an institutional endpoint. You will see a listing of the contents of your home directory . Double click on a directory to view its contents. Select a file you want to transfer and click on the start button. A file has been selected to transfer and the directory where the file has to be sent is also selected. You will get a pop up saying that the transfer has been request submitted successfully after you click on the start button. You can click on the view details options to see the details. You will get an overview of the transfer in this page. Event log will show all the events that happened after submitting the transfer request. You can similarly, send an entire directory from one endpoint to another. In the example below, the directory Globus_playground is selected to be sent. The same steps can be repeated to send an entire directory. The directory selected was successfully sent.","headline":"File transfer using Globus","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tutorials/filetransfer.html"},"url":"http://localhost:4000/tutorials/filetransfer.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="File+transfer+using+Globus" class="title">File transfer using Globus</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <p>Globus is a fast, reliable file transfer service that makes it easy for users to move data between two GridFTP servers or between a GridFTP server and a user’s machine (Windows, Mac or Linux). <br />
+Globus automates the activity of managing file transfers: monitoring performance, retrying failed transfers, recovering from faults automatically whenever possible, and reporting status. <br /></p>
+
+<p>Steps for users wanting to transfer files between hosts configured for Globus access:</p>
+
+<p>Sign in to Globus using your Globus username and password.</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/1.png" /></p>
+
+<p>After successful login you will be directed to this page, Select File manager from the left side menu bar.</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/2.png" /></p>
+
+<p>The panels button help us split the screen and we can view two collections side by side.</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/3.png" /></p>
+
+<p>We can see the screen splits after a user toggles to the split view</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/4.png" /></p>
+
+<p>We can search the desired end points from the “collection” search bar.</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/5.png" /></p>
+
+<p>After desired endpoints are selected, Path can be set in the path field. Here in the below screenshot the left side, endpoint (koundinya_challa) is a personal endpoint on a laptop and on the right side, endpoint (UNCG Computer Science) is an institutional endpoint.</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/6.png" /></p>
+
+<p>You will see a listing of the contents of your home directory . Double click on a directory to view its contents. Select a file you want to transfer and click on the start button.
+<img src="/assets/img/tutorialsimages/filetransfer/7.png" /></p>
+
+<p>A file has been selected to transfer and the directory where the file has to be sent is also selected.</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/8.png" /></p>
+
+<p>You will get a pop up saying that the transfer has been request submitted successfully after you click on the start button. You can click on the view details options to see the details.</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/9.png" /></p>
+
+<p>You will get an overview of the transfer in this page.</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/10.png" /></p>
+
+<p>Event log will show all the events that happened after submitting the transfer request.</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/11.png" /></p>
+
+<p>You can similarly, send an entire directory from one endpoint to another. In the example below, the directory Globus_playground is selected to be sent. The same steps can be repeated to send an entire directory.</p>
+
+<p><img src="/assets/img/tutorialsimages/filetransfer/12.png" /></p>
+
+<p>The directory selected was successfully sent.
+<img src="/assets/img/tutorialsimages/filetransfer/13.png" /></p>
+
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="How to Setup a Google Drive Guest Collection on Globus" href="/tutorials/Setup_Google_Drive.html">
+            <p>Previous post</p>
+            How to Setup a Google Drive Guest Collection on Globus
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="Globus CLI" href="/tutorials/globus_cli.html">
+            <p>Next post</p>
+            Globus CLI
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

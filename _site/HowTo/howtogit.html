@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/howto/howtogit">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>GitHub HowTos | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="GitHub HowTos" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Tips for GitHub Resolving Issues after Two-Factor Authentication Return to a Previous State in Git How to Uncommit How to Delete a Git Branch Resolving Issues after Two-Factor Authentication After enabling a two-factor authentication in my GitHub account, when I run the Git git push command it throws the following error message: $ git push Username for &#39;https://github.com&#39;: your username Password for &#39;https://Username@github.com&#39;: remote: Invalid username or password. fatal: Authentication failed for &#39;https://github.com/username/repository.git/&#39; Solution Creating a GitHub personal access token. In the upper-right corner of any page, click your profile photo, then click Settings. In the left sidebar, click Developer settings. In the left sidebar, click Personal access tokens. Click Generate new token. Give your token a descriptive name. Select the scopes, or permissions, you’d like to grant this token. To use your token to access repositories from the command line, select repo. Click Generate token. Copy the token to your clipboard. For security reasons, after you navigate off the page, you will not be able to see the token again. Using a token on the command line. Once we have a token, we can enter it instead of our password when performing Git operations over HTTPS. Just inter your token after prompted a password and then watch the magic happen… $ git push origin remote_branch Username: your_username Password: your_token Return to a Previous State in Git How to reset, revert, and return to previous states in Git How to Uncommit How to Uncommit Sensitive Files from Git How to Delete a Git Branch How to Delete a Git Branch both Locally and Remotely" />
+<meta property="og:description" content="Tips for GitHub Resolving Issues after Two-Factor Authentication Return to a Previous State in Git How to Uncommit How to Delete a Git Branch Resolving Issues after Two-Factor Authentication After enabling a two-factor authentication in my GitHub account, when I run the Git git push command it throws the following error message: $ git push Username for &#39;https://github.com&#39;: your username Password for &#39;https://Username@github.com&#39;: remote: Invalid username or password. fatal: Authentication failed for &#39;https://github.com/username/repository.git/&#39; Solution Creating a GitHub personal access token. In the upper-right corner of any page, click your profile photo, then click Settings. In the left sidebar, click Developer settings. In the left sidebar, click Personal access tokens. Click Generate new token. Give your token a descriptive name. Select the scopes, or permissions, you’d like to grant this token. To use your token to access repositories from the command line, select repo. Click Generate token. Copy the token to your clipboard. For security reasons, after you navigate off the page, you will not be able to see the token again. Using a token on the command line. Once we have a token, we can enter it instead of our password when performing Git operations over HTTPS. Just inter your token after prompted a password and then watch the magic happen… $ git push origin remote_branch Username: your_username Password: your_token Return to a Previous State in Git How to reset, revert, and return to previous states in Git How to Uncommit How to Uncommit Sensitive Files from Git How to Delete a Git Branch How to Delete a Git Branch both Locally and Remotely" />
+<link rel="canonical" href="http://localhost:4000/howto/howtogit" />
+<meta property="og:url" content="http://localhost:4000/howto/howtogit" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="GitHub HowTos" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"Tips for GitHub Resolving Issues after Two-Factor Authentication Return to a Previous State in Git How to Uncommit How to Delete a Git Branch Resolving Issues after Two-Factor Authentication After enabling a two-factor authentication in my GitHub account, when I run the Git git push command it throws the following error message: $ git push Username for &#39;https://github.com&#39;: your username Password for &#39;https://Username@github.com&#39;: remote: Invalid username or password. fatal: Authentication failed for &#39;https://github.com/username/repository.git/&#39; Solution Creating a GitHub personal access token. In the upper-right corner of any page, click your profile photo, then click Settings. In the left sidebar, click Developer settings. In the left sidebar, click Personal access tokens. Click Generate new token. Give your token a descriptive name. Select the scopes, or permissions, you’d like to grant this token. To use your token to access repositories from the command line, select repo. Click Generate token. Copy the token to your clipboard. For security reasons, after you navigate off the page, you will not be able to see the token again. Using a token on the command line. Once we have a token, we can enter it instead of our password when performing Git operations over HTTPS. Just inter your token after prompted a password and then watch the magic happen… $ git push origin remote_branch Username: your_username Password: your_token Return to a Previous State in Git How to reset, revert, and return to previous states in Git How to Uncommit How to Uncommit Sensitive Files from Git How to Delete a Git Branch How to Delete a Git Branch both Locally and Remotely","headline":"GitHub HowTos","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/howto/howtogit"},"url":"http://localhost:4000/howto/howtogit"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="GitHub+HowTos" class="title">GitHub HowTos</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <h2 id="tips-for-github">Tips for GitHub</h2>
+
+<ol>
+  <li><a href="#Two-FactorIssues">Resolving Issues after Two-Factor Authentication</a></li>
+  <li><a href="#PreviousState">Return to a Previous State in Git</a></li>
+  <li><a href="#Uncommit">How to Uncommit</a></li>
+  <li><a href="#DeleteBranch">How to Delete a Git Branch</a></li>
+</ol>
+
+<p><a name="Two-FactorIssues"></a></p>
+<h3 id="resolving-issues-after-two-factor-authentication">Resolving Issues after Two-Factor Authentication</h3>
+<ul>
+  <li>After enabling a two-factor authentication in my GitHub account, when
+I run the Git <code class="language-plaintext highlighter-rouge">git push</code> command it throws the following error message:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git push
+Username for 'https://github.com': your username
+Password for 'https://Username@github.com':
+remote: Invalid username or password.
+fatal: Authentication failed for 'https://github.com/username/repository.git/'
+</code></pre></div>    </div>
+    <p><strong>Solution</strong>
+Creating a GitHub personal access token.</p>
+    <ol>
+      <li>In the upper-right corner of any page, click your profile photo, then click Settings.</li>
+      <li>In the left sidebar, click Developer settings.</li>
+      <li>In the left sidebar, click Personal access tokens.</li>
+      <li>Click Generate new token.</li>
+      <li>Give your token a descriptive name.</li>
+      <li>Select the scopes, or permissions, you’d like to grant this token. To use your token to access repositories from the command line, select repo.</li>
+      <li>Click Generate token.</li>
+      <li>Copy the token to your clipboard. For security reasons, after you navigate off the page, you will not be able to see the token again.</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Using a token on the command line.</p>
+
+<p>Once we have a token, we can enter it instead of our password when performing  Git operations over HTTPS. Just inter your token after prompted a password and then watch the magic happen…</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ git push origin remote_branch
+ Username: your_username
+ Password: your_token
+</code></pre></div></div>
+<p><a name="PreviousState"></a></p>
+<h3 id="return-to-a-previous-state-in-git">Return to a Previous State in Git</h3>
+<p><a href="https://opensource.com/article/18/6/git-reset-revert-rebase-commands">How to reset, revert, and return to previous states in Git</a></p>
+
+<p><a name="Uncommit"></a></p>
+<h3 id="how-to-uncommit">How to Uncommit</h3>
+<p><a href="https://www.freecodecamp.org/news/how-to-uncommit-sensitive-files-from-git/">How to Uncommit Sensitive Files from Git</a></p>
+
+<p><a name="DeleteBranch"></a></p>
+<h3 id="how-to-delete-a-git-branch">How to Delete a Git Branch</h3>
+<p><a href="https://www.freecodecamp.org/news/how-to-delete-a-git-branch-both-locally-and-remotely/">How to Delete a Git Branch both Locally and Remotely</a></p>
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="How to Install Globus Connect Personal" href="/howto/globusconnectpersonal">
+            <p>Previous post</p>
+            How to Install Globus Connect Personal
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="How to Set up Globus Connect Personal" href="/howto/setupglobusconnect">
+            <p>Next post</p>
+            How to Set up Globus Connect Personal
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

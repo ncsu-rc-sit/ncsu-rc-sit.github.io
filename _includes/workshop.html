@@ -1,0 +1,10 @@
+<div class="workshop-list">
+    {% for item in site.workshop %}
+    
+<li>
+<p><a href="{{ item.url | relative_url }}">{{ item.title }}</a></p> 
+</li>
+
+    {% endfor %}
+    
+</div>

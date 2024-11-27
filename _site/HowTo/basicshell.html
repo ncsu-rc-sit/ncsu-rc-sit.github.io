@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/howto/basicshell">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Basic shell commands | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Basic shell commands" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Basic Shell Commands" />
+<meta property="og:description" content="Basic Shell Commands" />
+<link rel="canonical" href="http://localhost:4000/howto/basicshell" />
+<meta property="og:url" content="http://localhost:4000/howto/basicshell" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-02T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Basic shell commands" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-02T00:00:00-05:00","datePublished":"2021-12-02T00:00:00-05:00","description":"Basic Shell Commands","headline":"Basic shell commands","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/howto/basicshell"},"url":"http://localhost:4000/howto/basicshell"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="Basic+shell+commands" class="title">Basic shell commands</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      December 2, 2021
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <h1 id="basic-shell-commands">Basic Shell Commands</h1>
+<hr />
+
+<h2 id="1-shell-basics">1. Shell Basics:</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">.</code></td>
+      <td>a single period refers to the current directory</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">..</code></td>
+      <td>a double period refers to the directory immediately above the current directory</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">~</code></td>
+      <td>refers to your home directory. <em>Note:</em> this command does NOT work on Windows machines (Mac and Linux are okay)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cd ./dirname</code></td>
+      <td>changes the current directory to the directory <code class="language-plaintext highlighter-rouge">dirname</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ls -F</code></td>
+      <td>tells you what files and directories are in the current directory</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">pwd</code></td>
+      <td>tells you what directory you are in (<code class="language-plaintext highlighter-rouge">pwd</code> stands for <em>p</em>rint <em>w</em>orking <em>d</em>irectory)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">history</code></td>
+      <td>lists previous commands you have entered. <code class="language-plaintext highlighter-rouge">history | less</code> lets you page through the list.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">man</code> <em>cmd</em></td>
+      <td>displays the <em>man</em>ual page for a command.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2-creating-things">2. Creating Things:</h2>
+<h3 id="a-how-to-create-new-files-and-directories">a) How to create new files and directories..</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mkdir ./dirname</code></td>
+      <td>makes a new directory called dirname below the current directory. <em>Note:</em> Windows users will need to use <code class="language-plaintext highlighter-rouge">\</code> instead of <code class="language-plaintext highlighter-rouge">/</code> for the path separator</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">nano filename</code></td>
+      <td>if <code class="language-plaintext highlighter-rouge">filename</code> does not exist, <code class="language-plaintext highlighter-rouge">nano</code> creates it and opens the <code class="language-plaintext highlighter-rouge">nano</code> text editor. If the file exists, <code class="language-plaintext highlighter-rouge">nano</code> opens it. <em>Note:</em> <em>(i)</em> You can use a different text editor if you like.  In gnome Linux, <code class="language-plaintext highlighter-rouge">gedit</code> works really well too. <em>(ii)</em> <code class="language-plaintext highlighter-rouge">nano</code> (or <code class="language-plaintext highlighter-rouge">gedit</code>) create text files. It doesn’t matter what the file extension is (or if there is one)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="b-how-to-delete-files-and-directories">b) How to delete files and directories…</h3>
+<h4 id="remember-that-deleting-is-forever-there-is-no-going-back"><em>Remember that deleting is forever. There is NO going back</em></h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rm ./filename</code></td>
+      <td>deletes a file called <code class="language-plaintext highlighter-rouge">filename</code> from the current directory</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rmdir ./dirname</code></td>
+      <td>deletes the directory <code class="language-plaintext highlighter-rouge">dirname</code> from the current directory. <em>Note:</em> <code class="language-plaintext highlighter-rouge">dirname</code> must be empty for <code class="language-plaintext highlighter-rouge">rmdir</code> to run.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="c-how-to-copy-and-rename-files-and-directories">c) How to copy and rename files and directories…</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mv tmp/filename .</code></td>
+      <td>moves the file <code class="language-plaintext highlighter-rouge">filename</code> from the directory <code class="language-plaintext highlighter-rouge">tmp</code> to the current directory. <em>Note:</em> <em>(i)</em> the original <code class="language-plaintext highlighter-rouge">filename</code> in <code class="language-plaintext highlighter-rouge">tmp</code> is deleted. <em>(ii)</em> <code class="language-plaintext highlighter-rouge">mv</code> can also be used to rename files (e.g., <code class="language-plaintext highlighter-rouge">mv filename newname</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cp tmp/filename .</code></td>
+      <td>copies the file <code class="language-plaintext highlighter-rouge">filename</code> from the directory <code class="language-plaintext highlighter-rouge">tmp</code> to the current directory. <em>Note:</em> <em>(i)</em> the original file is still there</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="3-pipes-and-filters">3. Pipes and Filters</h2>
+<h3 id="a-how-to-use-wildcards-to-match-filenames">a) How to use wildcards to match filenames…</h3>
+<p>Wildcards are a shell feature that makes the command line much more powerful than any GUI file managers. 
+Wildcards are particularly useful when you are looking for directories, files, or file content that can
+vary along a given dimension.  These wildcards can be used with any command that accepts file names or 
+text strings as arguments.</p>
+
+<h4 id="table-of-commonly-used-wildcards">Table of commonly used wildcards</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Wildcard</th>
+      <th>Matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">*</code></td>
+      <td>zero or more characters</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">?</code></td>
+      <td>exactly one character</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[abcde]</code></td>
+      <td>exactly one of the characters listed</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[a-e]</code></td>
+      <td>exactly one character in the given range</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[!abcde]</code></td>
+      <td>any character not listed</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">[!a-e]</code></td>
+      <td>any character that is not in the given range</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">{software,carpentry}</code></td>
+      <td>exactly one entire word from the options given</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>See the cheatsheet on regular expressions for more “wildcard” shortcuts.</p>
+
+<h3 id="b-how-to-redirect-to-a-file-and-get-input-from-a-file-">b) How to redirect to a file and get input from a file …</h3>
+<p>Redirection operators can be used to redirect the output from a program from the display screen to a file where it is saved (or many other places too, like your printer or to another program where it can be used as input).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&gt;</code></td>
+      <td>write <code class="language-plaintext highlighter-rouge">stdout</code> to a new file; overwrites any file with that name (e.g., <code class="language-plaintext highlighter-rouge">ls *.md &gt; mardkownfiles.txt</code>)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&gt;&gt;</code></td>
+      <td>append <code class="language-plaintext highlighter-rouge">stdout</code> to a previously existing file; if the file does not exist, it is created (e.g., <code class="language-plaintext highlighter-rouge">ls *.md &gt;&gt; markdownfiles.txt</code>)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">&lt;</code></td>
+      <td>assigns the information in a file to a variable, loop, etc (e.g., <code class="language-plaintext highlighter-rouge">n &lt; markdownfiles.md</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="b1-how-to-use-the-output-of-one-command-as-the-input-to-another-with-a-pipe">b.1) How to use the output of one command as the input to another with a pipe…</h4>
+<p>A special kind of redirection is called a pipe and is denoted by <code class="language-plaintext highlighter-rouge">|</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>|</td>
+      <td>Output from one command line program can be used as input to another one (e.g. ls *.md | head gives you the first 5 <code class="language-plaintext highlighter-rouge">*.md</code> files in your directory)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="example">Example:</h5>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ls *.md | head | sed -i `s/markdown/software/g`
+</code></pre></div></div>
+
+<p>changes all the instances of the word <code class="language-plaintext highlighter-rouge">markdown</code> to <code class="language-plaintext highlighter-rouge">software</code> in the first 5 <code class="language-plaintext highlighter-rouge">*.md</code> files in your current directory.</p>
+
+<h2 id="4-how-to-repeat-operations-using-a-loop">4. How to repeat operations using a loop…</h2>
+<p>Loops assign a value in a list or counter to a variable that takes on a different value each time through the loop.
+There are 2 primary kinds of loops: <code class="language-plaintext highlighter-rouge">for</code> loops and <code class="language-plaintext highlighter-rouge">while</code> loops.</p>
+
+<h3 id="a-for-loop">a) For loop</h3>
+<p>For loops loop through variables in a list</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for varname in list
+do
+    command1 $varname
+    command2 $varname
+done
+</code></pre></div></div>
+
+<p>where,</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">for</code>, <code class="language-plaintext highlighter-rouge">in</code>, <code class="language-plaintext highlighter-rouge">do</code>, and <code class="language-plaintext highlighter-rouge">done</code> are keywords</li>
+  <li><code class="language-plaintext highlighter-rouge">list</code> contains a list of values separated by spaces. e.g. <code class="language-plaintext highlighter-rouge">list</code> can be replaced by <code class="language-plaintext highlighter-rouge">1 2 3 4 5 6</code> or by <code class="language-plaintext highlighter-rouge">Bob Mary Sue Greg</code>. <code class="language-plaintext highlighter-rouge">list</code> can also be a variable:</li>
+  <li><code class="language-plaintext highlighter-rouge">varname</code> is assigned a value without using a <code class="language-plaintext highlighter-rouge">$</code> and the value is retrieved using <code class="language-plaintext highlighter-rouge">$varname</code></li>
+</ul>
+
+<p>–</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>list[0]=Sam
+list[1]=Lynne
+list[2]=Dhavide
+list[3]=Trevor
+.
+.
+.
+list[n]=Mark
+</code></pre></div></div>
+
+<p>which is referenced in the loop by:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for varname in ${list[@]}
+do
+    command1 $varname
+    command2 $varname
+done
+</code></pre></div></div>
+
+<p><em>Note:</em> Bash is zero indexed, so counting always starts at <code class="language-plaintext highlighter-rouge">0</code>, not <code class="language-plaintext highlighter-rouge">1</code>.</p>
+
+<h3 id="b-while-loop">b) While Loop</h3>
+<p>While loops loop through the commands until a condition is met. For example</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COUNTER=0
+while [ ${COUNTER} -lt 10 ]; do
+    command 1
+    command 2
+    COUNTER=`expr ${COUNTER} + 1` 
+done
+</code></pre></div></div>
+
+<p>continues the loop as long as the value in the variable COUNTER is less than 10 (incremented by 1 on each iteration of the loop).</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">while</code>, <code class="language-plaintext highlighter-rouge">do</code>, and <code class="language-plaintext highlighter-rouge">done</code> are keywords</li>
+</ul>
+
+<h4 id="b1-commonly-used-conditional-operators">b.1) Commonly used conditional operators</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operator</th>
+      <th>Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-eq</code></td>
+      <td>is equal to</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-ne</code></td>
+      <td>is not equal to</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-gt</code></td>
+      <td>greater than</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-ge</code></td>
+      <td>greater than or equal to</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-lt</code></td>
+      <td>less than</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-le</code></td>
+      <td>less than or equal to</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Use <code class="language-plaintext highlighter-rouge">man bash</code> or <code class="language-plaintext highlighter-rouge">man test</code> to learn about other operators you can use.</p>
+
+<h2 id="6-finding-things">6. Finding Things</h2>
+<h3 id="a-how-to-select-lines-matching-patterns-in-text-files">a) How to select lines matching patterns in text files…</h3>
+<p>To find information within files, you use a command called <code class="language-plaintext highlighter-rouge">grep</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Example command</th>
+      <th>Description</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">grep [options] day haiku.txt</code></td>
+      <td>finds every instance of the string <code class="language-plaintext highlighter-rouge">day</code> in the file haiku.txt and pipes it to standard output</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="a1-commonly-used-grep-options">a.1) Commonly used <code class="language-plaintext highlighter-rouge">grep</code> options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th><code class="language-plaintext highlighter-rouge">grep</code> options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-E</code></td>
+      <td>tells grep you will be using a regular expression. Enclose the regular expression in quotes. <em>Note:</em> the power of <code class="language-plaintext highlighter-rouge">grep</code> comes from using regular expressions. Please see the regular expressions sheet for examples</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-i</code></td>
+      <td>makes matching case-insensitive</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-n</code></td>
+      <td>limits the number of lines that match to the first n matches</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-v</code></td>
+      <td>shows lines that do not match the pattern (inverts the match)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-w</code></td>
+      <td>outputs instances where the pattern is a whole word</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="b-how-to-find-files-with-certain-properties">b) How to find files with certain properties…</h3>
+<p>To find file and directory names, you use a command called <code class="language-plaintext highlighter-rouge">find</code></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Example command</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">find . -type d</code></td>
+      <td><code class="language-plaintext highlighter-rouge">find</code> recursively descends the directory tree for each path listed to match the expression given in the command line with file or directory names in the search path</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="b1-commonly-used-find-options">b.1) Commonly used <code class="language-plaintext highlighter-rouge">find</code> options</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th><code class="language-plaintext highlighter-rouge">find</code> options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-type [df]</code></td>
+      <td><code class="language-plaintext highlighter-rouge">d</code> lists directories; <code class="language-plaintext highlighter-rouge">f</code> lists files</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-maxdepth n</code></td>
+      <td><code class="language-plaintext highlighter-rouge">find</code> automatically searches subdirectories. If you don’t want that, specify the number of levels below the working directory you would like to search</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">-mindepth n</code></td>
+      <td>starts <code class="language-plaintext highlighter-rouge">find</code>’s search <code class="language-plaintext highlighter-rouge">n</code> levels below the working directory</td>
+    </tr>
+  </tbody>
+</table>
+
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="JupyterHub HowTos" href="/howto/howtojhub">
+            <p>Previous post</p>
+            JupyterHub HowTos
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="Retrieve a Distinguished Name (DN)" href="/howto/dn">
+            <p>Next post</p>
+            Retrieve a Distinguished Name (DN)
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/workshop/bashshellprogramming.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Intermediate Bash Shell Scripting | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Intermediate Bash Shell Scripting" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Audience All Prerequisites Basic Linux Commands Duration 2 hour workshop (~2 hours of trainer-led time) Description This workshop is planned to last for 2 hours. It is a live coding workshop and participants are expected to practice along with the instructor. Lessons will focus on using the command-line text editor, Vim, to create and edit files, utilizing for-loops for automation, using variables to store information, and writing scripts to perform a series of commands in a sequential order. Learning Objectives Learning basic operations using the Vim text editor Capturing previous commands into a script to re-run with one single command Understanding variables and storing information Learning how to use variables to operate on multiple files This workshop is designed on the model developed by the Software and Data Carpentry. The material on this page is part from the Software Carpentry Lessons Setup Download data-shell.zip and move the file to your Desktop. Unzip/extract the file. You should have a new folder called data-shell on your Desktop. Open a terminal. If you’re not sure how to open a terminal in your operating system, see the instructions below. In the terminal type cd then press the ‘Return’ key. This step will make sure you start with your home folder as your working directory. Later on, you will find out how to access the data files in this folder. Follow the instructions here to set up your operating system Contents Basic Shell Commands Introduction to Vim Shell Scripts Optional Resources Basic Shell Commands Below is a key of the basic commands you should be familiar with in order to be able to follow this module. ## Commands cd # change directory to &quot;~&quot; or to specified directory ls # list contents of current or specified directory man &lt;command&gt; # display manual for specified command pwd # specify present working directory echo &quot;...&quot; # display content in quotes on the standard output history # display previous &quot;historical&quot; commands cat &lt;file&gt; # display all contents of a file on the standard output less &lt;file&gt; # open a buffer with the contents of a file head &lt;file&gt; # display the first 10 lines of a file tail &lt;file&gt; # display the last 10 lines of a file cp &lt;..&gt; &lt;..&gt; # copy files or directories mdkir # make a new directory/folder mv &lt;..&gt; &lt;..&gt; # move or rename files or directories rm &lt;file&gt; # remove a file or a folder (-r) ## Other ~ # home directory . # current directory .. # parent directory * # wildcard ctrl + c # cancel current command ctrl + a # start of line ctrl + e # end of line Visit the sites below to see how bash commands are used http://explainshell.com http://www.commandlinefu.com Shell Cheat Sheets Unix/Linux Command Cheat Sheet Software Carpentry Shell Cheatsheet General Help man bash - run this at your command line to learn more about bash Google - Googling things you don’t know. Other people have probably had the same question. Learn by doing. There is no better way to learn other than by trying. Introduction To Vim Creating Text Files There are two ways to create text files: using GUI text editors or command-line text editors. NOTE: by “text editor,” we really do mean “text”. The editors can only work with plain characters, not tables, images, nor any other media. GUI text editors TextWrangler, Sublime, and Notepad++ are examples of GUI text editors. They have a Graphical User Interface that has buttons and menus that you can click on to issue commands to the computer and you can move about the interface just by pointing and clicking. Command-line text editors If we are working on remote computer (i.e. high-performance compute environments) we don’t have access to a GUI and so we need to use Command-line editors to create, modify and save files. When using these types of editors, you cannot ‘point-and-click’, you must navigate the interface using only the keyboard. Popular command-line editors include nano, Emacs or Vim. These editors are available by default on any shell environment, including on high-performance compute environments (local or cloud). Vim Text Editor It is a powerful text editor with extensive text editing options; however, in this introduction we are going to focus on exploring some of the more basic functions. To help you remember some of the keyboard shortcuts introduced and to allow you to explore additional functionality on your own, the research team at the Harvard Chan Bioinformatics Core has compiled a cheatsheet Vim Interface Get into your work environment with cd and make a copy of the file notes.txt into a new document entitled vim_notes.txt. Use vim to open the new document $ cd ~/Desktop/data-shell $ cp notes.txt vim_notes.txt $ vim vim_notes.txt Vim Modes Vim has two basic modes that will allow you to create documents and edit your text: command mode (default mode): allows you to save and quit the program (and execute other more advanced commands). insert (or edit) mode: allows you to write and edit text Files open with vim are automatically in command mode. To change to the INSERT mode, push the i-key and notice the --INSERT-- at the bottom left hand of the screen. Type a few lines of text: While vim offers great functionality, it takes time to use, get familiar and learn the shortcuts. After you have finished typing, press esc to enter command mode. Notice the --INSERT-- disappeared from the bottom of the screen. Vim Saving and Quitting To write to file (save), type :w. You can see the commands you type in the bottom left-hand corner of the screen. After you have saved the file, the total number of lines and characters in the file will print out at the bottom left-hand section of the screen. Alternatively, we can write to file (save) and quit all at once. Let’s do that by typing :wq. Now, you should have exited vim and returned to the command prompt. To edit your vim_notes.txt document, open up the file again using the same command you used to create the file: $vim vim_notes.txt Change into the insert mode and type a few more lines (you can move around the lines of text using the arrows on the keyboard). This time we decide to quit without saving by typing :q! Vim Editing Create a new document new_vim_test.txt in vim. Enter the text as follows: vim new_vim_test.txt Add line number to the document by switching to the command mode and typing :set number. Save the document. If you choose to remove the line numbers later you can type :set nonumber Vim has shortcuts (which are completely unituitive, but very useful as you get used to them over time). Check to see what mode you are currently in. While in command mode, try moving around the screen and familarizing yourself with some of these shortcuts: NavigationEditing Saving and quiting key actionkeyactionkeyaction ggmove to top of filedddelete line :w, :wqsave, save and quit Gmove to bottom of fileuundo:q!quit without saving $move to end of lineCtrl + rredo:set numberdisplay line numbers 0 move to beginning of linei, esc insert and command modes:set nonumbernot display line numbers Exercise We have covered some basic commands in vim, but practice is key for getting comfortable with the program. Let’s practice what we just learned in a brief challenge. Open notes.txt, and delete line #2. Quit without saving. Open notes.txt again, go to the last line and delete it. Undo your previous deletion. Redo your previous deletion. Save the file and see whether your results match your neighbors. Shell Scripts Since we now know how to create text files in the command-line interface, we are going to use that knowledge to create a shell script and see what makes the shell such a powerful programming environment. Simple Scripts Let’s write a shell script that will do two things: Tell us our current working directory List the contents of the directory First open a new file using vim: $ vim first_script.sh Then type the following command into first_script.sh file: echo &quot;Your current working directory is: &quot; pwd echo &quot;This is the content of your working directory: &quot; ls -lFG Save and exit the file (:wq) Use bash or sh to execute first_script.sh bash first_script.sh Execute the script in a different directory other $ mkdir other $ mv first_script.sh other $ sh other/first_script.sh More elegant way to execute the script open the file $ vim first_script.sh On the first line of the file write #! /bin/bash Step 2. indicates to the script where the bash executable is. Make the script executable with chmod +x first_script.sh. Execute in the current directory with $ ./first_script.sh, and hit return . Execute in the parent directory with $ /other/first_script.sh, and hit return . Did it work as you expected? Was the echo command helpful in letting you know what came next? Bash Variables A variable is a common concept shared by many programming languages. Variables are essentially a symbolic/temporary name for, or a reference to, some information. Variables are analogous to “buckets”, where information can be stored, maintained and modified without too much hassle. Simple variable Lets assign 25 to num $ num=25 Retrieve the value of num $ echo num What do you see at the command line? When retrieving the value stored in the variable, explicitly use a $ in front of it: $ echo $num Variables can also store a string of character values. $ file=pentane.pdb Passing Argument(s) to a script Argument(s) are passed to the script at the time of execution. Inside the script, $1 variable references the first argument $2 variable references the second argument $n variable references the nth argument $0 is reserved and references the current script Change to the molecules directory $ cd molecules $ echo $file Let’s try using the variable in a command $ wc -l $file NOTE: Variables created are system-wide, and independent of where you are in the filesystem. This is why you can reference it from any directory. However, it is only available for your current session. If you exit or close your Terminal, the variables you have created will no longer exist. Example of Argurment passing to script Open the file $ vim first_script.sh Write the following line of code in the file #! /bin/bash echo &quot;This script was executed as: $0 &quot; for filename in $1 $2 $3 do echo &quot;Argument passed is $filename&quot; echo &quot;$(wc -l $filename) lines&quot; done Exercise Reuse the $file variable to store a different file name, and rerun the previous commands. Variables can store more than just a single value The command below list all the files ending in .pdb in molecules directory. $ ls *.pdb Assign the output to a single variable $ files=&#39;ls *.pdb&#39; Note the syntax for assigning output of commands to variables. Check the output $ echo $files Let’s try the wc -l command again, but this time using the new variable files as the argument: $ wc -l $files Exercise Use some of the other commands you are familiar with (i.e. head, tail) on the files variable. Repetitive Tasks In the previous example all the files were saved into a single variable files. We could access files content one at a time. This is called looping. Looping is a concept shared by several programming languages, and its implementation in bash is very similar to other languages. The syntax of (for) loops in bash is as follows: for (variable_name) in (list) do (command $variable_name) . . done variable_name defines (or initializes) a variable that takes the value of every member of the specified list one at a time. At each iteration, the loop retrieves the value stored in the variable. The commands indicated between the do and done are executed one at a time. Example for File in files do echo $File wc -l $File done The script writes to the terminal (echo) the name of the file, then the number of lines (wc -l) for each file. the number of items in the list (variable name) == number of times the code will loop through. Variable name does matter in the loop. Make the variable name intuitive, indicate functionality. Optional Resources The following are additional resources that you may find useful: Shell Scripting Ryan’s tutorial The Linux Command Line (Part 4: Writing Shell Scripts) Bash Guide Shell programming with bash: by example, by counter-example Networking Introduction to Linux - Chapter 10. Networking Slackware Linux Essentials - Chapter 13 Basic Network Commands" />
+<meta property="og:description" content="Audience All Prerequisites Basic Linux Commands Duration 2 hour workshop (~2 hours of trainer-led time) Description This workshop is planned to last for 2 hours. It is a live coding workshop and participants are expected to practice along with the instructor. Lessons will focus on using the command-line text editor, Vim, to create and edit files, utilizing for-loops for automation, using variables to store information, and writing scripts to perform a series of commands in a sequential order. Learning Objectives Learning basic operations using the Vim text editor Capturing previous commands into a script to re-run with one single command Understanding variables and storing information Learning how to use variables to operate on multiple files This workshop is designed on the model developed by the Software and Data Carpentry. The material on this page is part from the Software Carpentry Lessons Setup Download data-shell.zip and move the file to your Desktop. Unzip/extract the file. You should have a new folder called data-shell on your Desktop. Open a terminal. If you’re not sure how to open a terminal in your operating system, see the instructions below. In the terminal type cd then press the ‘Return’ key. This step will make sure you start with your home folder as your working directory. Later on, you will find out how to access the data files in this folder. Follow the instructions here to set up your operating system Contents Basic Shell Commands Introduction to Vim Shell Scripts Optional Resources Basic Shell Commands Below is a key of the basic commands you should be familiar with in order to be able to follow this module. ## Commands cd # change directory to &quot;~&quot; or to specified directory ls # list contents of current or specified directory man &lt;command&gt; # display manual for specified command pwd # specify present working directory echo &quot;...&quot; # display content in quotes on the standard output history # display previous &quot;historical&quot; commands cat &lt;file&gt; # display all contents of a file on the standard output less &lt;file&gt; # open a buffer with the contents of a file head &lt;file&gt; # display the first 10 lines of a file tail &lt;file&gt; # display the last 10 lines of a file cp &lt;..&gt; &lt;..&gt; # copy files or directories mdkir # make a new directory/folder mv &lt;..&gt; &lt;..&gt; # move or rename files or directories rm &lt;file&gt; # remove a file or a folder (-r) ## Other ~ # home directory . # current directory .. # parent directory * # wildcard ctrl + c # cancel current command ctrl + a # start of line ctrl + e # end of line Visit the sites below to see how bash commands are used http://explainshell.com http://www.commandlinefu.com Shell Cheat Sheets Unix/Linux Command Cheat Sheet Software Carpentry Shell Cheatsheet General Help man bash - run this at your command line to learn more about bash Google - Googling things you don’t know. Other people have probably had the same question. Learn by doing. There is no better way to learn other than by trying. Introduction To Vim Creating Text Files There are two ways to create text files: using GUI text editors or command-line text editors. NOTE: by “text editor,” we really do mean “text”. The editors can only work with plain characters, not tables, images, nor any other media. GUI text editors TextWrangler, Sublime, and Notepad++ are examples of GUI text editors. They have a Graphical User Interface that has buttons and menus that you can click on to issue commands to the computer and you can move about the interface just by pointing and clicking. Command-line text editors If we are working on remote computer (i.e. high-performance compute environments) we don’t have access to a GUI and so we need to use Command-line editors to create, modify and save files. When using these types of editors, you cannot ‘point-and-click’, you must navigate the interface using only the keyboard. Popular command-line editors include nano, Emacs or Vim. These editors are available by default on any shell environment, including on high-performance compute environments (local or cloud). Vim Text Editor It is a powerful text editor with extensive text editing options; however, in this introduction we are going to focus on exploring some of the more basic functions. To help you remember some of the keyboard shortcuts introduced and to allow you to explore additional functionality on your own, the research team at the Harvard Chan Bioinformatics Core has compiled a cheatsheet Vim Interface Get into your work environment with cd and make a copy of the file notes.txt into a new document entitled vim_notes.txt. Use vim to open the new document $ cd ~/Desktop/data-shell $ cp notes.txt vim_notes.txt $ vim vim_notes.txt Vim Modes Vim has two basic modes that will allow you to create documents and edit your text: command mode (default mode): allows you to save and quit the program (and execute other more advanced commands). insert (or edit) mode: allows you to write and edit text Files open with vim are automatically in command mode. To change to the INSERT mode, push the i-key and notice the --INSERT-- at the bottom left hand of the screen. Type a few lines of text: While vim offers great functionality, it takes time to use, get familiar and learn the shortcuts. After you have finished typing, press esc to enter command mode. Notice the --INSERT-- disappeared from the bottom of the screen. Vim Saving and Quitting To write to file (save), type :w. You can see the commands you type in the bottom left-hand corner of the screen. After you have saved the file, the total number of lines and characters in the file will print out at the bottom left-hand section of the screen. Alternatively, we can write to file (save) and quit all at once. Let’s do that by typing :wq. Now, you should have exited vim and returned to the command prompt. To edit your vim_notes.txt document, open up the file again using the same command you used to create the file: $vim vim_notes.txt Change into the insert mode and type a few more lines (you can move around the lines of text using the arrows on the keyboard). This time we decide to quit without saving by typing :q! Vim Editing Create a new document new_vim_test.txt in vim. Enter the text as follows: vim new_vim_test.txt Add line number to the document by switching to the command mode and typing :set number. Save the document. If you choose to remove the line numbers later you can type :set nonumber Vim has shortcuts (which are completely unituitive, but very useful as you get used to them over time). Check to see what mode you are currently in. While in command mode, try moving around the screen and familarizing yourself with some of these shortcuts: NavigationEditing Saving and quiting key actionkeyactionkeyaction ggmove to top of filedddelete line :w, :wqsave, save and quit Gmove to bottom of fileuundo:q!quit without saving $move to end of lineCtrl + rredo:set numberdisplay line numbers 0 move to beginning of linei, esc insert and command modes:set nonumbernot display line numbers Exercise We have covered some basic commands in vim, but practice is key for getting comfortable with the program. Let’s practice what we just learned in a brief challenge. Open notes.txt, and delete line #2. Quit without saving. Open notes.txt again, go to the last line and delete it. Undo your previous deletion. Redo your previous deletion. Save the file and see whether your results match your neighbors. Shell Scripts Since we now know how to create text files in the command-line interface, we are going to use that knowledge to create a shell script and see what makes the shell such a powerful programming environment. Simple Scripts Let’s write a shell script that will do two things: Tell us our current working directory List the contents of the directory First open a new file using vim: $ vim first_script.sh Then type the following command into first_script.sh file: echo &quot;Your current working directory is: &quot; pwd echo &quot;This is the content of your working directory: &quot; ls -lFG Save and exit the file (:wq) Use bash or sh to execute first_script.sh bash first_script.sh Execute the script in a different directory other $ mkdir other $ mv first_script.sh other $ sh other/first_script.sh More elegant way to execute the script open the file $ vim first_script.sh On the first line of the file write #! /bin/bash Step 2. indicates to the script where the bash executable is. Make the script executable with chmod +x first_script.sh. Execute in the current directory with $ ./first_script.sh, and hit return . Execute in the parent directory with $ /other/first_script.sh, and hit return . Did it work as you expected? Was the echo command helpful in letting you know what came next? Bash Variables A variable is a common concept shared by many programming languages. Variables are essentially a symbolic/temporary name for, or a reference to, some information. Variables are analogous to “buckets”, where information can be stored, maintained and modified without too much hassle. Simple variable Lets assign 25 to num $ num=25 Retrieve the value of num $ echo num What do you see at the command line? When retrieving the value stored in the variable, explicitly use a $ in front of it: $ echo $num Variables can also store a string of character values. $ file=pentane.pdb Passing Argument(s) to a script Argument(s) are passed to the script at the time of execution. Inside the script, $1 variable references the first argument $2 variable references the second argument $n variable references the nth argument $0 is reserved and references the current script Change to the molecules directory $ cd molecules $ echo $file Let’s try using the variable in a command $ wc -l $file NOTE: Variables created are system-wide, and independent of where you are in the filesystem. This is why you can reference it from any directory. However, it is only available for your current session. If you exit or close your Terminal, the variables you have created will no longer exist. Example of Argurment passing to script Open the file $ vim first_script.sh Write the following line of code in the file #! /bin/bash echo &quot;This script was executed as: $0 &quot; for filename in $1 $2 $3 do echo &quot;Argument passed is $filename&quot; echo &quot;$(wc -l $filename) lines&quot; done Exercise Reuse the $file variable to store a different file name, and rerun the previous commands. Variables can store more than just a single value The command below list all the files ending in .pdb in molecules directory. $ ls *.pdb Assign the output to a single variable $ files=&#39;ls *.pdb&#39; Note the syntax for assigning output of commands to variables. Check the output $ echo $files Let’s try the wc -l command again, but this time using the new variable files as the argument: $ wc -l $files Exercise Use some of the other commands you are familiar with (i.e. head, tail) on the files variable. Repetitive Tasks In the previous example all the files were saved into a single variable files. We could access files content one at a time. This is called looping. Looping is a concept shared by several programming languages, and its implementation in bash is very similar to other languages. The syntax of (for) loops in bash is as follows: for (variable_name) in (list) do (command $variable_name) . . done variable_name defines (or initializes) a variable that takes the value of every member of the specified list one at a time. At each iteration, the loop retrieves the value stored in the variable. The commands indicated between the do and done are executed one at a time. Example for File in files do echo $File wc -l $File done The script writes to the terminal (echo) the name of the file, then the number of lines (wc -l) for each file. the number of items in the list (variable name) == number of times the code will loop through. Variable name does matter in the loop. Make the variable name intuitive, indicate functionality. Optional Resources The following are additional resources that you may find useful: Shell Scripting Ryan’s tutorial The Linux Command Line (Part 4: Writing Shell Scripts) Bash Guide Shell programming with bash: by example, by counter-example Networking Introduction to Linux - Chapter 10. Networking Slackware Linux Essentials - Chapter 13 Basic Network Commands" />
+<link rel="canonical" href="http://localhost:4000/workshop/bashshellprogramming.html" />
+<meta property="og:url" content="http://localhost:4000/workshop/bashshellprogramming.html" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Intermediate Bash Shell Scripting" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"Audience All Prerequisites Basic Linux Commands Duration 2 hour workshop (~2 hours of trainer-led time) Description This workshop is planned to last for 2 hours. It is a live coding workshop and participants are expected to practice along with the instructor. Lessons will focus on using the command-line text editor, Vim, to create and edit files, utilizing for-loops for automation, using variables to store information, and writing scripts to perform a series of commands in a sequential order. Learning Objectives Learning basic operations using the Vim text editor Capturing previous commands into a script to re-run with one single command Understanding variables and storing information Learning how to use variables to operate on multiple files This workshop is designed on the model developed by the Software and Data Carpentry. The material on this page is part from the Software Carpentry Lessons Setup Download data-shell.zip and move the file to your Desktop. Unzip/extract the file. You should have a new folder called data-shell on your Desktop. Open a terminal. If you’re not sure how to open a terminal in your operating system, see the instructions below. In the terminal type cd then press the ‘Return’ key. This step will make sure you start with your home folder as your working directory. Later on, you will find out how to access the data files in this folder. Follow the instructions here to set up your operating system Contents Basic Shell Commands Introduction to Vim Shell Scripts Optional Resources Basic Shell Commands Below is a key of the basic commands you should be familiar with in order to be able to follow this module. ## Commands cd # change directory to &quot;~&quot; or to specified directory ls # list contents of current or specified directory man &lt;command&gt; # display manual for specified command pwd # specify present working directory echo &quot;...&quot; # display content in quotes on the standard output history # display previous &quot;historical&quot; commands cat &lt;file&gt; # display all contents of a file on the standard output less &lt;file&gt; # open a buffer with the contents of a file head &lt;file&gt; # display the first 10 lines of a file tail &lt;file&gt; # display the last 10 lines of a file cp &lt;..&gt; &lt;..&gt; # copy files or directories mdkir # make a new directory/folder mv &lt;..&gt; &lt;..&gt; # move or rename files or directories rm &lt;file&gt; # remove a file or a folder (-r) ## Other ~ # home directory . # current directory .. # parent directory * # wildcard ctrl + c # cancel current command ctrl + a # start of line ctrl + e # end of line Visit the sites below to see how bash commands are used http://explainshell.com http://www.commandlinefu.com Shell Cheat Sheets Unix/Linux Command Cheat Sheet Software Carpentry Shell Cheatsheet General Help man bash - run this at your command line to learn more about bash Google - Googling things you don’t know. Other people have probably had the same question. Learn by doing. There is no better way to learn other than by trying. Introduction To Vim Creating Text Files There are two ways to create text files: using GUI text editors or command-line text editors. NOTE: by “text editor,” we really do mean “text”. The editors can only work with plain characters, not tables, images, nor any other media. GUI text editors TextWrangler, Sublime, and Notepad++ are examples of GUI text editors. They have a Graphical User Interface that has buttons and menus that you can click on to issue commands to the computer and you can move about the interface just by pointing and clicking. Command-line text editors If we are working on remote computer (i.e. high-performance compute environments) we don’t have access to a GUI and so we need to use Command-line editors to create, modify and save files. When using these types of editors, you cannot ‘point-and-click’, you must navigate the interface using only the keyboard. Popular command-line editors include nano, Emacs or Vim. These editors are available by default on any shell environment, including on high-performance compute environments (local or cloud). Vim Text Editor It is a powerful text editor with extensive text editing options; however, in this introduction we are going to focus on exploring some of the more basic functions. To help you remember some of the keyboard shortcuts introduced and to allow you to explore additional functionality on your own, the research team at the Harvard Chan Bioinformatics Core has compiled a cheatsheet Vim Interface Get into your work environment with cd and make a copy of the file notes.txt into a new document entitled vim_notes.txt. Use vim to open the new document $ cd ~/Desktop/data-shell $ cp notes.txt vim_notes.txt $ vim vim_notes.txt Vim Modes Vim has two basic modes that will allow you to create documents and edit your text: command mode (default mode): allows you to save and quit the program (and execute other more advanced commands). insert (or edit) mode: allows you to write and edit text Files open with vim are automatically in command mode. To change to the INSERT mode, push the i-key and notice the --INSERT-- at the bottom left hand of the screen. Type a few lines of text: While vim offers great functionality, it takes time to use, get familiar and learn the shortcuts. After you have finished typing, press esc to enter command mode. Notice the --INSERT-- disappeared from the bottom of the screen. Vim Saving and Quitting To write to file (save), type :w. You can see the commands you type in the bottom left-hand corner of the screen. After you have saved the file, the total number of lines and characters in the file will print out at the bottom left-hand section of the screen. Alternatively, we can write to file (save) and quit all at once. Let’s do that by typing :wq. Now, you should have exited vim and returned to the command prompt. To edit your vim_notes.txt document, open up the file again using the same command you used to create the file: $vim vim_notes.txt Change into the insert mode and type a few more lines (you can move around the lines of text using the arrows on the keyboard). This time we decide to quit without saving by typing :q! Vim Editing Create a new document new_vim_test.txt in vim. Enter the text as follows: vim new_vim_test.txt Add line number to the document by switching to the command mode and typing :set number. Save the document. If you choose to remove the line numbers later you can type :set nonumber Vim has shortcuts (which are completely unituitive, but very useful as you get used to them over time). Check to see what mode you are currently in. While in command mode, try moving around the screen and familarizing yourself with some of these shortcuts: NavigationEditing Saving and quiting key actionkeyactionkeyaction ggmove to top of filedddelete line :w, :wqsave, save and quit Gmove to bottom of fileuundo:q!quit without saving $move to end of lineCtrl + rredo:set numberdisplay line numbers 0 move to beginning of linei, esc insert and command modes:set nonumbernot display line numbers Exercise We have covered some basic commands in vim, but practice is key for getting comfortable with the program. Let’s practice what we just learned in a brief challenge. Open notes.txt, and delete line #2. Quit without saving. Open notes.txt again, go to the last line and delete it. Undo your previous deletion. Redo your previous deletion. Save the file and see whether your results match your neighbors. Shell Scripts Since we now know how to create text files in the command-line interface, we are going to use that knowledge to create a shell script and see what makes the shell such a powerful programming environment. Simple Scripts Let’s write a shell script that will do two things: Tell us our current working directory List the contents of the directory First open a new file using vim: $ vim first_script.sh Then type the following command into first_script.sh file: echo &quot;Your current working directory is: &quot; pwd echo &quot;This is the content of your working directory: &quot; ls -lFG Save and exit the file (:wq) Use bash or sh to execute first_script.sh bash first_script.sh Execute the script in a different directory other $ mkdir other $ mv first_script.sh other $ sh other/first_script.sh More elegant way to execute the script open the file $ vim first_script.sh On the first line of the file write #! /bin/bash Step 2. indicates to the script where the bash executable is. Make the script executable with chmod +x first_script.sh. Execute in the current directory with $ ./first_script.sh, and hit return . Execute in the parent directory with $ /other/first_script.sh, and hit return . Did it work as you expected? Was the echo command helpful in letting you know what came next? Bash Variables A variable is a common concept shared by many programming languages. Variables are essentially a symbolic/temporary name for, or a reference to, some information. Variables are analogous to “buckets”, where information can be stored, maintained and modified without too much hassle. Simple variable Lets assign 25 to num $ num=25 Retrieve the value of num $ echo num What do you see at the command line? When retrieving the value stored in the variable, explicitly use a $ in front of it: $ echo $num Variables can also store a string of character values. $ file=pentane.pdb Passing Argument(s) to a script Argument(s) are passed to the script at the time of execution. Inside the script, $1 variable references the first argument $2 variable references the second argument $n variable references the nth argument $0 is reserved and references the current script Change to the molecules directory $ cd molecules $ echo $file Let’s try using the variable in a command $ wc -l $file NOTE: Variables created are system-wide, and independent of where you are in the filesystem. This is why you can reference it from any directory. However, it is only available for your current session. If you exit or close your Terminal, the variables you have created will no longer exist. Example of Argurment passing to script Open the file $ vim first_script.sh Write the following line of code in the file #! /bin/bash echo &quot;This script was executed as: $0 &quot; for filename in $1 $2 $3 do echo &quot;Argument passed is $filename&quot; echo &quot;$(wc -l $filename) lines&quot; done Exercise Reuse the $file variable to store a different file name, and rerun the previous commands. Variables can store more than just a single value The command below list all the files ending in .pdb in molecules directory. $ ls *.pdb Assign the output to a single variable $ files=&#39;ls *.pdb&#39; Note the syntax for assigning output of commands to variables. Check the output $ echo $files Let’s try the wc -l command again, but this time using the new variable files as the argument: $ wc -l $files Exercise Use some of the other commands you are familiar with (i.e. head, tail) on the files variable. Repetitive Tasks In the previous example all the files were saved into a single variable files. We could access files content one at a time. This is called looping. Looping is a concept shared by several programming languages, and its implementation in bash is very similar to other languages. The syntax of (for) loops in bash is as follows: for (variable_name) in (list) do (command $variable_name) . . done variable_name defines (or initializes) a variable that takes the value of every member of the specified list one at a time. At each iteration, the loop retrieves the value stored in the variable. The commands indicated between the do and done are executed one at a time. Example for File in files do echo $File wc -l $File done The script writes to the terminal (echo) the name of the file, then the number of lines (wc -l) for each file. the number of items in the list (variable name) == number of times the code will loop through. Variable name does matter in the loop. Make the variable name intuitive, indicate functionality. Optional Resources The following are additional resources that you may find useful: Shell Scripting Ryan’s tutorial The Linux Command Line (Part 4: Writing Shell Scripts) Bash Guide Shell programming with bash: by example, by counter-example Networking Introduction to Linux - Chapter 10. Networking Slackware Linux Essentials - Chapter 13 Basic Network Commands","headline":"Intermediate Bash Shell Scripting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/workshop/bashshellprogramming.html"},"url":"http://localhost:4000/workshop/bashshellprogramming.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="Intermediate+Bash+Shell+Scripting" class="title">Intermediate Bash Shell Scripting</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <table>
+  <thead>
+    <tr>
+      <th><strong>Audience</strong></th>
+      <th>All</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Prerequisites</strong></td>
+      <td><a href="https://gcrnet.github.io/workshop/basiclinuxshell.html">Basic Linux Commands</a></td>
+    </tr>
+    <tr>
+      <td><strong>Duration</strong></td>
+      <td>2 hour workshop (~2 hours of trainer-led time)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="description">Description</h2>
+
+<p>This workshop is planned to last for 2 hours. It is a live coding
+workshop and participants are expected to practice along
+with the instructor. Lessons will focus on using the command-line
+text editor, Vim, to create and edit files, utilizing for-loops for
+automation, using variables to store information, and writing scripts
+to perform a series of commands in a sequential order.</p>
+
+<h2 id="learning-objectives">Learning Objectives</h2>
+
+<ul>
+  <li>Learning basic operations using the Vim text editor</li>
+  <li>Capturing previous commands into a script to re-run with one single command</li>
+  <li>Understanding variables and storing information</li>
+  <li>Learning how to use variables to operate on multiple files</li>
+</ul>
+
+<p>This workshop is designed on the model developed by the <a href="https://carpentries.org/workshops/">Software and Data
+Carpentry</a>. The material on this page is
+part from the <a href="https://software-carpentry.org/lessons/">Software Carpentry Lessons</a></p>
+
+<h2 id="setup">Setup</h2>
+<p>Download <a href="http://swcarpentry.github.io/
+shell-novice/data/data-shell.zip">data-shell.zip</a> and move the file to
+your Desktop. Unzip/extract the file. You should have a
+new folder called <code class="language-plaintext highlighter-rouge">data-shell</code> on your Desktop.
+Open a terminal. If you’re not sure how to open a
+terminal in your operating system, see the instructions
+below. In the terminal type <code class="language-plaintext highlighter-rouge">cd</code> then press the ‘Return’
+key. This step will make sure you start with your home
+folder as your working directory. Later on, you will
+find out how to access the data files in this folder.</p>
+
+<p><a href="https://gcrnet.github.io/workshop/basiclinuxshell.html#Windows">Follow the instructions here to set up your operating system</a></p>
+<h2 id="contents">Contents</h2>
+<ol>
+  <li><a href="#TheBasics">Basic Shell Commands</a></li>
+  <li><a href="#IntroVim">Introduction to Vim</a></li>
+  <li><a href="#Shellscripts">Shell Scripts</a></li>
+  <li><a href="#OptionalResources">Optional Resources</a></li>
+</ol>
+
+<p><a name="TheBasic"></a></p>
+<h2 id="basic-shell-commands">Basic Shell Commands</h2>
+
+<p>Below is a key of the basic commands you should be familiar with in order to be able to follow this module.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>## Commands
+
+cd            # change directory to "~" or to specified directory
+ls            # list contents of current or specified directory
+man &lt;command&gt; # display manual for specified command
+pwd           # specify present working directory
+echo "..."    # display content in quotes on the standard output
+history       # display previous "historical" commands
+cat &lt;file&gt;    # display all contents of a file on the standard output
+less &lt;file&gt;   # open a buffer with the contents of a file
+head &lt;file&gt;   # display the first 10 lines of a file
+tail &lt;file&gt;   # display the last 10 lines of a file
+cp &lt;..&gt; &lt;..&gt;  # copy files or directories
+mdkir         # make a new directory/folder
+mv &lt;..&gt; &lt;..&gt;  # move or rename files or directories
+rm &lt;file&gt;     # remove a file or a folder (-r)
+
+## Other
+~             # home directory
+.             # current directory
+..            # parent directory
+*             # wildcard
+ctrl + c      # cancel current command
+ctrl + a      # start of line
+ctrl + e      # end of line
+
+</code></pre></div></div>
+<p><strong>Visit the sites below to see how bash commands are used</strong></p>
+<ul>
+  <li><a href="http://explainshell.com">http://explainshell.com</a></li>
+  <li><a href="http://www.commandlinefu.com">http://www.commandlinefu.com</a></li>
+</ul>
+
+<p><strong>Shell Cheat Sheets</strong></p>
+
+<ul>
+  <li><a href="https://gcrnet.github.io/assets/pdf/linuxcheatsheet.pdf">Unix/Linux Command Cheat Sheet </a></li>
+  <li><a href="https://gcrnet.github.io/howto/basicshell">Software Carpentry Shell Cheatsheet </a></li>
+</ul>
+
+<p><strong>General Help</strong></p>
+<ul>
+  <li>man bash - run this at your command line to learn more about bash</li>
+  <li>Google - Googling things you don’t know. Other people have probably had the same question.</li>
+  <li>Learn by doing. There is no better way to learn other than  by trying.</li>
+</ul>
+
+<p><a name="IntroVim"></a></p>
+<h2 id="introduction-to-vim">Introduction To Vim</h2>
+
+<h3 id="creating-text-files">Creating Text Files</h3>
+<p>There are two ways to create text files: using GUI text editors or command-line text editors.</p>
+<blockquote>
+  <p><strong>NOTE:</strong> by “text editor,” we really do mean “text”. The editors can only work with plain characters,
+  not tables, images, nor any other media.</p>
+</blockquote>
+
+<h4 id="gui-text-editors">GUI text editors</h4>
+<p><a href="http://www.barebones.com/products/textwrangler/">TextWrangler</a>, <a href="http://www.sublimetext.com/">Sublime</a>,
+and <a href="http://notepad-plus-plus.org/">Notepad++</a> are examples of GUI text editors. They have a <strong>G</strong>raphical
+<strong>U</strong>ser <strong>I</strong>nterface that has buttons and menus that you can click on to issue commands to the
+computer and you can move about the interface just by pointing and clicking.</p>
+
+<h4 id="command-line-text-editors">Command-line text editors</h4>
+<p>If we are working on remote computer (i.e. high-performance compute environments) we don’t have
+access to a GUI and so we need to use <strong>Command-line editors</strong> to create, modify and save files.
+When using these types of editors, you cannot ‘point-and-click’, you must navigate the interface
+using only the keyboard.</p>
+
+<p>Popular command-line editors include <a href="https://www.nano-editor.org/">nano</a>, <a href="http://www.gnu.org/software/emacs/">Emacs</a>
+or <a href="https://www.vim.org/">Vim</a>. These editors are available by default
+on any shell environment, including on high-performance compute environments (local or cloud).</p>
+
+<h3 id="vim-text-editor">Vim Text Editor</h3>
+<p>It is a powerful text editor with extensive text editing options; however, in this introduction
+we are going to focus on exploring some of the more basic functions. To help you remember some of
+the keyboard shortcuts introduced and to allow you to explore additional functionality on your own,
+the research team at the <a href="https://bioinformatics.sph.harvard.edu/">Harvard Chan Bioinformatics Core</a>
+has compiled a <a href="https://hbctraining.github.io/In-depth-NGS-Data-Analysis-Course/resources/VI_CommandReference.pdf">cheatsheet</a></p>
+
+<h4 id="vim-interface">Vim Interface</h4>
+<p>Get into your work environment with <code class="language-plaintext highlighter-rouge">cd</code> and make a copy of the file <code class="language-plaintext highlighter-rouge">notes.txt</code> into a new document entitled
+<code class="language-plaintext highlighter-rouge">vim_notes.txt</code>. Use vim to open the new document</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd ~/Desktop/data-shell
+$ cp notes.txt vim_notes.txt
+$ vim vim_notes.txt
+</code></pre></div></div>
+<h4 id="vim-modes">Vim Modes</h4>
+<p>Vim has two basic modes that will allow you to create documents and edit your text:</p>
+<blockquote>
+  <ul>
+    <li><strong>command mode (default mode):</strong> allows you to save and quit the program (and execute other more advanced commands).</li>
+    <li><strong>insert (or edit) mode:</strong> allows you to write and edit text</li>
+  </ul>
+</blockquote>
+
+<p>Files open with <code class="language-plaintext highlighter-rouge">vim</code> are automatically in command mode. To change to the INSERT mode, push the <code class="language-plaintext highlighter-rouge">i-key</code> and
+notice the <code class="language-plaintext highlighter-rouge">--INSERT--</code> at the bottom left hand of the screen.</p>
+
+<p>Type a few lines of text:</p>
+<blockquote>
+  <p>While vim offers great functionality, it takes time to use, get familiar and learn the shortcuts.</p>
+</blockquote>
+
+<p>After you have finished typing, press <code class="language-plaintext highlighter-rouge">esc</code> to enter command mode. Notice the <code class="language-plaintext highlighter-rouge">--INSERT--</code> disappeared
+from the bottom of the screen.</p>
+
+<h4 id="vim-saving-and-quitting">Vim Saving and Quitting</h4>
+
+<p>To write to file (save), type <code class="language-plaintext highlighter-rouge">:w</code>. You can see the commands you type in the bottom left-hand corner of the screen.</p>
+
+<p>After you have saved the file, the total number of lines and characters in the file will print out at the bottom
+left-hand section of the screen.</p>
+
+<p>Alternatively, we can write to file (save) and quit all at once. Let’s do that by typing <code class="language-plaintext highlighter-rouge">:wq</code>. Now, you should
+have exited vim and returned to the command prompt. To edit your <code class="language-plaintext highlighter-rouge">vim_notes.txt</code> document, open up the file again
+using the same command you used to create the file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$vim vim_notes.txt
+</code></pre></div></div>
+
+<p>Change into the insert mode and type a few more lines (you can move around the lines of text using
+the arrows on the keyboard). This time we decide to quit without saving by typing <code class="language-plaintext highlighter-rouge">:q!</code></p>
+
+<h4 id="vim-editing">Vim Editing</h4>
+<p>Create a new document <code class="language-plaintext highlighter-rouge">new_vim_test.txt</code> in vim. Enter the text as follows: <code class="language-plaintext highlighter-rouge">vim new_vim_test.txt</code></p>
+
+<p><img src="/assets/img/website/bashshell/1.png" /></p>
+
+<p>Add line number to the document by switching to the command mode and typing <code class="language-plaintext highlighter-rouge">:set number</code>.</p>
+
+<p><img src="/assets/img/website/bashshell/2.png" /></p>
+
+<p><strong>Save the document</strong>. If you choose to remove the line numbers later you can type <code class="language-plaintext highlighter-rouge">:set nonumber</code></p>
+
+<p><em>Vim</em> has shortcuts (which are completely unituitive, but very useful as you get used to them over time).
+Check to see what mode you are currently in. While in command mode, try moving around the screen and
+familarizing yourself with some of these shortcuts:</p>
+<table>
+<tr>
+<td colspan="2"><strong>Navigation</strong></td><td colspan="2"><strong>Editing</strong></td>
+<td colspan="2"><strong>Saving and quiting</strong></td> </tr>
+<tr>
+<td> <strong>key </strong> </td><td><strong>action</strong></td><td><strong>key</strong></td><td><strong>action</strong></td><td><strong>key</strong></td><td><strong>action</strong></td> 
+</tr>
+<tr>
+<td><mark>gg</mark></td><td>move to top of file</td><td><mark>dd</mark></td><td>delete line </td><td><mark>:w</mark>, <mark>:wq</mark></td><td>save, save and quit</td>
+</tr>
+<tr>
+<td><mark>G</mark></td><td>move to bottom of file</td><td><mark>u</mark></td><td>undo</td><td><mark>:q!</mark></td><td>quit without saving</td>
+</tr>
+<tr>
+<td><mark>$</mark></td><td>move to end of line</td><td><mark>Ctrl + r</mark></td><td>redo</td><td><mark>:set number</mark></td><td>display line numbers</td>
+</tr>
+<tr>
+<td><mark>0</mark></td> <td>move to beginning of line</td><td><mark>i</mark>, <mark>esc</mark></td>   <td>insert and command modes</td><td><mark>:set nonumber</mark></td><td>not display line numbers</td>
+</tr>
+</table>
+
+<p><strong>Exercise</strong></p>
+
+<p>We have covered some basic commands in vim, but practice is key for getting comfortable
+with the program. Let’s practice what we just learned in a brief challenge.</p>
+
+<ol>
+  <li>Open notes.txt, and delete line #2.</li>
+  <li>Quit without saving.</li>
+  <li>Open notes.txt again, go to the last line and delete it.</li>
+  <li>Undo your previous deletion.</li>
+  <li>Redo your previous deletion.</li>
+  <li>Save the file and see whether your results match your neighbors.</li>
+</ol>
+
+<p><a name="Shellscripts"></a></p>
+<h2 id="shell-scripts">Shell Scripts</h2>
+<p>Since we now know how to create text files in the command-line interface, we are going to
+use that knowledge to create a shell script and see what makes the shell such a powerful
+programming environment.</p>
+
+<h4 id="simple-scripts">Simple Scripts</h4>
+<p>Let’s write a shell script that will do two things:</p>
+<ol>
+  <li>Tell us our current working directory</li>
+  <li>List the contents of the directory</li>
+</ol>
+
+<p>First open a new file using vim:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ vim first_script.sh
+</code></pre></div></div>
+<p>Then type the following command into <code class="language-plaintext highlighter-rouge">first_script.sh</code> file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo "Your current working directory is: "
+pwd
+echo "This is the content of your working directory: "
+ls -lFG
+</code></pre></div></div>
+<p>Save and exit the file (<code class="language-plaintext highlighter-rouge">:wq</code>)
+Use <code class="language-plaintext highlighter-rouge">bash</code> or <code class="language-plaintext highlighter-rouge">sh</code> to execute <code class="language-plaintext highlighter-rouge">first_script.sh</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash first_script.sh
+</code></pre></div></div>
+<p>Execute the script in a different directory <code class="language-plaintext highlighter-rouge">other</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir other
+$ mv first_script.sh other
+$ sh other/first_script.sh
+</code></pre></div></div>
+<p><strong>More elegant way to execute the script</strong></p>
+<ol>
+  <li>open the file <code class="language-plaintext highlighter-rouge">$ vim first_script.sh</code></li>
+  <li>On the first line of the file write <code class="language-plaintext highlighter-rouge">#! /bin/bash</code></li>
+  <li>Step <strong>2.</strong> indicates to the script where the bash executable is.</li>
+  <li>Make the script executable with <code class="language-plaintext highlighter-rouge">chmod +x first_script.sh</code>.</li>
+  <li>Execute in the current directory with <code class="language-plaintext highlighter-rouge">$ ./first_script.sh</code>, and hit return .</li>
+  <li>Execute in the parent directory with <code class="language-plaintext highlighter-rouge">$ /other/first_script.sh</code>, and hit return .</li>
+</ol>
+
+<blockquote>
+  <p>Did it work as you expected?
+  Was the echo command helpful in letting you know what came next?</p>
+</blockquote>
+
+<h4 id="bash-variables">Bash Variables</h4>
+<p>A variable is a common concept shared by many programming languages. Variables are
+essentially a symbolic/temporary name for, or a reference to, some information. Variables
+are analogous to “buckets”, where information can be stored, maintained and modified without
+too much hassle.</p>
+
+<p><strong>Simple variable</strong>
+Lets assign 25 to num</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ num=25
+</code></pre></div></div>
+<p>Retrieve the value of <code class="language-plaintext highlighter-rouge">num</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo num
+</code></pre></div></div>
+<blockquote>
+  <p>What do you see at the command line?
+  When retrieving the value stored in the variable, explicitly use a $ in front of it:</p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo $num
+</code></pre></div></div>
+<p>Variables can also store a string of character values.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ file=pentane.pdb  
+</code></pre></div></div>
+<p><strong>Passing Argument(s) to a script</strong></p>
+<ul>
+  <li>Argument(s) are passed to the script at the time of execution.</li>
+  <li>Inside the script,
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">$1</code> variable references the first argument</li>
+      <li><code class="language-plaintext highlighter-rouge">$2</code> variable references the second argument</li>
+      <li><code class="language-plaintext highlighter-rouge">$n</code> variable references the nth argument</li>
+      <li><code class="language-plaintext highlighter-rouge">$0</code> is reserved and references the current script 
+Change to the molecules directory</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd molecules
+$ echo $file
+</code></pre></div></div>
+<p>Let’s try using the variable in a command</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ wc -l $file
+</code></pre></div></div>
+<blockquote>
+  <p>NOTE: Variables created are system-wide, and independent of where you are in the filesystem.
+  This is why you can reference it from any directory. However, it is only available for your current session.
+  If you exit or close your Terminal, the variables you have created will no longer exist.</p>
+</blockquote>
+
+<p><strong>Example of Argurment passing to script</strong></p>
+<ul>
+  <li>Open the file
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ vim first_script.sh 
+</code></pre></div>    </div>
+  </li>
+  <li>Write the following line of code in the file
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> #! /bin/bash                                                                    
+ echo "This script was executed as: $0 "
+ for filename in $1 $2 $3
+ do  
+   echo "Argument passed is $filename"
+   echo "$(wc -l $filename) lines"       
+ done
+</code></pre></div>    </div>
+    <p><strong>Exercise</strong></p>
+  </li>
+  <li>Reuse the $file variable to store a different file name, and rerun the previous commands.</li>
+</ul>
+
+<p><strong>Variables can store more than just a single value</strong>
+The command below list all the files ending in <code class="language-plaintext highlighter-rouge">.pdb</code> in molecules directory.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ls *.pdb
+</code></pre></div></div>
+<p><em>Assign</em> the output to a single variable</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ files='ls *.pdb'
+</code></pre></div></div>
+<blockquote>
+  <p>Note the syntax for assigning output of commands to variables.</p>
+</blockquote>
+
+<p>Check the output</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo $files
+</code></pre></div></div>
+<p>Let’s try the <code class="language-plaintext highlighter-rouge">wc -l</code> command again, but this time using the new variable <code class="language-plaintext highlighter-rouge">files</code> as the argument:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ wc -l $files
+</code></pre></div></div>
+<p><strong>Exercise</strong></p>
+
+<ul>
+  <li>Use some of the other commands you are familiar with (<em>i.e.</em> <code class="language-plaintext highlighter-rouge">head</code>, <code class="language-plaintext highlighter-rouge">tail</code>) on the <code class="language-plaintext highlighter-rouge">files</code> variable.</li>
+</ul>
+
+<h4 id="repetitive-tasks">Repetitive Tasks</h4>
+<p>In the previous example all the files were saved into a single variable <code class="language-plaintext highlighter-rouge">files</code>. We could access <code class="language-plaintext highlighter-rouge">files</code>
+content one at a time. This is called <strong>looping</strong>.</p>
+
+<p><strong>Looping</strong> is a concept shared by several programming languages, and its implementation in <em>bash</em> is
+very similar to other languages.</p>
+
+<p>The syntax of (for) loops in bash is as follows:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (variable_name) in (list)
+do
+(command $variable_name)
+.
+.
+done
+</code></pre></div></div>
+<ul>
+  <li><strong>variable_name</strong> defines (or initializes) a variable that takes the value
+of every member of the specified <strong>list</strong> one at a time.</li>
+  <li>At each iteration, the loop retrieves the value stored in the variable.</li>
+  <li>The commands indicated between the <em>do</em> and <em>done</em> are executed one at a time.</li>
+</ul>
+
+<p><strong>Example</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for File in files
+ do
+   echo $File
+   wc -l $File
+ done
+
+</code></pre></div></div>
+<ul>
+  <li>The script writes to the terminal <code class="language-plaintext highlighter-rouge">(echo)</code> the name of the file,</li>
+  <li>then the number of lines <code class="language-plaintext highlighter-rouge">(wc -l)</code> for each file.</li>
+  <li>the number of items in the list (variable name) == number of times the code will loop through.</li>
+  <li>Variable name does matter in the loop.</li>
+  <li>Make the variable name intuitive, indicate functionality.</li>
+</ul>
+
+<p><a name="OptionalRewsources"></a></p>
+<h2 id="optional-resources">Optional Resources</h2>
+<p>The following are additional resources that you may find useful:</p>
+<ul>
+  <li>Shell Scripting
+    <ul>
+      <li><a href="https://ryanstutorials.net/bash-scripting-tutorial/bash-script.php">Ryan’s tutorial</a></li>
+      <li><a href="http://linuxcommand.org/tlcl.php">The Linux Command Line</a> (Part 4: Writing Shell Scripts)</li>
+      <li><a href="http://mywiki.wooledge.org/BashGuide">Bash Guide</a></li>
+      <li><a href="http://matt.might.net/articles/bash-by-example/">Shell programming with bash: by example, by counter-example</a></li>
+    </ul>
+  </li>
+  <li>Networking
+    <ul>
+      <li><a href="https://tldp.org/LDP/intro-linux/html/chap_10.html">Introduction to Linux - Chapter 10. Networking</a></li>
+      <li><a href="http://www.slackbook.org/html/basic-network-commands.html">Slackware Linux Essentials - Chapter 13 Basic Network Commands</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+
+    
+    <div id="next-post">
+        <a alt="Basic Linux Commands" href="/workshop/basiclinuxshell.html">
+            <p>Next post</p>
+            Basic Linux Commands
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/tutorials/globus_cli.html">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Globus CLI | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="Globus CLI" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The Globus Command Line Interface (CLI) is a Python-based application that need to be installed on the computer systems at both ends of your file transfer. Python version 2.7 or higher, and the Python “pip” packages are required for the Globus CLI to be installed. Installation Login to Globus Using the interface Endpoint Commands File and Folder Commands Transfer Commands Task Commands Installation The Globus website provides CLI installation instructions. You will find instructions for installation on Windows, Mac, Linux and for updating or removing the CLI. The CLI will be added to your shell path and will automatically be available when you log in again. Login to Globus Before you can use the Globus CLI on a given computer, you must log in to Globus using the globus login command on the computer. globus login It will redirect you to the browser and you need to login with your Globus credentials. After successful login you will see a success message in the terminal. You will now be able to issue Globus CLI commands on this computer. You can check your Globus login status at any time with the command globus whoami. globus whoami Globus CLI Commands Each CLI command begins with globus and the command name, possibly followed by a sub-command name and/or flags and arguments. To see more information about a specific CLI command, pass the --help flag to the command. You can see a list of all Globus CLI commands by issuing the command: globus list-commands There are over four dozen commands, many of which are in groups containing a parent command and multiple sub-commands. If you need more information on any CLI command, Globus provides in-depth here. Endpoint Commands Endpoint IDs and Display Names Most Globus CLI commands require you to specify one or more endpoints, so it is important to understand how Globus endpoints are identified. Each endpoint has a globally unique 32 character ID as well as a user-friendly and non-unique “display name”. It is the ID that must be used in CLI commands. Searching for Endpoints To acquire the necessary endpoint IDs, users can search using the CLI’s endpoint search command. By default, the search will be performed on all endpoints (its scope is “all”). When searching over all endpoints you must add a quoted search term argument to the command. The CLI will search for the term(s) in various endpoint attributes, such as display name, description and organization, but will not attempt to match the owner name. In this example, we search for all endpoints whose fields contain the text “uncg”. Such searches can return up to 100 results; in this example, the search returns over two dozen. By using the –filter-owner-id option we can limit the results to those where the owner matches an ID we provide. globus endpointsearch --filter-owner-id mail_id@test.com &quot;uncg&quot; Results can also be filtered by a scope using the --filter-scope option. Several scopes are available, such as endpoints that are owned by you (my-endpoints) and endpoints that have been shared with you (shared-with-me). Only one such filter can be specified. When filtering in this way you do not have to provide a search term. The globus endpoint search reference page contains more information about this command. Files and Folder Commands For this we assign variable names to two of the endpoints we have. We can use the below command for assigning variable names to endpoints. $[variable name]=&lt;endpoint_id&gt; globus ls CLI commands that work with endpoints specify file and folder locations as combinations of the endpoint ID and an optional colon, followed by a path: globus ls [options] &lt;endpoint&gt;:&lt;path&gt; The globus ls command lists the contents of a specified endpoint and optional path. The command’s options include -a, --all to include hidden files, -l, --long to produce long form output and -r, --recursive for recursively printing contents of folders. globus mkdir The globus mkdir command creates a new directory at the given endpoint/path combination: globus mkdir &lt;endpoint&gt;&lt;:path&gt; The command returns 0 on success (as in the example below), 1 if there was an error (including if the path already exists), and 2 if the command was used improperly. globus rename The globus rename command renames a file or directory at the first endpoint:path combination to have the name given by the second endpoint/path combination: rename &lt;endpoint&gt;&lt;:old-path&gt; &lt;endpoint&gt;&lt;:new-path&gt; The endpoint must be the same in the “from” and “to” locations, and the new path must not already exist. The command returns 0 on success, 1 if there was an error, and 2 if the command was used improperly. globus rm The globus rm command removes a file or directory at the given endpoint/path combination: globus rm [options] &lt;endpoint&gt;&lt;:path&gt; When the path refers to a directory, you must use the “-r” recursive option. The remove operation is performed asynchronously and its progress can be tracked using the task ID that is returned by the command. The command has numerous options, some of which relate to managing the task. The command returns 0 on success, 1 if there was an error, and 2 if the command was used improperly. Note: One should know what he/she is going to delete, Once deleted files cannot be recoverd. Transfer Commands The globus transfer command can take two forms: single target and batch. Single Transfers To transfer a single file or folder, use the form that takes two endpoint / path parameters and copies the contents of the location specified by the first parameter to the location specified by the second. The “to” file name need not match the name of the “from” file. globus transfer [options] &lt;from-endpoint&gt;:&lt;from-path&gt; &lt;to-endpoint&gt;:&lt;to-path&gt; Batch Transfers To perform a “batch” transfer of multiple targets, use the --batch option and specify only the source and target endpoints in the command. globus transfer --batch [options] &lt;from-endpoint&gt; &lt;to-endpoint&gt; Then, individual source files/folders are identified on separate lines of the stdin stream until an end-of-file (EOF) is entered. Each line is of the form: [--recursive] &lt;from-path&gt; &lt;to-path&gt; The --recursive option must be provided when the source path is a folder. Blank lines and lines beginning with a ‘#’ (comments) are ignored. Batch transfer has been completed. Task Commands Transfer commands are one example of Globus CLI tasks that run in the background. These tasks may result in an email being sent to the initiator upon the task completion, but in order to learn about the task status or interact with it in the shell where it was issued, a user must use one of the globus task commands. globus task list The globus task list command prints a list of the most recent Globus CLI tasks initiated by the current user, including their status. It has the form: globus task list [options] globus task show The globus task show command displays information about a specific Globus CLI task such as a previously initiated transfer. It has the form: globus task status [options] &lt;taskid&gt; globus task cancel The globus task cancel command cancels an active Globus task such as a previously initiated transfer. This can be useful when the failure of one transfer command implies that a sequence of operations cannot proceed and other active transfers should be aborted. Note that when transfers are not succeeding as expected they are repeatedly retried until successful. For this reason, when there is no longer an expectation that a transfer will succeed, it should be canceled. The command can have one of the following forms: globus task cancel [options] &lt;taskid&gt; globus task cancel --all [options] The command must either include a single taskid argument or the –all option, which will cause all active tasks to be canceled. Both tasks that are pending and currently executing will be canceled." />
+<meta property="og:description" content="The Globus Command Line Interface (CLI) is a Python-based application that need to be installed on the computer systems at both ends of your file transfer. Python version 2.7 or higher, and the Python “pip” packages are required for the Globus CLI to be installed. Installation Login to Globus Using the interface Endpoint Commands File and Folder Commands Transfer Commands Task Commands Installation The Globus website provides CLI installation instructions. You will find instructions for installation on Windows, Mac, Linux and for updating or removing the CLI. The CLI will be added to your shell path and will automatically be available when you log in again. Login to Globus Before you can use the Globus CLI on a given computer, you must log in to Globus using the globus login command on the computer. globus login It will redirect you to the browser and you need to login with your Globus credentials. After successful login you will see a success message in the terminal. You will now be able to issue Globus CLI commands on this computer. You can check your Globus login status at any time with the command globus whoami. globus whoami Globus CLI Commands Each CLI command begins with globus and the command name, possibly followed by a sub-command name and/or flags and arguments. To see more information about a specific CLI command, pass the --help flag to the command. You can see a list of all Globus CLI commands by issuing the command: globus list-commands There are over four dozen commands, many of which are in groups containing a parent command and multiple sub-commands. If you need more information on any CLI command, Globus provides in-depth here. Endpoint Commands Endpoint IDs and Display Names Most Globus CLI commands require you to specify one or more endpoints, so it is important to understand how Globus endpoints are identified. Each endpoint has a globally unique 32 character ID as well as a user-friendly and non-unique “display name”. It is the ID that must be used in CLI commands. Searching for Endpoints To acquire the necessary endpoint IDs, users can search using the CLI’s endpoint search command. By default, the search will be performed on all endpoints (its scope is “all”). When searching over all endpoints you must add a quoted search term argument to the command. The CLI will search for the term(s) in various endpoint attributes, such as display name, description and organization, but will not attempt to match the owner name. In this example, we search for all endpoints whose fields contain the text “uncg”. Such searches can return up to 100 results; in this example, the search returns over two dozen. By using the –filter-owner-id option we can limit the results to those where the owner matches an ID we provide. globus endpointsearch --filter-owner-id mail_id@test.com &quot;uncg&quot; Results can also be filtered by a scope using the --filter-scope option. Several scopes are available, such as endpoints that are owned by you (my-endpoints) and endpoints that have been shared with you (shared-with-me). Only one such filter can be specified. When filtering in this way you do not have to provide a search term. The globus endpoint search reference page contains more information about this command. Files and Folder Commands For this we assign variable names to two of the endpoints we have. We can use the below command for assigning variable names to endpoints. $[variable name]=&lt;endpoint_id&gt; globus ls CLI commands that work with endpoints specify file and folder locations as combinations of the endpoint ID and an optional colon, followed by a path: globus ls [options] &lt;endpoint&gt;:&lt;path&gt; The globus ls command lists the contents of a specified endpoint and optional path. The command’s options include -a, --all to include hidden files, -l, --long to produce long form output and -r, --recursive for recursively printing contents of folders. globus mkdir The globus mkdir command creates a new directory at the given endpoint/path combination: globus mkdir &lt;endpoint&gt;&lt;:path&gt; The command returns 0 on success (as in the example below), 1 if there was an error (including if the path already exists), and 2 if the command was used improperly. globus rename The globus rename command renames a file or directory at the first endpoint:path combination to have the name given by the second endpoint/path combination: rename &lt;endpoint&gt;&lt;:old-path&gt; &lt;endpoint&gt;&lt;:new-path&gt; The endpoint must be the same in the “from” and “to” locations, and the new path must not already exist. The command returns 0 on success, 1 if there was an error, and 2 if the command was used improperly. globus rm The globus rm command removes a file or directory at the given endpoint/path combination: globus rm [options] &lt;endpoint&gt;&lt;:path&gt; When the path refers to a directory, you must use the “-r” recursive option. The remove operation is performed asynchronously and its progress can be tracked using the task ID that is returned by the command. The command has numerous options, some of which relate to managing the task. The command returns 0 on success, 1 if there was an error, and 2 if the command was used improperly. Note: One should know what he/she is going to delete, Once deleted files cannot be recoverd. Transfer Commands The globus transfer command can take two forms: single target and batch. Single Transfers To transfer a single file or folder, use the form that takes two endpoint / path parameters and copies the contents of the location specified by the first parameter to the location specified by the second. The “to” file name need not match the name of the “from” file. globus transfer [options] &lt;from-endpoint&gt;:&lt;from-path&gt; &lt;to-endpoint&gt;:&lt;to-path&gt; Batch Transfers To perform a “batch” transfer of multiple targets, use the --batch option and specify only the source and target endpoints in the command. globus transfer --batch [options] &lt;from-endpoint&gt; &lt;to-endpoint&gt; Then, individual source files/folders are identified on separate lines of the stdin stream until an end-of-file (EOF) is entered. Each line is of the form: [--recursive] &lt;from-path&gt; &lt;to-path&gt; The --recursive option must be provided when the source path is a folder. Blank lines and lines beginning with a ‘#’ (comments) are ignored. Batch transfer has been completed. Task Commands Transfer commands are one example of Globus CLI tasks that run in the background. These tasks may result in an email being sent to the initiator upon the task completion, but in order to learn about the task status or interact with it in the shell where it was issued, a user must use one of the globus task commands. globus task list The globus task list command prints a list of the most recent Globus CLI tasks initiated by the current user, including their status. It has the form: globus task list [options] globus task show The globus task show command displays information about a specific Globus CLI task such as a previously initiated transfer. It has the form: globus task status [options] &lt;taskid&gt; globus task cancel The globus task cancel command cancels an active Globus task such as a previously initiated transfer. This can be useful when the failure of one transfer command implies that a sequence of operations cannot proceed and other active transfers should be aborted. Note that when transfers are not succeeding as expected they are repeatedly retried until successful. For this reason, when there is no longer an expectation that a transfer will succeed, it should be canceled. The command can have one of the following forms: globus task cancel [options] &lt;taskid&gt; globus task cancel --all [options] The command must either include a single taskid argument or the –all option, which will cause all active tasks to be canceled. Both tasks that are pending and currently executing will be canceled." />
+<link rel="canonical" href="http://localhost:4000/tutorials/globus_cli.html" />
+<meta property="og:url" content="http://localhost:4000/tutorials/globus_cli.html" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Globus CLI" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"The Globus Command Line Interface (CLI) is a Python-based application that need to be installed on the computer systems at both ends of your file transfer. Python version 2.7 or higher, and the Python “pip” packages are required for the Globus CLI to be installed. Installation Login to Globus Using the interface Endpoint Commands File and Folder Commands Transfer Commands Task Commands Installation The Globus website provides CLI installation instructions. You will find instructions for installation on Windows, Mac, Linux and for updating or removing the CLI. The CLI will be added to your shell path and will automatically be available when you log in again. Login to Globus Before you can use the Globus CLI on a given computer, you must log in to Globus using the globus login command on the computer. globus login It will redirect you to the browser and you need to login with your Globus credentials. After successful login you will see a success message in the terminal. You will now be able to issue Globus CLI commands on this computer. You can check your Globus login status at any time with the command globus whoami. globus whoami Globus CLI Commands Each CLI command begins with globus and the command name, possibly followed by a sub-command name and/or flags and arguments. To see more information about a specific CLI command, pass the --help flag to the command. You can see a list of all Globus CLI commands by issuing the command: globus list-commands There are over four dozen commands, many of which are in groups containing a parent command and multiple sub-commands. If you need more information on any CLI command, Globus provides in-depth here. Endpoint Commands Endpoint IDs and Display Names Most Globus CLI commands require you to specify one or more endpoints, so it is important to understand how Globus endpoints are identified. Each endpoint has a globally unique 32 character ID as well as a user-friendly and non-unique “display name”. It is the ID that must be used in CLI commands. Searching for Endpoints To acquire the necessary endpoint IDs, users can search using the CLI’s endpoint search command. By default, the search will be performed on all endpoints (its scope is “all”). When searching over all endpoints you must add a quoted search term argument to the command. The CLI will search for the term(s) in various endpoint attributes, such as display name, description and organization, but will not attempt to match the owner name. In this example, we search for all endpoints whose fields contain the text “uncg”. Such searches can return up to 100 results; in this example, the search returns over two dozen. By using the –filter-owner-id option we can limit the results to those where the owner matches an ID we provide. globus endpointsearch --filter-owner-id mail_id@test.com &quot;uncg&quot; Results can also be filtered by a scope using the --filter-scope option. Several scopes are available, such as endpoints that are owned by you (my-endpoints) and endpoints that have been shared with you (shared-with-me). Only one such filter can be specified. When filtering in this way you do not have to provide a search term. The globus endpoint search reference page contains more information about this command. Files and Folder Commands For this we assign variable names to two of the endpoints we have. We can use the below command for assigning variable names to endpoints. $[variable name]=&lt;endpoint_id&gt; globus ls CLI commands that work with endpoints specify file and folder locations as combinations of the endpoint ID and an optional colon, followed by a path: globus ls [options] &lt;endpoint&gt;:&lt;path&gt; The globus ls command lists the contents of a specified endpoint and optional path. The command’s options include -a, --all to include hidden files, -l, --long to produce long form output and -r, --recursive for recursively printing contents of folders. globus mkdir The globus mkdir command creates a new directory at the given endpoint/path combination: globus mkdir &lt;endpoint&gt;&lt;:path&gt; The command returns 0 on success (as in the example below), 1 if there was an error (including if the path already exists), and 2 if the command was used improperly. globus rename The globus rename command renames a file or directory at the first endpoint:path combination to have the name given by the second endpoint/path combination: rename &lt;endpoint&gt;&lt;:old-path&gt; &lt;endpoint&gt;&lt;:new-path&gt; The endpoint must be the same in the “from” and “to” locations, and the new path must not already exist. The command returns 0 on success, 1 if there was an error, and 2 if the command was used improperly. globus rm The globus rm command removes a file or directory at the given endpoint/path combination: globus rm [options] &lt;endpoint&gt;&lt;:path&gt; When the path refers to a directory, you must use the “-r” recursive option. The remove operation is performed asynchronously and its progress can be tracked using the task ID that is returned by the command. The command has numerous options, some of which relate to managing the task. The command returns 0 on success, 1 if there was an error, and 2 if the command was used improperly. Note: One should know what he/she is going to delete, Once deleted files cannot be recoverd. Transfer Commands The globus transfer command can take two forms: single target and batch. Single Transfers To transfer a single file or folder, use the form that takes two endpoint / path parameters and copies the contents of the location specified by the first parameter to the location specified by the second. The “to” file name need not match the name of the “from” file. globus transfer [options] &lt;from-endpoint&gt;:&lt;from-path&gt; &lt;to-endpoint&gt;:&lt;to-path&gt; Batch Transfers To perform a “batch” transfer of multiple targets, use the --batch option and specify only the source and target endpoints in the command. globus transfer --batch [options] &lt;from-endpoint&gt; &lt;to-endpoint&gt; Then, individual source files/folders are identified on separate lines of the stdin stream until an end-of-file (EOF) is entered. Each line is of the form: [--recursive] &lt;from-path&gt; &lt;to-path&gt; The --recursive option must be provided when the source path is a folder. Blank lines and lines beginning with a ‘#’ (comments) are ignored. Batch transfer has been completed. Task Commands Transfer commands are one example of Globus CLI tasks that run in the background. These tasks may result in an email being sent to the initiator upon the task completion, but in order to learn about the task status or interact with it in the shell where it was issued, a user must use one of the globus task commands. globus task list The globus task list command prints a list of the most recent Globus CLI tasks initiated by the current user, including their status. It has the form: globus task list [options] globus task show The globus task show command displays information about a specific Globus CLI task such as a previously initiated transfer. It has the form: globus task status [options] &lt;taskid&gt; globus task cancel The globus task cancel command cancels an active Globus task such as a previously initiated transfer. This can be useful when the failure of one transfer command implies that a sequence of operations cannot proceed and other active transfers should be aborted. Note that when transfers are not succeeding as expected they are repeatedly retried until successful. For this reason, when there is no longer an expectation that a transfer will succeed, it should be canceled. The command can have one of the following forms: globus task cancel [options] &lt;taskid&gt; globus task cancel --all [options] The command must either include a single taskid argument or the –all option, which will cause all active tasks to be canceled. Both tasks that are pending and currently executing will be canceled.","headline":"Globus CLI","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/tutorials/globus_cli.html"},"url":"http://localhost:4000/tutorials/globus_cli.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="Globus+CLI" class="title">Globus CLI</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <p>The Globus Command Line Interface (CLI) is a Python-based application that need to be installed on the computer systems at both ends of your file transfer. Python version 2.7 or higher, and  the Python “pip” packages are required for the Globus CLI to be installed.</p>
+
+<ol>
+  <li><a href="#install">Installation</a></li>
+  <li><a href="#login">Login to Globus</a></li>
+  <li><a href="#interface">Using the interface</a></li>
+  <li><a href="#endpoint">Endpoint Commands</a></li>
+  <li><a href="#files">File and Folder Commands</a></li>
+  <li><a href="#transfer">Transfer Commands</a></li>
+  <li><a href="#task">Task Commands</a></li>
+</ol>
+
+<p><a name="install"></a></p>
+<h2 id="installation">Installation</h2>
+<p>The Globus website provides <a href="https://docs.globus.org/cli/installation/">CLI installation</a> instructions. You will find instructions for installation on Windows, Mac, Linux and for updating or removing the CLI. The CLI will be added to your shell path and will automatically be available when you log in again. <br /></p>
+
+<p><a name="login"></a></p>
+<h2 id="login-to-globus">Login to Globus</h2>
+<p>Before you can use the Globus CLI on a given computer, you must log in to Globus using the <code class="language-plaintext highlighter-rouge">globus login</code> command on the computer.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus login</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/1.png" /></p>
+
+<p>It will redirect you to the browser and you need to login with your Globus credentials.</p>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/2.png" /></p>
+
+<p>After successful login you will see a success message in the terminal.</p>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/3.png" /></p>
+
+<p>You will now be able to issue Globus CLI commands on this computer. You can check your Globus login status at any time with the command <code class="language-plaintext highlighter-rouge">globus whoami</code>.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus whoami</span>
+</code></pre></div></div>
+
+<p><a name="interface"></a></p>
+<h2 id="globus-cli-commands">Globus CLI Commands</h2>
+<p>Each CLI command begins with <code class="language-plaintext highlighter-rouge">globus</code> and the command name, possibly followed by a sub-command name and/or flags and arguments. To see more information about a specific CLI command, pass the <code class="language-plaintext highlighter-rouge">--help</code> flag to the command.</p>
+
+<p>You can see a list of all Globus CLI commands by issuing the command:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus list-commands</span>
+</code></pre></div></div>
+<p>There are over four dozen commands, many of which are in groups containing a parent command and multiple sub-commands.
+If you need more information on any CLI command, Globus provides in-depth <a href="https://docs.globus.org/cli/reference/">here</a>.</p>
+
+<p><a name="endpoint"></a></p>
+<h2 id="endpoint-commands">Endpoint Commands</h2>
+
+<h4 id="endpoint-ids-and-display-names">Endpoint IDs and Display Names</h4>
+<p>Most Globus CLI commands require you to specify one or more endpoints, so it is important to understand how Globus endpoints are identified. Each endpoint has a globally unique 32 character ID as well as a user-friendly and non-unique “display name”. It is the ID that must be used in CLI commands.</p>
+
+<h4 id="searching-for-endpoints">Searching for Endpoints</h4>
+<p>To acquire the necessary endpoint IDs, users can search using the CLI’s <code class="language-plaintext highlighter-rouge">endpoint search</code> command.
+By default, the search will be performed on all endpoints (its scope is “all”). When searching over all endpoints you must add a quoted search term argument to the command. The CLI will search for the term(s) in various endpoint attributes, such as display name, description and organization, but will not attempt to match the owner name.</p>
+
+<p>In this example, we search for all endpoints whose fields contain the text “uncg”.</p>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/4.png" /></p>
+
+<p>Such searches can return up to 100 results; in this example, the search returns over two dozen.</p>
+
+<p>By using the –filter-owner-id option we can limit the results to those where the owner matches an ID we provide.</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus endpointsearch --filter-owner-id mail_id@test.com "uncg"</span>
+</code></pre></div></div>
+
+<p>Results can also be filtered by a scope using the <code class="language-plaintext highlighter-rouge">--filter-scope</code> option. Several scopes are available, such as endpoints that are owned by you (<code class="language-plaintext highlighter-rouge">my-endpoints</code>) and endpoints that have been shared with you (<code class="language-plaintext highlighter-rouge">shared-with-me</code>). Only one such filter can be specified. When filtering in this way you do not have to provide a search term.</p>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/5.png" /></p>
+
+<p>The <a href="https://docs.globus.org/cli/reference/endpoint_search/">globus endpoint search</a> reference page contains more information about this command.</p>
+
+<p><a name="files"></a></p>
+<h2 id="files-and-folder-commands">Files and Folder Commands</h2>
+<p>For this we assign variable names to two of the endpoints we have.
+We can use the below command for assigning variable names to endpoints.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">$[variable name]=&lt;endpoint_id&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/6.png" /></p>
+
+<h4 id="globus-ls">globus ls</h4>
+
+<p>CLI commands that work with endpoints specify file and folder locations as combinations of the endpoint ID and an optional colon, followed by a path:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus ls [options] &lt;endpoint&gt;:&lt;path&gt;</span>
+</code></pre></div></div>
+<p><img src="/assets/img/tutorialsimages/globuscli/7.png" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">globus ls</code> command lists the contents of a specified endpoint and optional path. The command’s options include <code class="language-plaintext highlighter-rouge">-a, --all</code> to include hidden files, <code class="language-plaintext highlighter-rouge">-l, --long</code> to produce long form output and <code class="language-plaintext highlighter-rouge">-r, --recursive</code> for recursively printing contents of folders.</p>
+
+<h4 id="globus-mkdir">globus mkdir</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">globus mkdir</code> command creates a new directory at the given endpoint/path combination:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus mkdir &lt;endpoint&gt;&lt;:path&gt;</span>
+</code></pre></div></div>
+<p>The command returns 0 on success (as in the example below), 1 if there was an error (including if the path already exists), and 2 if the command was used improperly.</p>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/8.png" /></p>
+
+<h4 id="globus-rename">globus rename</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">globus rename</code> command renames a file or directory at the first endpoint:path combination to have the name given by the second endpoint/path combination:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">rename &lt;endpoint&gt;&lt;:old-path&gt; &lt;endpoint&gt;&lt;:new-path&gt;</span>
+</code></pre></div></div>
+<p>The endpoint must be the same in the “from” and “to” locations, and the new path must not already exist. The command returns 0 on success, 1 if there was an error, and 2 if the command was used improperly.</p>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/9.png" /></p>
+
+<h4 id="globus-rm">globus rm</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">globus rm</code> command removes a file or directory at the given endpoint/path combination:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus rm [options] &lt;endpoint&gt;&lt;:path&gt;</span>
+</code></pre></div></div>
+<p>When the path refers to a directory, you must use the “-r” recursive option. The remove operation is performed asynchronously and its progress can be tracked using the task ID that is returned by the command. The command has numerous options, some of which relate to managing the task. The command returns 0 on success, 1 if there was an error, and 2 if the command was used improperly.</p>
+
+<p><mark>Note: One should know what he/she is going to delete, Once deleted files cannot be recoverd.</mark></p>
+
+<p><a name="transfer"></a></p>
+<h2 id="transfer-commands">Transfer Commands</h2>
+<p>The <code class="language-plaintext highlighter-rouge">globus transfer</code> command can take two forms: single target and batch.</p>
+
+<h4 id="single-transfers">Single Transfers</h4>
+
+<p>To transfer a single file or folder, use the form that takes two endpoint / path parameters and copies the contents of the location specified by the first parameter to the location specified by the second. The “to” file name need not match the name of the “from” file.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus transfer [options] &lt;from-endpoint&gt;:&lt;from-path&gt; &lt;to-endpoint&gt;:&lt;to-path&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/10.png" /></p>
+
+<h4 id="batch-transfers">Batch Transfers</h4>
+
+<p>To perform a “batch” transfer of multiple targets, use the <code class="language-plaintext highlighter-rouge">--batch</code> option and specify only the source and target endpoints in the command.</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus transfer --batch [options] &lt;from-endpoint&gt; &lt;to-endpoint&gt;</span>
+</code></pre></div></div>
+<p>Then, individual source files/folders are identified on separate lines of the <code class="language-plaintext highlighter-rouge">stdin</code> stream until an end-of-file (EOF) is entered. Each line is of the form:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">[</span><span class="nv">--recursive</span><span class="pi">]</span> <span class="s">&lt;from-path&gt; &lt;to-path&gt;</span>
+</code></pre></div></div>
+<p>The <code class="language-plaintext highlighter-rouge">--recursive</code> option must be provided when the source path is a folder. Blank lines and lines beginning with a ‘#’ (comments) are ignored.</p>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/11.png" /></p>
+
+<p>Batch transfer has been completed.</p>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/12.png" /></p>
+
+<p><a name="task"></a></p>
+<h2 id="task-commands">Task Commands</h2>
+<p><a href="https://gcrnet.github.io/tutorials/globus_cli.html#transfer">Transfer commands</a> are one example of Globus CLI tasks that run in the background. These tasks may result in an email being sent to the initiator upon the task completion, but in order to learn about the task status or interact with it in the shell where it was issued, a user must use one of the globus task commands.</p>
+
+<h4 id="globus-task-list">globus task list</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">globus task list</code> command prints a list of the most recent Globus CLI tasks initiated by the current user, including their status. It has the form:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus task list [options]</span>
+</code></pre></div></div>
+
+<h4 id="globus-task-show">globus task show</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">globus task show</code> command displays information about a specific Globus CLI task such as a previously initiated transfer. It has the form:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus task status [options] &lt;taskid&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/13.png" /></p>
+
+<h4 id="globus-task-cancel">globus task cancel</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">globus task cancel</code> command cancels an active Globus task such as a previously initiated transfer. This can be useful when the failure of one transfer command implies that a sequence of operations cannot proceed and other active transfers should be aborted. Note that when transfers are not succeeding as expected they are repeatedly retried until successful. For this reason, when there is no longer an expectation that a transfer will succeed, it should be canceled. The command can have one of the following forms:</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus task cancel [options] &lt;taskid&gt;</span>
+</code></pre></div></div>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">globus task cancel --all [options]</span>
+</code></pre></div></div>
+<p>The command must either include a single taskid argument or the –all option, which will cause all active tasks to be canceled. Both tasks that are pending and currently executing will be canceled.</p>
+
+<p><img src="/assets/img/tutorialsimages/globuscli/14.png" /></p>
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="File transfer using Globus" href="/tutorials/filetransfer.html">
+            <p>Previous post</p>
+            File transfer using Globus
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="Access Globus from a Jupyter Notebook" href="/tutorials/globus_in_jupyter-nbk.html">
+            <p>Next post</p>
+            Access Globus from a Jupyter Notebook
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>

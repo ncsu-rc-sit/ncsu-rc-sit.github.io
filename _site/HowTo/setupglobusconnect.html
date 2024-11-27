@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<!--
+    Type on Strap jekyll theme v2.2.1
+    Copyright 2016-2019 Sylhare
+    Theme free for personal and commercial use under the MIT license
+    https://github.com/sylhare/Type-on-Strap/blob/master/LICENSE
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Main JS (navbar.js, katex_init.js and masonry_init.js)-->
+    <script defer=true src="/assets/js/main.min.js"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="/assets/background-color.ico" type="image/x-icon">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="http://localhost:4000/howto/setupglobusconnect">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="NC State RC-SIT" href="http://localhost:4000/feed.xml"/>
+    
+    
+
+    <!-- KaTeX 0.8.3 -->
+    <!-- if you have any issue check https://github.com/KaTeX/KaTeX -->
+    
+    <script src="/assets/js/vendor/katex.min.js"></script>
+    
+
+    <!-- Google Analytics -->
+    
+    <!-- End Google Analytics -->
+
+    <!-- seo tags -->
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>How to Set up Globus Connect Personal | NC State RC-SIT</title>
+<meta name="generator" content="Jekyll v4.3.4" />
+<meta property="og:title" content="How to Set up Globus Connect Personal" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction to Globus Connect Personal" />
+<meta property="og:description" content="Introduction to Globus Connect Personal" />
+<link rel="canonical" href="http://localhost:4000/howto/setupglobusconnect" />
+<meta property="og:url" content="http://localhost:4000/howto/setupglobusconnect" />
+<meta property="og:site_name" content="NC State RC-SIT" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-26T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to Set up Globus Connect Personal" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-26T00:00:00-05:00","datePublished":"2024-11-26T00:00:00-05:00","description":"Introduction to Globus Connect Personal","headline":"How to Set up Globus Connect Personal","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/howto/setupglobusconnect"},"url":"http://localhost:4000/howto/setupglobusconnect"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta property="og:image" content="http://localhost:4000/assets/img/background-color.png " />
+</head>
+
+  <body>
+    <header class="site-header">
+
+    <!-- Logo and title -->
+	<div class="branding">
+        
+		<a href="/">
+			<img alt="logo img" class="avatar" src="/assets/img/mainlogo.png" />
+		</a>
+        
+
+		<h1 class="site-title">
+			<a aria-label="NC State RC-SIT" href="/">
+        NC State RC-SIT
+      </a>
+		</h1>
+	</div>
+
+    <!-- Toggle menu -->
+    <nav class="clear">
+    <a aria-label="pull" id="pull" class="toggle" href="#">
+    <i class="fa fa-bars fa-lg"></i>
+    </a>
+
+    <!-- Menu -->
+    <ul class="hide">
+        
+
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Downloads" title="Downloads" href="/downloads/">
+                     Downloads 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="FAQ" title="FAQ" href="/faq/">
+                     FAQ 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="HowTo" title="HowTo" href="/HowTo/">
+                     HowTo 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Projects" title="Projects" href="/Projects/">
+                     Projects 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Tutorials" title="Tutorials" href="/tutorials/">
+                     Tutorials 
+                </a>
+            </li>
+            
+            
+        
+            
+            <li class="separator"> | </li>
+            <li>
+                <a class="clear" aria-label="Workshops" title="Workshops" href="/workshops/">
+                     Workshops 
+                </a>
+            </li>
+            
+            
+        
+            
+            
+        
+            
+            
+        
+            
+            
+        
+    </ul>
+
+	</nav>
+</header>
+
+    <div class="content">
+      <article class="feature-image">
+  <header id="main" style="">
+    
+    <h1 id="How+to+Set+up+Globus+Connect+Personal" class="title">How to Set up Globus Connect Personal</h1>
+    
+
+
+<div class="post-info">
+    <p class="meta">
+      November 26, 2024
+    </p></div>
+
+    
+  </header>
+
+  <section class="post-content">
+  
+      <h3 id="introduction-to-globus-connect-personal">Introduction to Globus Connect Personal</h3>
+
+<ul>
+  <li>Globus Connect is a, pre-configured software that turns your personal computer into a Globus endpoint.</li>
+  <li>Use Globus Connect Personal to enable file transfer to and from your personal machine (laptop or desktop).</li>
+  <li>A Globus Connect Personal endpoint is intended to be used only by a single user.</li>
+</ul>
+
+<h3 id="setting-up-globus-connect-personal">Setting Up Globus Connect Personal</h3>
+
+<ul>
+  <li><a href="https://gcrnet.github.io/howto/globusconnectpersonal">Follow instructions to install Globus Connect Personal on your OS</a></li>
+  <li><a href="https://go.uncg.edu/globus-login">Login to Globus App</a> using the university (iSPARTAN ID) credentials.</li>
+  <li>Select the organization details from the drop-down menu.
+<img src="/assets/img/howtoimages/setupglobusconnect/1.png" /></li>
+  <li>Follow directions to login
+<img src="/assets/img/howtoimages/setupglobusconnect/2.png" />
+If you are a Windows user, click <code class="language-plaintext highlighter-rouge">Download Globus for Windows</code> otherwise click on <code class="language-plaintext highlighter-rouge">show me other supported operating systems.</code>     <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/3.png" /></li>
+  <li>Sometimes Windows defender stops the user from downloading as it doesn’t recognize the application.</li>
+  <li>If your system encounters any problem as such, click on <code class="language-plaintext highlighter-rouge">More info.</code>    <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/4.png" /></li>
+  <li>Click on <code class="language-plaintext highlighter-rouge">Run anyway</code>. The system starts downloading the application.      <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/5.png" /></li>
+  <li>Use the setting up page to set user’s preferences. <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/6.png" /></li>
+  <li>Use the Globus Connect Personal Setup pop-up to Log in to the system.    <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/7.png" /></li>
+  <li>Provide a future reference name and description for your collection.</li>
+  <li>Choose a self descriptive reference name as it is searchable.</li>
+  <li>To change the display name, rename and click on <code class="language-plaintext highlighter-rouge">Allow</code>.      	     <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/8.png" /></li>
+  <li><strong>Collection Name</strong> : This is the name that would be displayed.</li>
+  <li><strong>Description</strong> : Say how and for what the collection would be used .</li>
+  <li><strong>High Assurance</strong> : Do not select this option as UNCG does not support this feature.</li>
+  <li>After all the fields are filled, click on save.     <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/9.png" /></li>
+  <li>You may click on any of the links below or both.</li>
+  <li>This takes the user to the website.</li>
+  <li>Then click on exit setup.</li>
+  <li>Globus connect personal has been successfully set up on the personal computer.     <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/10.png" /></li>
+  <li>Change the default folder (<code class="language-plaintext highlighter-rouge">home</code> for linux and <code class="language-plaintext highlighter-rouge">Document</code> for Windows) to a an isolated folder.    <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/11.png" /></li>
+  <li>Change the default directory, from the tool bar, check for the Globus <code class="language-plaintext highlighter-rouge">g</code> logo and right click on it.               <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/12.png" /></li>
+  <li>A list of different functions appear next to it. On the list, check for <code class="language-plaintext highlighter-rouge">Options…</code> and click on it.       <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/13.png" /></li>
+  <li>You may create a new folder to hold data related to Globus.</li>
+  <li>Specify the path to the folder, then click <code class="language-plaintext highlighter-rouge">Choose</code>.</li>
+  <li>Select the old default folder and use the minus (-) button to remove it.      <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/14.png" /></li>
+  <li>For your personal computer, select only the <code class="language-plaintext highlighter-rouge">writable</code> option.</li>
+  <li>For a lab computer select both the <code class="language-plaintext highlighter-rouge">writable and sharable</code> options to move and share data.</li>
+  <li>You may click on “Save” to save these changes.     <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/15.png" /></li>
+  <li>Files from folder can now be shared on Globus.         <br />
+<img src="/assets/img/howtoimages/setupglobusconnect/16.png" /></li>
+</ul>
+
+    
+  </section>
+
+  
+
+</article>
+
+<script src="/assets/scripts/copyCode.js"></script>
+
+<!-- Disqus -->
+
+
+<!-- Post navigation -->
+
+  <div id="post-nav">
+    
+    <div id="previous-post">
+        <a alt="GitHub HowTos" href="/howto/howtogit">
+            <p>Previous post</p>
+            GitHub HowTos
+        </a>
+    </div>
+    
+
+    
+    <div id="next-post">
+        <a alt="How to Use Globus Connect Personal" href="/howto/usingglobusconnectpersonal">
+            <p>Next post</p>
+            How to Use Globus Connect Personal
+        </a>
+    </div>
+    
+</div>
+
+
+
+<!-- To change color of links in the page -->
+<style>
+  
+
+  header#main {
+    background-repeat:no-repeat;
+   background-image: url('/assets/img/background-color.png');
+  
+  }
+</style>
+
+    </div>
+    
+<footer class="site-footer">
+    <p class="text">
+        </p>
+        <style>
+        *{box-sizing: border-box;}
+        .col{float:left; width:33.33%; padding 5px;}
+        .row::after{content:"";clear:both;display:table;}
+        </style>
+    	
+<table> <tr>
+<td style="vertical-align: middle; text-align: center; border: none;">
+<a href="http://www.ncsu.edu" >
+<img src="/assets/img/ncsu-oit-logo.png" width=450 alt="NC State ">
+</a>
+</td>
+
+ 
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.nsf.gov"><img src="/assets/img/rc-sit-logo.png" alt="NSF" width=450></a></td>
+
+<td style="vertical-align: middle; text-align: center; border: none;"><a href="https://www.ncat.edu"><img src="/assets/img/psi-logo.png" alt="NC A&amp;T" width=480></a></td>
+</tr>
+</table>
+            <div class="footer-icons">
+                <ul>
+                <!-- Social icons from Font Awesome, if enabled -->
+                
+
+
+<li>
+    <a href="mailto:j_fossot@uncg.edu" title="Email">
+		<span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+        </span>
+    </a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </ul>
+            </div>
+</footer>
+
+
+  </body>
+</html>
