@@ -6,7 +6,7 @@ url: ""
 # THEME-SPECIFIC CONFIGURATION
 title: NC State RC-SIT                                    # site's title
 description: "NC State Research Computing Solutions and InTegration  "      # used by search engines
-avatar: assets/img/mainlogo.png                         # Empty for no avatar in navbar
+#avatar: assets/img/mainlogo.png                         # Empty for no avatar in navbar
 favicon: assets/background-color.ico
 #favicon: assets/favicon.ico                             # Icon displayed in the tab
 
