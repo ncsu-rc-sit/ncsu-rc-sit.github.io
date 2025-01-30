@@ -2,7 +2,7 @@
 layout: post
 title: How to Enable Institutional Subscription to Share Roles on Globus Connect Personal
 feature-img: "assets/img/background-color.png"
-date: 26 November 2024
+date: 30 Janvier 2025
 ---
 
 Globus Connect Personal (GCP) is the client that users can install on their personal computer to then share data with others. Sometimes, there is a need to share roles on a GCP. For a role sharing to happen, the GCP owners must have a subscription, in this case it would be the NC State Globus Subscription. The steps below will walk you through the process of enabling subscriptions.
