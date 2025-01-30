@@ -15,15 +15,15 @@ Continue to [Globus Web App log in](https://app.globus.org/)
 
 <img src="/assets/img/howtoimages/gsub/2.png" >
 
-On the top menu, select the `**Administer By You**` tab, then the endpoint (Example in red box) you want to share roles on and click on it to open    
+On the top menu, select the **`Administer By You`** tab, then the endpoint (Example in red box) you want to share roles on and click on it to open    
 
 <img src="/assets/img/howtoimages/gsub/3.png" >
 
-Open to the subscription status page and click on the `**Edit Subscription Status**` to open it.
+Open to the subscription status page and click on the **`Edit Subscription Status`** to open it.
 
 <img src="/assets/img/howtoimages/gsub/4.png" >
 
-Select the subscription of your choice and click on `**Save Changes**`, to save.   
+Select the subscription of your choice and click on **`Save Changes`**, to save.   
 <img src="/assets/img/howtoimages/gsub/5.png" >
 
 You have added subscription.
